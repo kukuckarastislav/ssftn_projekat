@@ -31,8 +31,8 @@ public class MenuBar extends JMenuBar {
 		 	takodje i za About neki novi prozor da se otvori gde ce pisati biografija
 		*/
 		JMenu file = new JMenu("File");
-		JMenuItem miNew   = new JMenuItem("New"); //new ImageIcon("images/unnamed.png")
-		JMenuItem miClose = new JMenuItem("Close"); // treba u konstruktoru dodati slike
+		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/unnamed.png")); 
+		JMenuItem miClose = new JMenuItem("Close"); 
 	
 		
 		miNew.setToolTipText("Dodavanje novog entiteta u sistem");
@@ -43,8 +43,8 @@ public class MenuBar extends JMenuBar {
 		file.add(miClose);
 				
 		JMenu edit = new JMenu("Edit");
-		JMenuItem miEdit   = new JMenuItem("Edit");
-		JMenuItem miDelete = new JMenuItem("Delete");
+		JMenuItem miEdit   = new JMenuItem("Edit", new ImageIcon("images/edit.png"));
+		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("images/delete.png"));
 		
 		miEdit.setToolTipText("Izmena postojeceg entiteta");
 		miDelete.setToolTipText("Brisanje postojeceg entiteta");
