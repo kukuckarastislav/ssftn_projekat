@@ -1,5 +1,7 @@
 package gui;
 
+//OVO JE FRAME1 ZA PROJEKAT, U SLUCAJU ZABUNE
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
