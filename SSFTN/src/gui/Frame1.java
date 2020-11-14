@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+
 public class Frame1 extends JFrame{
 	
 	private static final long serialVersionUID = 945801629855138262L;
@@ -22,9 +23,16 @@ public class Frame1 extends JFrame{
 	setTitle("Studentska sluzba");   //po defaultu je poravnato uz lijevu ivicu 
 	setLocationRelativeTo(null);
 	
+	// mesto za dodavanje MenuBar-a
+	MenuBar menuBar = new MenuBar();
+	setJMenuBar(menuBar);
+	
 	
 	Toolbar toolbar = new Toolbar();
 	add(toolbar, BorderLayout.NORTH);
+	
+	// Mesto za dodavnaja status Bara
+	
 	
 	
 	}
