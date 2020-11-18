@@ -21,7 +21,7 @@ public class Toolbar extends JToolBar {
 	public Toolbar() {
 		
 
-
+	
 		super(SwingConstants.HORIZONTAL);
 		
 		JButton btnNew = new JButton();;
