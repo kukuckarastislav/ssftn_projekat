@@ -34,7 +34,8 @@ public class Frame1 extends JFrame{
 	add(toolbar, BorderLayout.NORTH);
 	
 	// Mesto za dodavnaja status Bara
-	
+	StatusBar statusBar = new StatusBar();
+	add(statusBar, BorderLayout.SOUTH);
 	
 	
 	}

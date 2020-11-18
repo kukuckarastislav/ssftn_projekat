@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,6 +32,9 @@ public class MenuBar extends JMenuBar {
 		 	biti informacije o funkcionalnostima
 		 	takodje i za About neki novi prozor da se otvori gde ce pisati biografija
 		*/
+		
+		//setBackground(new Color(255,255,255));
+		
 		JMenu file = new JMenu("File");
 		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/unnamed.png")); 
 		JMenuItem miClose = new JMenuItem("Close"); 
