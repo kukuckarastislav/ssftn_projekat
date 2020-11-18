@@ -36,7 +36,7 @@ public class MenuBar extends JMenuBar {
 		//setBackground(new Color(255,255,255));
 		
 		JMenu file = new JMenu("File");
-		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/unnamed.png")); 
+		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/iconPlus16x16.png")); 
 		JMenuItem miClose = new JMenuItem("Close"); 
 	
 		
@@ -48,8 +48,8 @@ public class MenuBar extends JMenuBar {
 		file.add(miClose);
 				
 		JMenu edit = new JMenu("Edit");
-		JMenuItem miEdit   = new JMenuItem("Edit", new ImageIcon("images/edit.png"));
-		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("images/delete.png"));
+		JMenuItem miEdit   = new JMenuItem("Edit", new ImageIcon("images/iconEdit16x16.png"));
+		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("images/iconDelete16x16.png"));
 		
 		miEdit.setToolTipText("Izmena postojeceg entiteta");
 		miDelete.setToolTipText("Brisanje postojeceg entiteta");
