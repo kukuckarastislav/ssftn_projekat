@@ -25,15 +25,15 @@ public class Frame1 extends JFrame{
 	setTitle("Studentska sluzba");   //po defaultu je poravnato uz lijevu ivicu 
 	setLocationRelativeTo(null);
 	
-	// mesto za dodavanje MenuBar-a
+	// MenuBar
 	MenuBar menuBar = new MenuBar();
 	setJMenuBar(menuBar);
 	
-	
+	// Toolbar
 	Toolbar toolbar = new Toolbar();
 	add(toolbar, BorderLayout.NORTH);
 	
-	// Mesto za dodavnaja status Bara
+	// StatusBar
 	StatusBar statusBar = new StatusBar();
 	add(statusBar, BorderLayout.SOUTH);
 	
