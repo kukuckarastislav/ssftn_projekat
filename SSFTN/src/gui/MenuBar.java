@@ -36,7 +36,7 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu file = new JMenu("File");
 		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/iconPlus16x16.png")); 
-		JMenuItem miClose = new JMenuItem("Close"); 
+		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("images/iconClose16x16.png")); 
 		
 		file.setMnemonic(KeyEvent.VK_F);
 		
@@ -68,8 +68,8 @@ public class MenuBar extends JMenuBar {
 		
 		
 		JMenu help = new JMenu("Help");
-		JMenuItem miHelp = new JMenuItem("Help");
-		JMenuItem miAbout = new JMenuItem("About");
+		JMenuItem miHelp = new JMenuItem("Help", new ImageIcon("images/iconHelp16x16.png"));
+		JMenuItem miAbout = new JMenuItem("About", new ImageIcon("images/iconAbout16x16.png"));
 		
 		help.setMnemonic(KeyEvent.VK_H);
 		
