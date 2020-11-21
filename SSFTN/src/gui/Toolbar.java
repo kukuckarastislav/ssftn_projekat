@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,43 +26,47 @@ public class Toolbar extends JToolBar {
 
 	
 		super(SwingConstants.HORIZONTAL);
+		//setBackground(new Color(255, 255, 204));
 		
-		JButton btnNew = new JButton();;
-		btnNew.setIcon(new ImageIcon("images/unnamed.png"));
+		CustomButton btnNew = new CustomButton();
+		btnNew.setIcon(new ImageIcon("images/iconPlus24x24.png"));
 		btnNew.setToolTipText("Create new entity");
 		add(btnNew);
 
 		addSeparator();
 
-		JButton btnEdit = new JButton();
-		btnEdit.setIcon(new ImageIcon("images/edit.png"));
+		CustomButton btnEdit = new CustomButton();
+		btnEdit.setIcon(new ImageIcon("images/iconEdit24x24.png"));
 		btnEdit.setToolTipText("Edit entity");
 		add(btnEdit);
 
 		addSeparator();
 		
-		JButton btnDelete = new JButton();
-		btnDelete.setIcon(new ImageIcon("images/delete.png"));
+		CustomButton btnDelete = new CustomButton();
+		btnDelete.setIcon(new ImageIcon("images/iconDelete24x24.png"));
 		btnDelete.setToolTipText("Delete entity");
 		add(btnDelete);
 		
 		addSeparator();		
 		
-		JButton btnSearch = new JButton();
-		btnSearch.setIcon(new ImageIcon("images/search.png"));
+		
+		CustomButton btnSearch = new CustomButton();
+		btnSearch.setIcon(new ImageIcon("images/iconSearch24x24.png"));
 		btnSearch.setToolTipText("Search for entity");
 		add(btnSearch);
-		
-		
+				
 		add(Box.createHorizontalGlue());
 		
-		JTextField t = new JTextField(5);
 		
-		add(t);
-        add(btnSearch);
+		JTextField tf = new JTextField(15);
+        tf.setMaximumSize(tf.getPreferredSize());
+        add(tf);
+		
+		add(btnSearch);
 
 
 
 	}
 
 }
+

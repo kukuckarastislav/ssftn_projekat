@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 
 public class Frame1 extends JFrame{
@@ -33,11 +34,12 @@ public class Frame1 extends JFrame{
 	Toolbar toolbar = new Toolbar();
 	add(toolbar, BorderLayout.NORTH);
 	
+	
 	// StatusBar
 	StatusBar statusBar = new StatusBar();
 	add(statusBar, BorderLayout.SOUTH);
 	
-	
+
 	}
 
 }
