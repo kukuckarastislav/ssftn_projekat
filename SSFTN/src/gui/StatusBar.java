@@ -33,7 +33,7 @@ public class StatusBar extends JPanel{
 		JLabel labStSl = new JLabel("Studentska Slu\u017eba");
 		labStSl.setPreferredSize(new Dimension(150,26)); 	
 
-		// ZA sada ovo prikazuje vreme ali ih ne osvezava
+		// VREME I DATUM
 		
 		LocalDate localDate = LocalDate.now();
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.YYYY");
@@ -43,6 +43,29 @@ public class StatusBar extends JPanel{
 		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh:mm");
 		JLabel labVreme = new JLabel(localTime.format(timeFormat));
 		
+		Thread nitVremeDatum = new Thread() {
+			@Override
+			public void run() {
+				while(true) {
+					LocalDate localDate = LocalDate.now();
+					DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+					
+					LocalTime localTime = LocalTime.now();
+					DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh:mm");
+					
+					labDatum.setText(dateFormat.format(localDate));
+					labVreme.setText(localTime.format(timeFormat));
+					try {
+						
+						sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		nitVremeDatum.start();
+		
 		
 		
 		
@@ -50,9 +73,14 @@ public class StatusBar extends JPanel{
 		add(labStSl);
 		add(Box.createGlue());
 		add(labVreme);
-		add(Box.createHorizontalStrut(5));
+		add(Box.createHorizontalStrut(10));
 		add(labDatum);
 		add(Box.createHorizontalStrut(25));
+		
+		
+		
+		
+
 		
 		
 		
