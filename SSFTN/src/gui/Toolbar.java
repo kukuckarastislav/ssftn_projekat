@@ -26,7 +26,7 @@ public class Toolbar extends JToolBar {
 
 	
 		super(SwingConstants.HORIZONTAL);
-		//setBackground(new Color(255, 255, 204));
+		setFloatable(false);
 		
 		CustomButton btnNew = new CustomButton();
 		btnNew.setIcon(new ImageIcon("images/iconPlus24x24.png"));
@@ -59,6 +59,7 @@ public class Toolbar extends JToolBar {
 		
 		
 		JTextField tf = new JTextField(15);
+		tf.setPreferredSize(new Dimension(200,24));
         tf.setMaximumSize(tf.getPreferredSize());
         add(tf);
 		
