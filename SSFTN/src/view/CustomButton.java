@@ -1,10 +1,19 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+
+
+
+/*
+ *  Ova klasa je pronadjena na 
+ * 
+ * */
+
+
 
 public class CustomButton extends JButton{
 	
