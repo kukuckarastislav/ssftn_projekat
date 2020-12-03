@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 
 public class StatusBar extends JPanel{
 	
-	/**
+	/*
+	 * 	Dodato osvezivanje vremena i datuma 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
