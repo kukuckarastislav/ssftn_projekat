@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -23,13 +23,6 @@ public class MenuBar extends JMenuBar {
 		/*
 		 	NAPOMENA:
 		 	
-		 	trbea koristiti metode
-		 	setAccelerator()			// jos nismo radili action lisenere dodacemo na kraju
-		 	setMnemonic()
-		 	
-		 	Takodje u delu Help treba napraviti na neki nacin da se otvori neki novi prozorcic gde ce 
-		 	biti informacije o funkcionalnostima
-		 	takodje i za About neki novi prozor da se otvori gde ce pisati biografija
 		*/
 		
 		//setBackground(new Color(255,255,255));
