@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 //OVO JE FRAME1 ZA PROJEKAT, U SLUCAJU ZABUNE
 
