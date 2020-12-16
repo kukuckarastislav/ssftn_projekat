@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -28,7 +29,7 @@ public class MenuBar extends JMenuBar {
 		//setBackground(new Color(255,255,255));
 		
 		JMenu file = new JMenu("File");
-		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images/iconPlus16x16.png")); 
+		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images"+File.separator+"iconPlus16x16.png")); 
 		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("images/iconClose16x16.png")); 
 		
 		file.setMnemonic(KeyEvent.VK_F);
@@ -44,8 +45,8 @@ public class MenuBar extends JMenuBar {
 		file.add(miClose);
 				
 		JMenu edit = new JMenu("Edit");
-		JMenuItem miEdit   = new JMenuItem("Edit", new ImageIcon("images/iconEdit16x16.png"));
-		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("images/iconDelete16x16.png"));
+		JMenuItem miEdit   = new JMenuItem("Edit", new ImageIcon("images"+File.separator+"iconEdit16x16.png"));
+		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("images"+File.separator+"iconDelete16x16.png"));
 		
 		edit.setMnemonic(KeyEvent.VK_E);
 		
@@ -61,8 +62,8 @@ public class MenuBar extends JMenuBar {
 		
 		
 		JMenu help = new JMenu("Help");
-		JMenuItem miHelp = new JMenuItem("Help", new ImageIcon("images/iconHelp16x16.png"));
-		JMenuItem miAbout = new JMenuItem("About", new ImageIcon("images/iconAbout16x16.png"));
+		JMenuItem miHelp = new JMenuItem("Help", new ImageIcon("images"+File.separator+"iconHelp16x16.png"));
+		JMenuItem miAbout = new JMenuItem("About", new ImageIcon("images"+File.separator+"iconAbout16x16.png"));
 		
 		help.setMnemonic(KeyEvent.VK_H);
 		
