@@ -2,10 +2,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,7 +22,7 @@ public class MenuBar extends JMenuBar {
 
 	
 	
-	public MenuBar() {
+	public MenuBar(final JFrame parent) {
 		/*
 		 	NAPOMENA:
 		 	
@@ -69,6 +71,15 @@ public class MenuBar extends JMenuBar {
 		
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		
+		miAbout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AboutDialog aboutDialog = new AboutDialog(parent, "About");
+				aboutDialog.setVisible(true);
+			}
+		});
+		
 		
 		help.add(miHelp);
 		help.addSeparator();

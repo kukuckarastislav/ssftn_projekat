@@ -27,7 +27,7 @@ public class Frame1 extends JFrame{
 	setLocationRelativeTo(null);
 	
 	// MenuBar
-	MenuBar menuBar = new MenuBar();
+	MenuBar menuBar = new MenuBar(this);
 	setJMenuBar(menuBar);
 	
 	// Toolbar
