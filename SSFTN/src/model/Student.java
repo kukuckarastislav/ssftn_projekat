@@ -62,6 +62,7 @@ public class Student {
 		this.lPolIspita = new ArrayList<>();
 		this.lNePolIspita = new ArrayList<>();
 	}
+	public Student() {}
 	
 	// Moje dodate metode
 	// dodaj ispit  u listu polozenih ispita
