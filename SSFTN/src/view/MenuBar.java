@@ -13,6 +13,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import controller.StudentController;
+import model.Student;
+
 public class MenuBar extends JMenuBar {
 
 	/**
@@ -41,6 +44,16 @@ public class MenuBar extends JMenuBar {
 		
 		miNew.setToolTipText("Dodavanje novog entiteta u sistem");
 		miClose.setToolTipText("Zatvaranje aplikacije");
+		
+		miNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			// if(trenutnoGledamo == tabelaStudentiGledam)
+				DodavanjeStudentaDialog stdDia = new DodavanjeStudentaDialog(parent, "Dodavanje Studenta");
+				stdDia.setVisible(true);
+			}
+		});
 		
 		file.add(miNew);
 		file.addSeparator();
