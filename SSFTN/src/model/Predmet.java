@@ -1,6 +1,6 @@
 package model;
 
-enum Semestar{letnji,zimski}
+import java.util.ArrayList;
 
 public class Predmet {
 	
@@ -11,11 +11,25 @@ public class Predmet {
 	private Profesor predmetniProfesor;
 	private int brojESPBbodova;
 	
+	private ArrayList<Student> studentiKojiSuPolozili;
+	private ArrayList<Student> studentiKojiNisuPolozili;
 	
 	
 	//Spisak studenata koji su položili predmet
 	//Spisak studenata koji nisu položili predmet
-
+	
+	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
+			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBbodova) {
+		super();
+		this.sifraPredmeta = sifraPredmeta;
+		this.nazivPredmeta = nazivPredmeta;
+		this.semestar = semestar;
+		this.godinaStudijaUKojojSePredmetIzvodi = godinaStudijaUKojojSePredmetIzvodi;
+		this.predmetniProfesor = predmetniProfesor;
+		this.brojESPBbodova = brojESPBbodova;
+	}
+	
+	
 	
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
@@ -64,7 +78,12 @@ public class Predmet {
 		this.brojESPBbodova = brojESPBbodova;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
+				+ ", godinaStudijaUKojojSePredmetIzvodi=" + godinaStudijaUKojojSePredmetIzvodi + ", predmetniProfesor="
+				+ predmetniProfesor + ", brojESPBbodova=" + brojESPBbodova + "]";
+	}
 
 
 
