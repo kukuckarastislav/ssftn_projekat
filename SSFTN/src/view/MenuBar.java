@@ -35,12 +35,14 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu file = new JMenu("File");
 		JMenuItem miNew   = new JMenuItem("New", new ImageIcon("images"+File.separator+"iconPlus16x16.png")); 
-		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("images/iconClose16x16.png")); 
+		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("images"+File.separator+"iconClose16x16.png")); 
 		
 		file.setMnemonic(KeyEvent.VK_F);
 		
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		miNew.setMnemonic(KeyEvent.VK_N);
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		miClose.setMnemonic(KeyEvent.VK_C);
 		
 		miNew.setToolTipText("Dodavanje novog entiteta u sistem");
 		miClose.setToolTipText("Zatvaranje aplikacije");
@@ -48,10 +50,17 @@ public class MenuBar extends JMenuBar {
 		miNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-			// if(trenutnoGledamo == tabelaStudentiGledam)
+			int tab = Frame1.getInstance().getSelectedTab();
+			
+			if(tab == 0) {
 				DodavanjeStudentaDialog stdDia = new DodavanjeStudentaDialog(parent, "Dodavanje Studenta");
 				stdDia.setVisible(true);
+			}
+			if(tab == 1) {
+				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora", false);
+				dp.setVisible(true);
+			}
+			
 			}
 		});
 		
@@ -66,7 +75,9 @@ public class MenuBar extends JMenuBar {
 		edit.setMnemonic(KeyEvent.VK_E);
 		
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		miEdit.setMnemonic(KeyEvent.VK_E);
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		miDelete.setMnemonic(KeyEvent.VK_D);
 		
 		miEdit.setToolTipText("Izmena postojeceg entiteta");
 		miDelete.setToolTipText("Brisanje postojeceg entiteta");
@@ -83,7 +94,9 @@ public class MenuBar extends JMenuBar {
 		help.setMnemonic(KeyEvent.VK_H);
 		
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		miHelp.setMnemonic(KeyEvent.VK_H);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		miAbout.setMnemonic(KeyEvent.VK_A);
 		
 		miAbout.addActionListener(new ActionListener() {
 			@Override
