@@ -23,6 +23,8 @@ public class Frame1 extends JFrame{
 	private JTable tabelaProfesora;
 	private JTable tabelaPredmeta;
 	
+	private JTabbedPane tpane;
+	
 	private static Frame1 instance = null;
 
 	public static Frame1 getInstance() {
@@ -78,8 +80,9 @@ public class Frame1 extends JFrame{
 	centralniPanel.add(desniPanel,BorderLayout.EAST);
 	centralniPanel.add(tablePanel,BorderLayout.CENTER);
 	
-	JTabbedPane tpane = new JTabbedPane();
+	tpane = new JTabbedPane();
 	tablePanel.add(tpane,BorderLayout.CENTER);
+	
 	
 	
 	// napraviti tablice za studenta, profesora i predmete
@@ -89,7 +92,7 @@ public class Frame1 extends JFrame{
 	
 	tabelaStudenata = new StudentiJTable();
 	JScrollPane panelStudentiScrollPane = new JScrollPane(tabelaStudenata);
-	panelStudenti.add(panelStudentiScrollPane,BorderLayout.CENTER);
+	panelStudenti.add(panelStudentiScrollPane ,BorderLayout.CENTER);
 	azurirajPrikazTabeleStudenata("POCETNA", 0);
 	
 	tabelaProfesora = new ProfesoriJTable();
@@ -101,14 +104,13 @@ public class Frame1 extends JFrame{
 	JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmeta);
 	panelPredmeti.add(panelPredmetiScrollPane,BorderLayout.CENTER);
 	
-	
-	
-	
-	
+
 	
 	tpane.addTab("Studenti", panelStudenti);
 	tpane.addTab("Profesori", panelProfesori);
 	tpane.addTab("Predmeti", panelPredmeti);
+	
+	
 
 	}
 	
@@ -119,6 +121,10 @@ public class Frame1 extends JFrame{
 		validate();
 	}
 	
+	
+	public int getSelectedTab() {
+		return tpane.getSelectedIndex();
+	}
 	
 	
 	
