@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Profesor {
 	
 	
@@ -15,7 +17,24 @@ public class Profesor {
 	private String titula;
 	private String zvanje;
 	
+	private ArrayList<Predmet> predmetiNaKojimaJeProfesor;
 	//Spisak predmeta na kojima je profesor neka lista, nesto 
+	
+	public Profesor(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String email, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) {
+		super();
+		this.prezime = prezime;
+		this.ime = ime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresaStanovanja = adresaStanovanja;
+		this.kontaktTelefon = kontaktTelefon;
+		this.email = email;
+		this.adresaKancelarije = adresaKancelarije;
+		this.brojLicneKarte = brojLicneKarte;
+		this.titula = titula;
+		this.zvanje = zvanje;
+	}
+	
 	
 	
 	public String getPrezime() {
@@ -95,7 +114,16 @@ public class Profesor {
 	}
 	public void setZvanje(String zvanje) {
 		this.zvanje = zvanje;
-	}	
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Profesor [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", email=" + email
+				+ ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte + ", titula="
+				+ titula + ", zvanje=" + zvanje + "]";
+	}
 
 	
 

@@ -22,12 +22,16 @@ public class DodavanjeProfesora extends JDialog {
 		
 		super(parent, title, modal);
 		
+		setSize(new Dimension(500,700));
+		setResizable(false);
+		setLocationRelativeTo(parent);
+		
 
 		
 		Dimension dim = new Dimension(120, 20);	
 		
 		
-		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.LEFT));			
+		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));			
 		JLabel lblPrezime = new JLabel("Prezime*:");
 		lblPrezime.setPreferredSize(dim);
 		JTextField txtPrezime = new JTextField();
@@ -39,7 +43,7 @@ public class DodavanjeProfesora extends JDialog {
 		panPrezime.add(txtPrezime);
 		
 		
-		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblIme = new JLabel("Ime*:");
 		lblIme.setPreferredSize(dim);
 		JTextField txtIme = new JTextField();
@@ -51,9 +55,9 @@ public class DodavanjeProfesora extends JDialog {
 		panIme.add(txtIme);
 		
 		
-		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbldat = new JLabel("Datum rodjenja*:");
-		lblIme.setPreferredSize(dim);
+		lbldat.setPreferredSize(dim);
 		JTextField txtdat = new JTextField();
 		txtdat.setPreferredSize(dim);
 		txtdat.setName("txtDatumRodjenja");
@@ -63,7 +67,7 @@ public class DodavanjeProfesora extends JDialog {
 		panDatum.add(txtdat);
 		
 		
-		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbladr = new JLabel("Adresa stanovanja*:");
 		lbladr.setPreferredSize(dim);
 		JTextField txtadr = new JTextField();
@@ -75,7 +79,7 @@ public class DodavanjeProfesora extends JDialog {
 		panAdresa.add(txtadr);
 		
 		
-		JPanel panTel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panTel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbltel = new JLabel("Kontakt telefon*:");
 		lbltel.setPreferredSize(dim);
 		JTextField txttel = new JTextField();
@@ -87,7 +91,7 @@ public class DodavanjeProfesora extends JDialog {
 		panTel.add(txttel);
 		
 		
-		JPanel panMail = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panMail = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblmail = new JLabel("E-mail adresa*:");
 		lblmail.setPreferredSize(dim);
 		JTextField txtmail = new JTextField();
@@ -99,7 +103,7 @@ public class DodavanjeProfesora extends JDialog {
 		panMail.add(txtmail);
 		
 		
-		JPanel panAdr = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panAdr = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblkan = new JLabel("Adresa kancelarije*:");
 		lblkan.setPreferredSize(dim);
 		JTextField txtkan = new JTextField();
@@ -111,7 +115,7 @@ public class DodavanjeProfesora extends JDialog {
 		panAdr.add(txtkan);
 		
 		
-		JPanel panLicna = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panLicna = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbllicna = new JLabel("Broj licne karte*:");
 		lbllicna.setPreferredSize(dim);
 		JTextField txtlicna = new JTextField();
@@ -123,7 +127,7 @@ public class DodavanjeProfesora extends JDialog {
 		panLicna.add(txtlicna);
 		
 		
-		JPanel panTitula = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panTitula = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbltit = new JLabel("Titula*:");
 		lbltit.setPreferredSize(dim);
 		JTextField txttit = new JTextField();
@@ -135,7 +139,7 @@ public class DodavanjeProfesora extends JDialog {
 		panTitula.add(txttit);
 		
 		
-		JPanel panZvanje = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel panZvanje = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblzvanje = new JLabel("Zvanje*:");
 		lblzvanje.setPreferredSize(dim);
 		JTextField txtzvanje = new JTextField();
