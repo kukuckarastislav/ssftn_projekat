@@ -20,6 +20,8 @@ public class Frame1 extends JFrame{
 	private static final long serialVersionUID = 945801629855138262L;
 	
 	private JTable tabelaStudenata;
+	private JTable tabelaProfesora;
+	private JTable tabelaPredmeta;
 	
 	private static Frame1 instance = null;
 
@@ -57,13 +59,56 @@ public class Frame1 extends JFrame{
 	add(statusBar, BorderLayout.SOUTH);
 	
 	// ============================================================
+	
+	// Tabovi
+	JPanel centralniPanel = new JPanel(new BorderLayout());
+	add(centralniPanel, BorderLayout.CENTER);
+	
+	// iz estetike paneli
+	JPanel gornjiPanel = new JPanel(); 		gornjiPanel.setPreferredSize(new Dimension(50,50));
+	JPanel donjiPanel = new JPanel();		donjiPanel.setPreferredSize(new Dimension(50,50));
+	JPanel leviPanel = new JPanel();		leviPanel.setPreferredSize(new Dimension(50,50));
+	JPanel desniPanel = new JPanel(); 		desniPanel.setPreferredSize(new Dimension(50,50));
+	JPanel tablePanel = new JPanel(new BorderLayout());
+	//tablePanel.setBackground(new Color(255,255,255));
+	
+	centralniPanel.add(gornjiPanel,BorderLayout.NORTH);
+	centralniPanel.add(donjiPanel,BorderLayout.SOUTH);
+	centralniPanel.add(leviPanel,BorderLayout.WEST);
+	centralniPanel.add(desniPanel,BorderLayout.EAST);
+	centralniPanel.add(tablePanel,BorderLayout.CENTER);
+	
+	JTabbedPane tpane = new JTabbedPane();
+	tablePanel.add(tpane,BorderLayout.CENTER);
+	
+	
+	// napraviti tablice za studenta, profesora i predmete
+	JPanel panelStudenti = new JPanel(new BorderLayout());
+	JPanel panelProfesori = new JPanel(new BorderLayout());
+	JPanel panelPredmeti = new JPanel(new BorderLayout());
+	
 	tabelaStudenata = new StudentiJTable();
 	JScrollPane panelStudentiScrollPane = new JScrollPane(tabelaStudenata);
-	add(panelStudentiScrollPane,BorderLayout.CENTER);
+	panelStudenti.add(panelStudentiScrollPane,BorderLayout.CENTER);
 	azurirajPrikazTabeleStudenata("POCETNA", 0);
 	
-
-
+	tabelaProfesora = new ProfesoriJTable();
+	JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesora);
+	panelProfesori.add(panelProfesoriScrollPane,BorderLayout.CENTER);
+	
+	
+	tabelaPredmeta = new PredmetiJTable();
+	JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmeta);
+	panelPredmeti.add(panelPredmetiScrollPane,BorderLayout.CENTER);
+	
+	
+	
+	
+	
+	
+	tpane.addTab("Studenti", panelStudenti);
+	tpane.addTab("Profesori", panelProfesori);
+	tpane.addTab("Predmeti", panelPredmeti);
 
 	}
 	
