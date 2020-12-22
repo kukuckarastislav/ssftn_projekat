@@ -52,7 +52,7 @@ public class Frame1 extends JFrame{
 	setJMenuBar(menuBar);
 	
 	// Toolbar
-	Toolbar toolbar = new Toolbar();
+	Toolbar toolbar = new Toolbar(this);
 	add(toolbar, BorderLayout.NORTH);
 	
 	
@@ -82,6 +82,7 @@ public class Frame1 extends JFrame{
 	
 	tpane = new JTabbedPane();
 	tablePanel.add(tpane,BorderLayout.CENTER);
+	
 	
 	
 	
