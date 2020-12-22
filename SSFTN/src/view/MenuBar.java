@@ -57,7 +57,7 @@ public class MenuBar extends JMenuBar {
 				stdDia.setVisible(true);
 			}
 			if(tab == 1) {
-				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora", false);
+				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora");
 				dp.setVisible(true);
 			}
 			
