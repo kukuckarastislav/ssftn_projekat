@@ -45,7 +45,7 @@ public class ValidacijaTextFieldFocusListener implements FocusListener {
 			validacija = ValidacijaUnosa.validImePrz(txt.getText());
 		}else if(txt.getName().equals("txtDatmR")) {
 			validacija = ValidacijaUnosa.validDatum(txt.getText());
-		}else if(txt.getName().equals("txtAdrS")) {
+		}else if(txt.getName().equals("txtAdrS") || txt.getName().equals("txtAdrKan")) {
 			validacija = ValidacijaUnosa.validAdresa(txt.getText());
 		}else if(txt.getName().equals("txtBrTel")) {
 			validacija = ValidacijaUnosa.validBrTel(txt.getText());
