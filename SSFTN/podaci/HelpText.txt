@@ -1,0 +1,29 @@
+Aplikacija se sastoji od glavnog prozora na kome se nalaze tri taba. Tab za Studente, 
+Tab za Profesore i Tab za Predmete. U svakom Tabu se nalaze podaci prikazani u tabelama.
+
+Klikom na File u okviru menija, otvara se padajući meni u kome se prikazuju opcije za 
+dodavanje entiteta "New" (Ctrl+N) i opcija za izlazak iz aplikacije "Close" (Ctrl+C)
+
+Klikom na Edit u okviru menija, otvara se padajući meni u kome se prikazuju opcije za 
+izmenu entiteta "Edit" (Ctrl+E) i opcija za brisanje entiteta "Delete" (Ctrl+D)
+
+Klikom na Help u okviru menija, otvara se padajući meni u kome se prikazuju opcije za 
+prikaz pomoći "Help" (Ctrl+H) i prikaz osnovnih informacija o aplikaciji "About" (Ctrl+A)
+
+Na toolBaru se nalaze:
+Dugme za dodavanje novog Entiteta
+Dugme za Izmenu postojećeg Entiteta
+Dugme za Brisanje postoječeg Entiteta
+Polje za unos pretrage nad postojećim Entitetima kao i dugme pretrage
+
+Dodavanje novog Entiteta:
+Za početak morate biti pozicionirani u okviru taba entiteta kojeg želite da dodate.
+Nakon toga možete dodati entitet na četiri načina:
+1) klika na dugme + u toolbaru
+2) Klikna na File u okviru menia zatim kliknuti na dugme New
+3) Uz pomoć mnemonica prvo treba Alt+F zatim Alt+N
+4) Uz pomoć akceleratora ctrl+N
+Nakon čega se pojavljuje dialog kojeg treba ispravno popuniti odgovarajućim podacima za studenta.
+Nakon toga kliknuti dugme "Potvrdi"
+
+

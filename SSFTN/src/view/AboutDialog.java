@@ -56,10 +56,10 @@ public class AboutDialog extends JDialog {
 		
 		
 		infoProj = "Projekat iz predmete OISISI\n"+
-				   "Razvijanje Informacionog Sistema za studentsku sluzbu \nFakulteta Tehnkickih Nauka\n"+
-				   "Aplikacija olaksava evidenciju studenata FTN-a kao i njihov \nuspeh na ispitima.\n"+
-				   "Vodi se evidencia o Profesorima i o Predmetima koji \npostoje na FTN-u";
-		infoProj += "\n\n\nAlat koriscen je Java JDK10 i Swing Biblioteka";
+				   "Razvijanje Informacionog Sistema za studentsku službu \nFakulteta Tehnkickih Nauka\n"+
+				   "Aplikacija olakšava evidenciju studenata FTN-a kao i njihov \nuspeh na ispitima.\n"+
+				   "Vodi se evidencija o Profesorima i o Predmetima koji \npostoje na FTN-u";
+		infoProj += "\n\n\nAlat korišćen je Java JDK10 i Swing Biblioteka";
 		
 		JTextArea textAProj = new JTextArea(infoProj,10,34);
 		textAProj.setPreferredSize(new Dimension(250,250));
@@ -72,19 +72,31 @@ public class AboutDialog extends JDialog {
 		
 		// napravimo klasu za panel gde pisu nase informacije
 		
-		rastislavBiografija = "Biografija dashjdkasdjhkashdashdkjashdkjhasjdhkasdhjkashdkashdkjhaskdhkasjhdkjahsdjhaskdjh";
-		milicaBiografija = "Biografija duhauhdeiaihdfeuhesiudheuihs8383yodh38wh3whd3w8wd3o83wd8ushudhakshadhasudhaushdkashda";
+		rastislavBiografija = "Rastislav Kukučka, rođen 7.1.2000 u \nNovom Sadu. Osnovnu školu pohađao u "
+				+ "\nOdžacima gde je i proveo detinjstvo. \nNakon selidbe u Bački Petrovac upisuje se u Gimnaziju Jan Kolar. "
+				+ "Školovanje nastavlja na Fakultetu Tehničkih Nauka na smeru \nRačunarstvo i Automatika.\r\n";
+		
+		milicaBiografija = "Milica Vučinić, rođena 29.7.1999. u "
+				+ "\nNevesinju. Osnovnu Risto Proroković "
+				+ "\ni srednju Aleksa Santić školu pohađala "
+				+ "\nu Nevesinju. Godine 2018. se upisuje na "
+				+ "\nFakultet Tehnickih Nauka u Novom Sadu"
+				+ "\nsmjer RA.";
+		
+		
+		String Mfimg = "images"+File.separator+"milica.png";
 		String Rfimg = "images"+File.separator+"rastislav.png";
-		StudentPanel rastislavPan = new StudentPanel(Rfimg, rastislavBiografija,1);
-		StudentPanel milicaPan = new StudentPanel(Rfimg, milicaBiografija,2);
+		StudentPanel milicaPan = new StudentPanel(Mfimg, milicaBiografija,1);
+		StudentPanel rastislavPan = new StudentPanel(Rfimg, rastislavBiografija,2);
+		
 		
 		
 
 		glAPanel.add(scrollAboutProj);
 		glAPanel.add(Box.createVerticalStrut(40));
-		glAPanel.add(rastislavPan);
-		glAPanel.add(Box.createVerticalStrut(10));
 		glAPanel.add(milicaPan);
+		glAPanel.add(Box.createVerticalStrut(10));
+		glAPanel.add(rastislavPan);
 		glAPanel.add(Box.createVerticalStrut(10));
 		
 		add(glAPanel, BorderLayout.CENTER);

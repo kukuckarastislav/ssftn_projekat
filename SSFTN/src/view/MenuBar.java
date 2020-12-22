@@ -55,8 +55,7 @@ public class MenuBar extends JMenuBar {
 			if(tab == 0) {
 				DodavanjeStudentaDialog stdDia = new DodavanjeStudentaDialog(parent, "Dodavanje Studenta");
 				stdDia.setVisible(true);
-			}
-			if(tab == 1) {
+			}else if(tab == 1) {
 				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora");
 				dp.setVisible(true);
 			}
@@ -97,6 +96,14 @@ public class MenuBar extends JMenuBar {
 		miHelp.setMnemonic(KeyEvent.VK_H);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		miAbout.setMnemonic(KeyEvent.VK_A);
+		
+		miHelp.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HelpDialog helpDialog = new HelpDialog(parent, "Help");
+				helpDialog.setVisible(true);
+			}
+		});
 		
 		miAbout.addActionListener(new ActionListener() {
 			@Override
