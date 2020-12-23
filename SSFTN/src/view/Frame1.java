@@ -6,12 +6,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+
+import model.Profesor;
 
 
 public class Frame1 extends JFrame{
@@ -21,9 +26,10 @@ public class Frame1 extends JFrame{
 	
 	private JTable tabelaStudenata;
 	private JTable tabelaProfesora;
-	private JTable tabelaPredmeta;
-	
+	private JTable tabelaPredmeta;	
 	private JTabbedPane tpane;
+	
+	private int rowSlectedProfesor;
 	
 	private static Frame1 instance = null;
 
@@ -99,12 +105,12 @@ public class Frame1 extends JFrame{
 	tabelaProfesora = new ProfesoriJTable();
 	JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesora);
 	panelProfesori.add(panelProfesoriScrollPane,BorderLayout.CENTER);
-	
+	azurirajPrikazTabeleProfesora("POCETNA", 0);
 	
 	tabelaPredmeta = new PredmetiJTable();
 	JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmeta);
 	panelPredmeti.add(panelPredmetiScrollPane,BorderLayout.CENTER);
-	
+	azurirajPrikazTabelePredmeta("POCETNA", 0);
 
 	
 	tpane.addTab("Studenti", panelStudenti);
@@ -112,11 +118,30 @@ public class Frame1 extends JFrame{
 	tpane.addTab("Predmeti", panelPredmeti);
 	
 	
+	if (tabelaProfesora.getCellSelectionEnabled()) {
+	      tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	      rowSlectedProfesor = tabelaProfesora.getSelectedRow();
 
+	    }
+	
 	}
+
 	
 	public void azurirajPrikazTabeleStudenata(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenata.getModel();
+		// azuriranje modela tabele, kao i njenog prikaza
+		model.fireTableDataChanged();
+		validate();
+	}
+	
+	public void azurirajPrikazTabeleProfesora(String akcija, int vrednost) {
+		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
+		// azuriranje modela tabele, kao i njenog prikaza
+		model.fireTableDataChanged();
+		validate();
+	}
+	public void azurirajPrikazTabelePredmeta(String akcija, int vrednost) {
+		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti) tabelaPredmeta.getModel();
 		// azuriranje modela tabele, kao i njenog prikaza
 		model.fireTableDataChanged();
 		validate();
@@ -127,6 +152,10 @@ public class Frame1 extends JFrame{
 		return tpane.getSelectedIndex();
 	}
 	
+	public int getSelectedProfesor() {
+		return rowSlectedProfesor;
+	}
 	
 	
+		
 }
