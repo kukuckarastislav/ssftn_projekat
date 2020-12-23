@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import model.Profesor;
 import model.Status;
@@ -62,11 +63,12 @@ public class DodavanjeProfesora extends JDialog {
 		JTextField txtPrezime = new JTextField();
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
-		ValidacijaTextFieldFocusListener vtff0 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime);
-		txtPrezime.addFocusListener(vtff0);
+		txtPrezime.setToolTipText("Prezime je niz alfabetskih karaktera");
+		ValidacijaTextFieldFocusListener v1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime);
+		txtPrezime.addFocusListener(v1);
 		panPrezime.add(lblPrezime);
 		panPrezime.add(txtPrezime);
-		
+		lValid.add(v1);
 		
 		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblIme = new JLabel("Ime*:");
@@ -74,83 +76,91 @@ public class DodavanjeProfesora extends JDialog {
 		JTextField txtIme = new JTextField();
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
-		ValidacijaTextFieldFocusListener vtff1 = new ValidacijaTextFieldFocusListener(lblIme, txtIme);
-		txtIme.addFocusListener(vtff1);
+		txtIme.setToolTipText("Ime je niz alfabetskih karaktera");
+		ValidacijaTextFieldFocusListener v2 = new ValidacijaTextFieldFocusListener(lblIme, txtIme);
+		txtIme.addFocusListener(v2);
 		panIme.add(lblIme);
 		panIme.add(txtIme);
+		lValid.add(v2);
 		
 		
 		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lbldat = new JLabel("Datum rodjenja*:");
-		lbldat.setPreferredSize(dim);
+		JLabel lblDatmR = new JLabel("Datum rodjenja*");
+		lblDatmR.setPreferredSize(dim);
 		JTextField txtDatmR = new JTextField();
 		txtDatmR.setPreferredSize(dim);
-		txtDatmR.setName("txtDatmRumRodjenja");
-		ValidacijaTextFieldFocusListener vtff2 = new ValidacijaTextFieldFocusListener(lbldat, txtDatmR);
-		txtIme.addFocusListener(vtff2);
-		panDatum.add(lbldat);
+		txtDatmR.setName("txtDatmR");
+		txtDatmR.setToolTipText("Na datumu cemo jos da poradimo..");
+		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR);
+		txtDatmR.addFocusListener(v3);	
+		panDatum.add(lblDatmR);
 		panDatum.add(txtDatmR);
+		lValid.add(v3);
 		
-		
-		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lbladr = new JLabel("Adresa stanovanja*:");
-		lbladr.setPreferredSize(dim);
+
+		JLabel lblAdrS = new JLabel("Adresa stanovanja*");
+		lblAdrS.setPreferredSize(dim);
 		JTextField txtAdrS = new JTextField();
 		txtAdrS.setPreferredSize(dim);
-		txtAdrS.setName("txtAdrSesaStanovanja");
-		ValidacijaTextFieldFocusListener vtff3 = new ValidacijaTextFieldFocusListener(lbldat,txtAdrS);
-		txtIme.addFocusListener(vtff3);
-		panAdresa.add(lbladr);
+		txtAdrS.setName("txtAdrS");
+		ValidacijaTextFieldFocusListener v4 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS);
+		txtAdrS.addFocusListener(v4);
+		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panAdresa.add(lblAdrS);
 		panAdresa.add(txtAdrS);
-		
-		
+		lValid.add(v4);
+			
 		JPanel panTel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lbltel = new JLabel("Kontakt telefon*:");
-		lbltel.setPreferredSize(dim);
+		JLabel lblBrTel = new JLabel("Kontakt telefon*");
+		lblBrTel.setPreferredSize(dim);
 		JTextField txtBrTel = new JTextField();
 		txtBrTel.setPreferredSize(dim);
-		txtBrTel.setName("txtKontaktTelefon");
-		ValidacijaTextFieldFocusListener vtff4 = new ValidacijaTextFieldFocusListener(lbldat, txtBrTel);
-		txtIme.addFocusListener(vtff4);
-		panTel.add(lbltel);
+		txtBrTel.setName("txtBrTel");
+		txtBrTel.setToolTipText("Broj telefona je niz od najmanje 3 a najvise 12 decimalnih cifara");
+		ValidacijaTextFieldFocusListener v5 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel);
+		txtBrTel.addFocusListener(v5);	
+		panTel.add(lblBrTel);
 		panTel.add(txtBrTel);
-		
+		lValid.add(v5);
 		
 		JPanel panMail = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lblmail = new JLabel("E-mail adresa*:");
-		lblmail.setPreferredSize(dim);
+		JLabel lblEmail = new JLabel("E-mail adresa*");
+		lblEmail.setPreferredSize(dim);
 		JTextField txtEmail = new JTextField();
+		txtEmail.setToolTipText("Format emaila: korisnickoIme@domen");
 		txtEmail.setPreferredSize(dim);
-		txtEmail.setName("txtEmailAdresa");
-		ValidacijaTextFieldFocusListener vtff5 = new ValidacijaTextFieldFocusListener(lbldat, txtEmail);
-		txtIme.addFocusListener(vtff5);
-		panMail.add(lblmail);
+		txtEmail.setName("txtEmail");
+		ValidacijaTextFieldFocusListener v6 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail);
+		txtEmail.addFocusListener(v6);
+		panMail.add(lblEmail);
 		panMail.add(txtEmail);
-		
-		
+		lValid.add(v6);
+
 		JPanel panAdr = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel lblkan = new JLabel("Adresa kancelarije*:");
-		lblkan.setPreferredSize(dim);
+		JLabel lblAdrKan = new JLabel("Adresa kancelarije*");
+		lblAdrKan.setPreferredSize(dim);
 		JTextField txtAdrKan = new JTextField();
 		txtAdrKan.setPreferredSize(dim);
-		txtAdrKan.setName("txtAdresaKancelarije");
-		ValidacijaTextFieldFocusListener vtff6 = new ValidacijaTextFieldFocusListener(lbldat,txtAdrKan);
-		txtIme.addFocusListener(vtff6);
-		panAdr.add(lblkan);
+		txtAdrKan.setName("txtAdrS");
+		ValidacijaTextFieldFocusListener v7 = new ValidacijaTextFieldFocusListener(lblAdrKan, txtAdrS);
+		txtAdrKan.addFocusListener(v7);
+		panAdr.add(lblAdrKan);
 		panAdr.add(txtAdrKan);
-		
-		
+		lValid.add(v7);
+	
+				
 		JPanel panLicna = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbllicna = new JLabel("Broj licne karte*:");
 		lbllicna.setPreferredSize(dim);
 		JTextField txtlicna = new JTextField();
 		txtlicna.setPreferredSize(dim);
-		txtlicna.setName("txtBrojLicneKarte");
-		//txtPrezime.addFocusListener(focusListener);
-
+		txtlicna.setName("txtlicna");
+		txtBrTel.setToolTipText("Tacno 9 cifara");
+		ValidacijaTextFieldFocusListener v8 = new ValidacijaTextFieldFocusListener(lbllicna,txtlicna);
+		txtlicna.addFocusListener(v8);
 		panLicna.add(lbllicna);
 		panLicna.add(txtlicna);
-		
+		lValid.add(v8);
 		
 
 		
@@ -163,7 +173,6 @@ public class DodavanjeProfesora extends JDialog {
 		JPanel panTitula = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panTitula.add(lblTitula);
 		panTitula.add(Titule);	
-		String izabranaTitula = (String)Titule.getSelectedItem();
 		
 		
 		
@@ -177,17 +186,7 @@ public class DodavanjeProfesora extends JDialog {
 		JPanel panZvanje = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panZvanje.add(lblZvanje);
 		panZvanje.add(Zvanja);
-		
-		String izabranoZvanje = (String)Zvanja.getSelectedItem();
-		
-		lValid.add(vtff0);
-		lValid.add(vtff1);
-		lValid.add(vtff2);
-		lValid.add(vtff3);
-		lValid.add(vtff4);
-		lValid.add(vtff5);
-		lValid.add(vtff6);
-	   
+
 		
 		JPanel panButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		DiaButton btnPotvrdi=new DiaButton("Potvrdi");
@@ -207,27 +206,22 @@ public class DodavanjeProfesora extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					
 					if(svaPoljaValidna()) {
-					
+						String izabranaTitula = (String)Titule.getSelectedItem();
+						String izabranoZvanje = (String)Zvanja.getSelectedItem();
+						
 					Profesor profesor=new Profesor(txtPrezime.getText(),txtIme.getText(),txtDatmR.getText(),txtAdrS.getText(),
 								txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
-			
+					ProfesorController.getInstance().dodajProfesora(profesor);
 						dispose();
 					}else {
 						// metoda svaPoljaValidna izbacuje malecki dialog gde nas upozorava da smo nesto lose uneli
 					}
 				}
 			});
-			
-			
-			
-		
-		
-		
+				
 		
 		panButtons.add(btnPotvrdi);
 		panButtons.add(btnOdustani);
-		
-	
 
 		Box boxCentar = Box.createVerticalBox();
 		boxCentar.add(Box.createVerticalStrut(20));

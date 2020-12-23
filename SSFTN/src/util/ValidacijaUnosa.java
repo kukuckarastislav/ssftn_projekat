@@ -56,6 +56,27 @@ public class ValidacijaUnosa {
 		}
 		return true;
 	}
+	
+	public static boolean validBrLicne(String text) {
+		// dozvoljavamo tacno 9 brojeva 
+		if(text == null) return false;
+		if(text.isEmpty() || text.isBlank()) {
+			return false;
+		}
+		for(int i = 0; i < text.length(); i++) {
+			if(!Character.isDigit(text.charAt(i))) {
+				return false;
+			}
+		}
+		if(text.length()!=9)
+			return false;
+		
+		return true;
+	}
+	
+	
+	
+	
 
 	public static boolean validEmail(String text) {
 		if(text == null) return false;

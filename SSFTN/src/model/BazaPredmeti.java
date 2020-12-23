@@ -76,7 +76,7 @@ private BazaPredmeti() {
 		}
 	}
 	
-	public void dodajPredmeta(Predmet predmet) {
+	public void dodajPredmet(Predmet predmet) {
 		alPredmeti.add(predmet);
 	}
 
@@ -100,7 +100,7 @@ private BazaPredmeti() {
 	}
 	
 	
-	public void izmeniPredmeta(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
+	public void izmeniPredmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
 			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBbodova) 
 	{
 		for (Predmet predmet : alPredmeti) {
