@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.ProfesorController;
 import model.Profesor;
 
 public class Toolbar extends JToolBar {
@@ -70,11 +71,15 @@ public class Toolbar extends JToolBar {
 				stdDia.setVisible(true);
 			}
 			if(tab == 1) {
+
+				//Profesor profesor = new Profesor("petrovic", "velko", "1970", "negde", "000", "v@", "NTP111", "333333333", "prof", "dr");
 				
+				//ovo ne radi.. ali eto 
 				
-				Profesor profesor = new Profesor("petrovic", "velko", "1970", "negde", "000", "v@", "NTP111", "333", "prof", "dr");
+				int indexProfesora=Frame1.getInstance().getSelectedProfesor();
+				Profesor p=ProfesorController.getInstance().getProfesor(indexProfesora);
 				
-				IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",profesor);
+				IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
 				ip.setVisible(true);
 			}			
 			}

@@ -55,6 +55,8 @@ public class ValidacijaTextFieldFocusListener implements FocusListener {
 			validacija = ValidacijaUnosa.validIndeks(txt.getText());
 		}else if(txt.getName().equals("txtGodUpisa")) {
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
+		}else if(txt.getName().equals("txtlicna")) {
+			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
 		}
 		
 		
