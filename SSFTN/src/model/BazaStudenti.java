@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import java.util.Date;
+
+
 public class BazaStudenti {
 
 	private static BazaStudenti instance = null;
@@ -79,7 +82,9 @@ public class BazaStudenti {
 		alStudenti.add(student);
 	}
 	
-	public void dodajStudenta(String prezime, String ime, String datumRodjenja, 
+
+	public void dodajStudenta(String prezime, String ime, Date datumRodjenja, 
+
 			   String adresa, String kontaktTelefon, String email,
 			   String indeks, int godinaUpisa, int trenGodStudija, Status status) 
 	{
@@ -100,7 +105,9 @@ public class BazaStudenti {
 	}
 	
 	
-	public void izmeniStudenta(String prezime, String ime, String datumRodjenja, 
+
+	public void izmeniStudenta(String prezime, String ime, Date datumRodjenja, 
+
 							   String adresa, String kontaktTelefon, String email,
 							   String indeks, int godinaUpisa, int trenGodStudija, Status status) 
 	{

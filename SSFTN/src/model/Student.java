@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Student {
 	
 	// POLJA
 	private String prezime;
 	private String ime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresa;
 	private String kontaktTelefon;
 	private String email;
@@ -26,7 +27,9 @@ public class Student {
 	
 	// KONSTRUKTORI
 	// sva polja
-	public Student(String prezime, String ime, String datumRodjenja, String adresa, String kontaktTelefon, String email,
+
+	public Student(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon, String email,
+
 			String indeks, int godinaUpisa, int trenGodStudija, Status status, double prosecnaOcena,
 			ArrayList<Ocena> lPolIspita, ArrayList<Ocena> lNePolIspita) {
 		super();
@@ -45,7 +48,9 @@ public class Student {
 		this.lNePolIspita = lNePolIspita;
 	}
 	// Konstruktor za studenta koji nema ocene 
-	public Student(String prezime, String ime, String datumRodjenja, String adresa, String kontaktTelefon, String email,
+
+	public Student(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon, String email,
+
 			String indeks, int godinaUpisa, int trenGodStudija, Status status) {
 		super();
 		this.prezime = prezime;
@@ -87,10 +92,13 @@ public class Student {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-	public String getDatumRodjenja() {
+
+
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
+
 		this.datumRodjenja = datumRodjenja;
 	}
 	public String getAdresa() {

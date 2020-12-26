@@ -1,5 +1,4 @@
 package view;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+
 import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -96,6 +100,10 @@ public class DodavanjeStudentaDialog extends JDialog{
 		lblDatmR.setPreferredSize(dimKomp);
 		JTextField txtDatmR = new JTextField();
 		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG");
+		lblDatmR.setToolTipText("Trazen format: DD.MM.GGGG.");
+		lblDatmR.setPreferredSize(dimKomp);
+		//JTextField txtDatmR = new JTextField();
+		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG.");
 		txtDatmR.setPreferredSize(dimKomp);
 		txtDatmR.setName("txtDatmR");
 		ValidacijaTextFieldFocusListener vtffl2 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR);
@@ -242,11 +250,24 @@ public class DodavanjeStudentaDialog extends JDialog{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(svaPoljaValidna()) {
+
+					
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+					dateFormat.setLenient(false);
+					Date datumRodjenja = null;
+					try {
+						datumRodjenja = dateFormat.parse(txtDatmR.getText());
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+	
+
 				
 					Student student = new Student();
 					student.setIme(txtIme.getText());
 					student.setPrezime(txtPrezime.getText());
-					student.setDatumRodjenja(txtDatmR.getText());
+					student.setDatumRodjenja(datumRodjenja); 	//
+
 					student.setAdresa(txtAdrS.getText());
 					student.setKontaktTelefon(txtBrTel.getText());
 					student.setEmail(txtEmail.getText());
