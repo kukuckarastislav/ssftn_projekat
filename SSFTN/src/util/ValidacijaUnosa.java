@@ -44,6 +44,7 @@ public class ValidacijaUnosa {
 			if( !Character.isDigit(sEl[2].charAt(i)) ) return false;
 		}
 		
+		// Referenca: https://beginnersbook.com/2013/05/java-date-format-validation/
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		dateFormat.setLenient(false);
 		Date datumRodjenja = null;
