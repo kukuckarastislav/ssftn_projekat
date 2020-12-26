@@ -18,7 +18,7 @@ public class Test {
 		for(int i = 0; i < 10; i++){
 			System.out.println("test");			
 		}
-		
+		// testiram menjanje koda iz gitHub-a
 		Student st1 = new Student("Rastislav", "Kukucka", "07.01.2020", "BackiPetrovac", 
 								  "324", "ras@gmail.com", "RA129/2018", 2018, 3, model.Status.B);
 		
