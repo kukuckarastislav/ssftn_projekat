@@ -1,17 +1,19 @@
 package model;
 
+import java.util.Date;
+
 public class Ocena {
 
 	// POLJA
 	private Student student;
 	private Predmet predmet;
 	private int ocena;
-	private String datumPolaganjaIspita;
+	private Date datumPolaganjaIspita;
 	
 
 	// KONSTRUKTOR
 	// public Ocena() {}
-	public Ocena(Student student, Predmet predmet, int ocena, String datumPolaganjaIspita) {
+	public Ocena(Student student, Predmet predmet, int ocena, Date datumPolaganjaIspita) {
 		super();
 		this.student = student;
 		this.predmet = predmet;
@@ -41,10 +43,10 @@ public class Ocena {
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
 	}
-	public String getDatumPolaganjaIspita() {
+	public Date getDatumPolaganjaIspita() {
 		return datumPolaganjaIspita;
 	}
-	public void setDatumPolaganjaIspita(String datumPolaganjaIspita) {
+	public void setDatumPolaganjaIspita(Date datumPolaganjaIspita) {
 		this.datumPolaganjaIspita = datumPolaganjaIspita;
 	}
 
