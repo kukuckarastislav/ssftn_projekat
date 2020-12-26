@@ -1,5 +1,9 @@
 package util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ValidacijaUnosa {
 	
 	public static boolean validImePrz(String text) {
@@ -24,7 +28,7 @@ public class ValidacijaUnosa {
 			return false;
 		}
 		
-		String sEl[] = text.split(" ");
+		String sEl[] = text.split("\\.");
 		if(sEl.length != 3) return false;
 		
 		if(sEl[0].length() > 2) return false;
@@ -39,6 +43,19 @@ public class ValidacijaUnosa {
 		for(int i = 0; i < sEl[2].length(); i++) {
 			if( !Character.isDigit(sEl[2].charAt(i)) ) return false;
 		}
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		dateFormat.setLenient(false);
+		Date datumRodjenja = null;
+		try {
+			datumRodjenja = dateFormat.parse(text);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		
+		
 		
 		return true;
 	}
