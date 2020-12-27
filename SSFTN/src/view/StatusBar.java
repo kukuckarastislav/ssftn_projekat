@@ -37,7 +37,7 @@ public class StatusBar extends JPanel{
 		// VREME I DATUM
 		
 		LocalDate localDate = LocalDate.now();
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		JLabel labDatum = new JLabel(dateFormat.format(localDate));	 // 
 		
 		LocalTime localTime = LocalTime.now();
@@ -49,7 +49,7 @@ public class StatusBar extends JPanel{
 			public void run() {
 				while(true) {
 					LocalDate localDate = LocalDate.now();
-					DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+					DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 					
 					LocalTime localTime = LocalTime.now();
 					DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh:mm");
