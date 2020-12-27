@@ -40,14 +40,25 @@ public class ValidacijaUnosa {
 		
 		for(int i = 0; i < sEl[0].length(); i++) {
 			if( !Character.isDigit(sEl[0].charAt(i)) ) return false;
-		}
+		}				
 		for(int i = 0; i < sEl[1].length(); i++) {
 			if( !Character.isDigit(sEl[1].charAt(i)) ) return false;
-		}
+		}	
 		for(int i = 0; i < sEl[2].length(); i++) {
 			if( !Character.isDigit(sEl[2].charAt(i)) ) return false;
-		}
-
+		}		
+		if(Integer.parseInt(sEl[2])>2020) return false;
+		
+		int dan= Integer.parseInt(sEl[0]);
+		int mjesec= Integer.parseInt(sEl[1]);
+		int god= Integer.parseInt(sEl[2]);
+		
+		if(dan>31) return false;
+		if(mjesec>12) return false;
+		if(god>2020) return false;
+		
+		
+		
 		// Referenca: https://beginnersbook.com/2013/05/java-date-format-validation/
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		dateFormat.setLenient(false);

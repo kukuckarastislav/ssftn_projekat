@@ -1,7 +1,11 @@
 package controller;
 
+import java.util.Date;
+
 import model.BazaProfesori;
 import model.Profesor;
+import model.Titula;
+import model.Zvanje;
 import view.Frame1;
 
 public class ProfesorController {
@@ -26,8 +30,8 @@ public class ProfesorController {
 		Frame1.getInstance().azurirajPrikazTabeleProfesora("DODAT", 1);
 	}
 	
-	public void izmeniProfesora(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) {
+	public void izmeniProfesora(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String email, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
 		
 		BazaProfesori.getInstance().izmeniProfesora(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, email, adresaKancelarije, brojLicneKarte, titula, zvanje);
 		Frame1.getInstance().azurirajPrikazTabeleProfesora("IZMENJEN", 1);

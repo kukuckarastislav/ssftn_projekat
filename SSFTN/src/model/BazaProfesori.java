@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BazaProfesori {
 	
@@ -17,10 +18,10 @@ private static BazaProfesori instance = null;
 	private ArrayList<String> alKolone;
 	
 	
-private BazaProfesori() {
+	private BazaProfesori() {
 		
 		
-		// initProfesors() 		// neka metoda koja ce da ucita u bazu Profesore pri paljenju app
+		// initProfesors() 	
 		alProfesori = new ArrayList<Profesor>();
 		
 		
@@ -54,16 +55,17 @@ private BazaProfesori() {
 	}
 	
 	public String getVrednostU(int x, int y) {
-		Profesor Profesor = alProfesori.get(x);
+		Profesor profesor = alProfesori.get(x);
 		switch (y) {
 		case 0:
-			return Profesor.getIme();
+			return profesor.getIme();
 		case 1:
-			return Profesor.getPrezime();
+			return profesor.getPrezime();
 		case 2:
-			return Profesor.getTitula();
+			return profesor.getTitula().toString();
 		case 3:
-			return Profesor.getZvanje();
+			return profesor.getZvanje().toString();
+			
 		default:
 			return null;
 		}
@@ -73,11 +75,11 @@ private BazaProfesori() {
 		alProfesori.add(Profesor);
 	}
 	
-	public void dodajProfesora(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) 
+	public void dodajProfesora(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+							   String email, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) 
 	{
 		Profesor Profesor = new Profesor(prezime, ime, datumRodjenja, adresaStanovanja,
-				kontaktTelefon,email, adresaKancelarije, brojLicneKarte,titula, zvanje);
+										 kontaktTelefon,email, adresaKancelarije, brojLicneKarte,titula, zvanje);
 		alProfesori.add(Profesor);
 	}
 	
@@ -93,8 +95,8 @@ private BazaProfesori() {
 	}
 	
 	
-	public void izmeniProfesora(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) 
+	public void izmeniProfesora(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String email, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) 
 	{
 		for (Profesor profesor : alProfesori) {
 			if(profesor.getBrojLicneKarte().equals(brojLicneKarte)) {

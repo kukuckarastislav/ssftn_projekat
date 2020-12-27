@@ -6,7 +6,10 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -92,7 +95,7 @@ public class IzmenaProfesora extends JDialog {
 		JTextField txtDatmR = new JTextField();
 		txtDatmR.setPreferredSize(dim);
 		txtDatmR.setName("txtDatmR");
-		txtDatmR.setText(profesor.getDatumRodjenja());
+		//txtDatmR.setText(profesor.getDatumRodjenja());
 		txtDatmR.setToolTipText("Na datumu cemo jos da poradimo..");
 		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR);
 		txtDatmR.addFocusListener(v3);	
@@ -215,12 +218,20 @@ public class IzmenaProfesora extends JDialog {
 					if(svaPoljaValidna()) {
 						String izabranaTitula = (String)Titule.getSelectedItem();
 						String izabranoZvanje = (String)Zvanja.getSelectedItem();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						dateFormat.setLenient(false);
+						Date datumRodjenja = null;
+						try {
+							datumRodjenja = dateFormat.parse(txtDatmR.getText());
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
 						
-						ProfesorController.getInstance().izmeniProfesora(txtPrezime.getText(),txtIme.getText(),txtDatmR.getText(),txtAdrS.getText(),
-								txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
+						//ProfesorController.getInstance().izmeniProfesora(txtPrezime.getText(),txtIme.getText(),datumRodjenja,txtAdrS.getText(),
+		//txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
 						dispose();
 					}else {
-						// metoda svaPoljaValidna izbacuje malecki dialog gde nas upozorava da smo nesto lose uneli
+						
 					}
 				}
 			});
@@ -245,9 +256,7 @@ public class IzmenaProfesora extends JDialog {
 		panelProfesor.add(boxCentar, BorderLayout.WEST);
 
 		
-		
-		
-		
+	
 		
 		tabelaPredmetaProfesora = new PredmetiJTable();
 		JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmetaProfesora);

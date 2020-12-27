@@ -19,14 +19,6 @@ public class Test {
 			System.out.println("test");			
 		}
 		
-	
-		
-		
-		Profesor prof1 = new Profesor("petrovic", "velko", "1970", "negde", "000", "v@", "NTP111", "333", "prof", "dr");
-		
-		
-		Predmet pr1 = new Predmet("34s", "OS", model.Semestar.LETNJI, 2, prof1, 8);
-		
 
 		
 		

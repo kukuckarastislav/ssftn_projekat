@@ -6,7 +6,10 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.JComboBox;
@@ -17,10 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.ProfesorController;
-import controller.StudentController;
 import model.Profesor;
-import model.Status;
-import model.Student;
+import model.Titula;
+import model.Zvanje;
 import util.ValidacijaTextFieldFocusListener;
 
 
@@ -37,7 +39,6 @@ public class DodavanjeProfesora extends JDialog {
 				return false;
 			}
 		}
-		// sve je validno okej :)
 		return true;
 	}
 	
@@ -53,9 +54,7 @@ public class DodavanjeProfesora extends JDialog {
 		setLocationRelativeTo(parent);
 		
 		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
-		
-		Dimension dim = new Dimension(120, 20);	
-		
+		Dimension dim = new Dimension(120, 20);			
 		
 		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));			
 		JLabel lblPrezime = new JLabel("Prezime*:");
@@ -81,8 +80,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtIme.addFocusListener(v2);
 		panIme.add(lblIme);
 		panIme.add(txtIme);
-		lValid.add(v2);
-		
+		lValid.add(v2);		
 		
 		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblDatmR = new JLabel("Datum rodjenja*");
@@ -90,19 +88,19 @@ public class DodavanjeProfesora extends JDialog {
 		JTextField txtDatmR = new JTextField();
 		txtDatmR.setPreferredSize(dim);
 		txtDatmR.setName("txtDatmR");
-		txtDatmR.setToolTipText("Na datumu cemo jos da poradimo..");
+		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG");
 		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR);
 		txtDatmR.addFocusListener(v3);	
 		panDatum.add(lblDatmR);
 		panDatum.add(txtDatmR);
 		lValid.add(v3);
 		
-
 		JLabel lblAdrS = new JLabel("Adresa stanovanja*");
 		lblAdrS.setPreferredSize(dim);
 		JTextField txtAdrS = new JTextField();
 		txtAdrS.setPreferredSize(dim);
 		txtAdrS.setName("txtAdrS");
+		txtAdrS.setToolTipText("Unesite svoju Adresu stanovanja");
 		ValidacijaTextFieldFocusListener v4 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS);
 		txtAdrS.addFocusListener(v4);
 		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -142,12 +140,12 @@ public class DodavanjeProfesora extends JDialog {
 		JTextField txtAdrKan = new JTextField();
 		txtAdrKan.setPreferredSize(dim);
 		txtAdrKan.setName("txtAdrS");
+		txtAdrKan.setToolTipText("Unesite adresu kancelarije");
 		ValidacijaTextFieldFocusListener v7 = new ValidacijaTextFieldFocusListener(lblAdrKan, txtAdrS);
 		txtAdrKan.addFocusListener(v7);
 		panAdr.add(lblAdrKan);
 		panAdr.add(txtAdrKan);
 		lValid.add(v7);
-	
 				
 		JPanel panLicna = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbllicna = new JLabel("Broj licne karte*:");
@@ -155,32 +153,25 @@ public class DodavanjeProfesora extends JDialog {
 		JTextField txtlicna = new JTextField();
 		txtlicna.setPreferredSize(dim);
 		txtlicna.setName("txtlicna");
-		txtBrTel.setToolTipText("Tacno 9 cifara");
+		txtlicna.setToolTipText("Tacno 9 cifara");
 		ValidacijaTextFieldFocusListener v8 = new ValidacijaTextFieldFocusListener(lbllicna,txtlicna);
 		txtlicna.addFocusListener(v8);
 		panLicna.add(lbllicna);
 		panLicna.add(txtlicna);
 		lValid.add(v8);
 		
-
-		
 		JLabel lblTitula = new JLabel("Titula*");
 		lblTitula.setPreferredSize(dim);
-		String[] titule = {"Doktor", "Magistar"};
-		JComboBox<String> Titule = new JComboBox<>(titule);
+		JComboBox<String> Titule = new JComboBox<>(Titula.getValues());
 		Titule.setName("Titule");	
 		Titule.setPreferredSize(dim);
 		JPanel panTitula = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panTitula.add(lblTitula);
-		panTitula.add(Titule);	
-		
-		
-		
+		panTitula.add(Titule);		
 		
 		JLabel lblZvanje = new JLabel("Zvanje*");
 		lblZvanje.setPreferredSize(dim);
-		String[] zvanja = {"Redovni profesor", "Vanredni profesor"};
-		JComboBox<String> Zvanja = new JComboBox<>(zvanja);
+		JComboBox<String> Zvanja = new JComboBox<>(Zvanje.getValues());
 		Zvanja.setName("Zvanja");	
 		Zvanja.setPreferredSize(dim);
 		JPanel panZvanje = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -206,15 +197,25 @@ public class DodavanjeProfesora extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					
 					if(svaPoljaValidna()) {
-						String izabranaTitula = (String)Titule.getSelectedItem();
-						String izabranoZvanje = (String)Zvanja.getSelectedItem();
+						Titula izabranaTitula = (Titula)Titule.getSelectedItem();
+						Zvanje izabranoZvanje = (Zvanje)Zvanja.getSelectedItem();
 						
-					Profesor profesor=new Profesor(txtPrezime.getText(),txtIme.getText(),txtDatmR.getText(),txtAdrS.getText(),
-								txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						dateFormat.setLenient(false);
+						Date datumRodjenja = null;
+						try {
+							datumRodjenja = dateFormat.parse(txtDatmR.getText());
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						
+						
+						
+						
+					Profesor profesor=new Profesor(txtPrezime.getText(),txtIme.getText(),datumRodjenja,txtAdrS.getText(),
+								          txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
 					ProfesorController.getInstance().dodajProfesora(profesor);
 						dispose();
-					}else {
-						// metoda svaPoljaValidna izbacuje malecki dialog gde nas upozorava da smo nesto lose uneli
 					}
 				}
 			});

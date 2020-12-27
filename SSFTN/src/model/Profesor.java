@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Profesor {
 	
@@ -8,20 +9,20 @@ public class Profesor {
 
 	private String prezime;
 	private String ime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresaStanovanja;
 	private String kontaktTelefon;
 	private String email;
 	private String adresaKancelarije;
 	private String brojLicneKarte;
-	private String titula;
-	private String zvanje;
+	private Titula titula;
+	private Zvanje zvanje;
 	
 	private ArrayList<Predmet> predmetiNaKojimaJeProfesor;
-	//Spisak predmeta na kojima je profesor neka lista, nesto 
+	 
 	
-	public Profesor(String prezime, String ime, String datumRodjenja, String adresaStanovanja, String kontaktTelefon,
-			String email, String adresaKancelarije, String brojLicneKarte, String titula, String zvanje) {
+	public Profesor(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
+			String email, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -53,10 +54,10 @@ public class Profesor {
 	}
 	
 	
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 	
@@ -101,18 +102,18 @@ public class Profesor {
 	}
 	
 	
-	public String getTitula() {
+	public Titula getTitula() {
 		return titula;
 	}
-	public void setTitula(String titula) {
+	public void setTitula(Titula titula) {
 		this.titula = titula;
 	}
 	
 	
-	public String getZvanje() {
+	public Zvanje getZvanje() {
 		return zvanje;
 	}
-	public void setZvanje(String zvanje) {
+	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
 	
