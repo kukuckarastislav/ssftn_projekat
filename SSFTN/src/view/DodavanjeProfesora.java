@@ -197,8 +197,9 @@ public class DodavanjeProfesora extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					
 					if(svaPoljaValidna()) {
-						Titula izabranaTitula = (Titula)Titule.getSelectedItem();
-						Zvanje izabranoZvanje = (Zvanje)Zvanja.getSelectedItem();
+						
+						Titula izabranaTitula = Titula.byOrdinal(Titule.getSelectedIndex()+1);
+						Zvanje izabranoZvanje = Zvanje.byOrdinal(Zvanja.getSelectedIndex()+1);
 						
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 						dateFormat.setLenient(false);
@@ -218,6 +219,7 @@ public class DodavanjeProfesora extends JDialog {
 						dispose();
 					}
 				}
+
 			});
 				
 		
