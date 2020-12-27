@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -35,7 +36,7 @@ public class Toolbar extends JToolBar {
 		setFloatable(false);
 		
 		CustomButton btnNew = new CustomButton();
-		btnNew.setIcon(new ImageIcon("images/iconPlus24x24.png"));
+		btnNew.setIcon(new ImageIcon("images"+File.separator+"iconPlus24x24.png"));
 		btnNew.setToolTipText("Create new entity");
 		add(btnNew);
 		
@@ -57,7 +58,7 @@ public class Toolbar extends JToolBar {
 		
 		addSeparator();
 		CustomButton btnEdit = new CustomButton();
-		btnEdit.setIcon(new ImageIcon("images/iconEdit24x24.png"));
+		btnEdit.setIcon(new ImageIcon("images"+File.separator+"iconEdit24x24.png"));
 		btnEdit.setToolTipText("Edit entity");
 		add(btnEdit);
 		
@@ -92,7 +93,7 @@ public class Toolbar extends JToolBar {
 		addSeparator();
 		
 		CustomButton btnDelete = new CustomButton();
-		btnDelete.setIcon(new ImageIcon("images/iconDelete24x24.png"));
+		btnDelete.setIcon(new ImageIcon("images"+File.separator+"iconDelete24x24.png"));
 		btnDelete.setToolTipText("Delete entity");
 		add(btnDelete);
 		
@@ -100,7 +101,7 @@ public class Toolbar extends JToolBar {
 		
 		
 		CustomButton btnSearch = new CustomButton();
-		btnSearch.setIcon(new ImageIcon("images/iconSearch24x24.png"));
+		btnSearch.setIcon(new ImageIcon("images"+File.separator+"iconSearch24x24.png"));
 		btnSearch.setToolTipText("Search for entity");
 		add(btnSearch);
 				
