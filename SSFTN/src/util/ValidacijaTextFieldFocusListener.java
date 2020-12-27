@@ -9,6 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import view.DodavanjeProfesora;
+import view.DodavanjeStudentaDialog;
+import view.IzmenaProfesora;
+
 public class ValidacijaTextFieldFocusListener implements FocusListener {
 	
 	Border defaultBorder = new JTextField().getBorder();
@@ -17,15 +21,45 @@ public class ValidacijaTextFieldFocusListener implements FocusListener {
 	private JLabel lbl;
 	private JTextField txt;
 	private boolean validacija;
+	private DodavanjeStudentaDialog stdDia;
+	private DodavanjeProfesora profDia;
+	private IzmenaProfesora izmenaProfDia;
+	private int mode = 0; 											// 0 nista 		1-dodavanjeStudenta 	2-dodavanjeProfesora
 	public boolean getValidacija() {return validacija;}
 	
+	
 	// KONSTRUKTOR
-	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt) {
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, final DodavanjeStudentaDialog stdDia) {
 		this.lbl = lbl;
 		this.txt = txt;
 		validacija = false;
+		this.stdDia = stdDia; mode = 1;
+		profDia = null;
+		izmenaProfDia = null;
+		
 	}
 	
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, final DodavanjeProfesora profDia) {
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = false;
+		stdDia = null;
+		izmenaProfDia = null;
+		this.profDia = profDia; mode = 2;
+	}
+
+
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, final IzmenaProfesora izmenaProfDia) {
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = false;
+		profDia = null;
+		stdDia = null;
+		this.izmenaProfDia = izmenaProfDia; mode = 3;
+		
+	}
+
+
 	public String getName() {
 		return lbl.getText();
 	}
@@ -71,6 +105,21 @@ public class ValidacijaTextFieldFocusListener implements FocusListener {
 			txt.setForeground(Color.red);
 			txt.setBorder(errorBorder);
 		}
+		
+		if(mode == 1) {
+			if(stdDia != null) {
+				stdDia.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 2) {
+			if(profDia != null) {
+				profDia.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 3) {
+			if(izmenaProfDia != null) {
+				//izmenaProfDia.omoguciDugmePotvrdi();
+			}
+		}
+		
 		
 	}
 

@@ -38,19 +38,31 @@ public class DodavanjeStudentaDialog extends JDialog{
 	private static final long serialVersionUID = 2196538883314033024L;
 	
 	private final Frame parent;
+	private DiaButton btPotvrdi;
+	private DiaButton btOdustani;
 	
 	// ovaj niz booleanda nam govori dal su okej unosi za redom JTextField komponente
 	private ArrayList<ValidacijaTextFieldFocusListener> lValid;
 	public boolean svaPoljaValidna() {
 		for (ValidacijaTextFieldFocusListener val : lValid) {
 			if(val.getValidacija() == false) {
-				JOptionPane.showMessageDialog(this, "Greska pri unosu: "+val.getName(), "Upozorenje", 0, null);
+				//JOptionPane.showMessageDialog(this, "Greska pri unosu: "+val.getName(), "Upozorenje", 0, null);
 				return false;
 			}
 		}
 		// sve je validno okej :)
 		return true;
 	}
+	
+	public void omoguciDugmePotvrdi() {
+		if(svaPoljaValidna()) {
+			btPotvrdi.setEnabled(true);
+		}else {
+			btPotvrdi.setEnabled(false);
+		}
+	}
+	
+	
 
 	public DodavanjeStudentaDialog(Frame parent, String naslov) {		
 		super(parent,naslov,true);
@@ -74,7 +86,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtIme.setToolTipText("Ime je niz alfabetskih karaktera");
 		txtIme.setPreferredSize(dimKomp);
 		txtIme.setName("txtIme");
-		ValidacijaTextFieldFocusListener vtffl0 = new ValidacijaTextFieldFocusListener(lblIme, txtIme);
+		ValidacijaTextFieldFocusListener vtffl0 = new ValidacijaTextFieldFocusListener(lblIme, txtIme,this);
 		txtIme.addFocusListener(vtffl0);
 		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panIme.add(lblIme);
@@ -88,7 +100,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtPrezime.setToolTipText("Prezime je niz alfabetskih karaktera");
 		txtPrezime.setPreferredSize(dimKomp);
 		txtPrezime.setName("txtPrezime");
-		ValidacijaTextFieldFocusListener vtffl1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime);
+		ValidacijaTextFieldFocusListener vtffl1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime,this);
 		txtPrezime.addFocusListener(vtffl1);
 		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panPrezime.add(lblPrezime);
@@ -105,7 +117,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG.");
 		txtDatmR.setPreferredSize(dimKomp);
 		txtDatmR.setName("txtDatmR");
-		ValidacijaTextFieldFocusListener vtffl2 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR);
+		ValidacijaTextFieldFocusListener vtffl2 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR,this);
 		txtDatmR.addFocusListener(vtffl2);
 		JPanel panDatmR = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panDatmR.add(lblDatmR);
@@ -119,7 +131,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtAdrS.setToolTipText("Unesite svoju Adresu stanovanja");
 		txtAdrS.setPreferredSize(dimKomp);
 		txtAdrS.setName("txtAdrS");
-		ValidacijaTextFieldFocusListener vtffl3 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS);
+		ValidacijaTextFieldFocusListener vtffl3 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS,this);
 		txtAdrS.addFocusListener(vtffl3);
 		JPanel panAdrS = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panAdrS.add(lblAdrS);
@@ -133,7 +145,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtBrTel.setToolTipText("Broj telefona je niz od najmanje 3 a najvise 12 decimalnih cifara");
 		txtBrTel.setPreferredSize(dimKomp);
 		txtBrTel.setName("txtBrTel");
-		ValidacijaTextFieldFocusListener vtffl4 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel);
+		ValidacijaTextFieldFocusListener vtffl4 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel,this);
 		txtBrTel.addFocusListener(vtffl4);
 		JPanel panBrTel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panBrTel.add(lblBrTel);
@@ -147,7 +159,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtEmail.setToolTipText("Format emaila: korisnickoIme@domen");
 		txtEmail.setPreferredSize(dimKomp);
 		txtEmail.setName("txtEmail");
-		ValidacijaTextFieldFocusListener vtffl5 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail);
+		ValidacijaTextFieldFocusListener vtffl5 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail,this);
 		txtEmail.addFocusListener(vtffl5);
 		JPanel panEmail = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panEmail.add(lblEmail);
@@ -161,7 +173,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtIndeks.setToolTipText("format smer-broj-godUpisa");
 		txtIndeks.setPreferredSize(dimKomp);
 		txtIndeks.setName("txtIndeks");
-		ValidacijaTextFieldFocusListener vtffl6 = new ValidacijaTextFieldFocusListener(lblIndeks, txtIndeks);
+		ValidacijaTextFieldFocusListener vtffl6 = new ValidacijaTextFieldFocusListener(lblIndeks, txtIndeks,this);
 		txtIndeks.addFocusListener(vtffl6);
 		JPanel panIndeks = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panIndeks.add(lblIndeks);
@@ -175,7 +187,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtGodUpisa.setToolTipText("Godina upisa format od 4 cifre");
 		txtGodUpisa.setPreferredSize(dimKomp);
 		txtGodUpisa.setName("txtGodUpisa");
-		ValidacijaTextFieldFocusListener vtffl7 = new ValidacijaTextFieldFocusListener(lblGodUpisa, txtGodUpisa);
+		ValidacijaTextFieldFocusListener vtffl7 = new ValidacijaTextFieldFocusListener(lblGodUpisa, txtGodUpisa,this);
 		txtGodUpisa.addFocusListener(vtffl7);
 		JPanel panGodUpisa = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panGodUpisa.add(lblGodUpisa);
@@ -240,8 +252,9 @@ public class DodavanjeStudentaDialog extends JDialog{
 		JPanel diaButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		diaButtonPanel.setPreferredSize(new Dimension(60,60));
 		//diaButtonPanel.setBackground(new Color(255,255,255));
-		DiaButton btPotvrdi = new DiaButton("Potvrdi");
-		DiaButton btOdustani = new DiaButton("Odustani");
+		btPotvrdi = new DiaButton("Potvrdi");
+		btPotvrdi.setEnabled(false);
+		btOdustani = new DiaButton("Odustani");
 		
 		btPotvrdi.addActionListener(new ActionListener() {
 			
@@ -304,6 +317,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		add(diaButtonPanel, BorderLayout.SOUTH);
 
 	}
-	
+
+
 	
 }
