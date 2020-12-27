@@ -1,0 +1,37 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Frame;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+public class HelpDialog extends JDialog{
+
+	private static final long serialVersionUID = 7532094756704393899L;
+
+	public HelpDialog(Frame parent, String naslov) {
+		super(parent,naslov,true);
+		
+		setSize(400,650);
+		setResizable(false);
+		setLocationRelativeTo(parent);
+		
+		JPanel leviPanel = new JPanel();
+		leviPanel.setPreferredSize(new Dimension(10,10));
+		JPanel desniPanel = new JPanel();
+		desniPanel.setPreferredSize(new Dimension(10,10));
+		JPanel gornjiPanel = new JPanel();
+		gornjiPanel.setPreferredSize(new Dimension(10,10));
+		add(leviPanel,BorderLayout.WEST);
+		add(desniPanel,BorderLayout.EAST);
+		add(gornjiPanel,BorderLayout.NORTH);
+		
+		
+		
+		
+	}
+	
+	
+}

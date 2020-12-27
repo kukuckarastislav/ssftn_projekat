@@ -102,7 +102,6 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG");
 		lblDatmR.setToolTipText("Trazen format: DD.MM.GGGG.");
 		lblDatmR.setPreferredSize(dimKomp);
-		//JTextField txtDatmR = new JTextField();
 		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG.");
 		txtDatmR.setPreferredSize(dimKomp);
 		txtDatmR.setName("txtDatmR");

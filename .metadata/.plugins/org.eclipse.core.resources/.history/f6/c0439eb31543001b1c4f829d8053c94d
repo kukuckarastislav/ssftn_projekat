@@ -1,0 +1,66 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+
+public class HelpDialog extends JDialog{
+
+	private static final long serialVersionUID = 7532094756704393899L;
+
+	public HelpDialog(Frame parent, String naslov) {
+		super(parent,naslov,true);
+		
+		setSize(400,650);
+		setResizable(false);
+		setLocationRelativeTo(parent);
+		
+		Dimension dim1 = new Dimension(10,10);
+		
+		JPanel leviPanel = new JPanel();
+		leviPanel.setPreferredSize(dim1);
+		JPanel desniPanel = new JPanel();
+		desniPanel.setPreferredSize(dim1);
+		JPanel gornjiPanel = new JPanel();
+		gornjiPanel.setPreferredSize(dim1);
+		JPanel donjiPanel = new JPanel();
+		donjiPanel.setPreferredSize(dim1);
+	
+		JPanel velikiCentralniPanel = new JPanel();
+		velikiCentralniPanel.setLayout(new BorderLayout());
+		
+		velikiCentralniPanel.add(leviPanel,BorderLayout.WEST);
+		velikiCentralniPanel.add(desniPanel,BorderLayout.EAST);
+		velikiCentralniPanel.add(gornjiPanel,BorderLayout.NORTH);
+		velikiCentralniPanel.add(donjiPanel,BorderLayout.SOUTH);
+		
+		JPanel manjiCentralniPanel = new JPanel();
+		velikiCentralniPanel.add(manjiCentralniPanel,BorderLayout.CENTER);
+		
+		
+		
+		
+		JPanel panelZatvori = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panelZatvori.setBackground(new Color(255,255,255));
+		DiaButton bZatvori = new DiaButton("zatvori");
+		bZatvori.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		panelZatvori.add(bZatvori);
+		add(panelZatvori, BorderLayout.SOUTH);
+		add(velikiCentralniPanel,BorderLayout.CENTER);
+		
+	}
+	
+	
+}

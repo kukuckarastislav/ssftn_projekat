@@ -1,0 +1,7 @@
+package util;
+
+import java.awt.event.FocusListener;
+
+public class ValidacijaTextFieldFocusListener implements FocusListener {
+
+}

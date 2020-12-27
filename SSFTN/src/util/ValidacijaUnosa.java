@@ -46,7 +46,8 @@ public class ValidacijaUnosa {
 		}	
 		for(int i = 0; i < sEl[2].length(); i++) {
 			if( !Character.isDigit(sEl[2].charAt(i)) ) return false;
-		}		
+		}
+		
 		if(Integer.parseInt(sEl[2])>2020) return false;
 		
 		int dan= Integer.parseInt(sEl[0]);

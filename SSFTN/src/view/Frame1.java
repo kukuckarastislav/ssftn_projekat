@@ -117,14 +117,19 @@ public class Frame1 extends JFrame{
 	tpane.addTab("Profesori", panelProfesori);
 	tpane.addTab("Predmeti", panelPredmeti);
 	
-	
+	tabelaProfesora.getCellSelectionEnabled();
+	tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	/*
 	if (tabelaProfesora.getCellSelectionEnabled()) {
 	      tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	      rowSlectedProfesor = tabelaProfesora.getSelectedRow();
 
 	    }
+	*/
+	
 	
 	}
+
 
 	
 	public void azurirajPrikazTabeleStudenata(String akcija, int vrednost) {
@@ -153,6 +158,7 @@ public class Frame1 extends JFrame{
 	}
 	
 	public int getSelectedProfesor() {
+		rowSlectedProfesor = tabelaProfesora.getSelectedRow(); 
 		return rowSlectedProfesor;
 	}
 	
