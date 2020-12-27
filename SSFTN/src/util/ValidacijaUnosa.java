@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import model.BazaProfesori;
 import model.BazaStudenti;
 
 public class ValidacijaUnosa {
@@ -104,6 +105,8 @@ public class ValidacijaUnosa {
 			}
 		}
 		if(text.length()!=9)
+			return false;
+		if(!BazaProfesori.getInstance().jedinstvenBrLicne(text))
 			return false;
 		
 		return true;

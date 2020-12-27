@@ -20,7 +20,7 @@ public class Profesor {
 	
 	private ArrayList<Predmet> predmetiNaKojimaJeProfesor;
 	 
-	
+
 	public Profesor(String prezime, String ime, Date datumRodjenja, String adresaStanovanja, String kontaktTelefon,
 			String email, String adresaKancelarije, String brojLicneKarte, Titula titula, Zvanje zvanje) {
 		super();
@@ -36,6 +36,7 @@ public class Profesor {
 		this.zvanje = zvanje;
 	}
 	
+	public Profesor() {}
 	
 	
 	public String getPrezime() {
@@ -117,13 +118,36 @@ public class Profesor {
 		this.zvanje = zvanje;
 	}
 	
+	
+	public ArrayList<Predmet> getPredmetiNaKojimaJeProfesor() {
+		return predmetiNaKojimaJeProfesor;
+	}
+
+	public void setPredmetiNaKojimaJeProfesor(ArrayList<Predmet> predmetiNaKojimaJeProfesor) {
+		this.predmetiNaKojimaJeProfesor = predmetiNaKojimaJeProfesor;
+	}
+
+	
 
 	@Override
 	public String toString() {
-		return "Profesor [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
-				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", email=" + email
-				+ ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte + ", titula="
-				+ titula + ", zvanje=" + zvanje + "]";
+		
+		String s="Ime: "+this.getIme();
+		s+="\nPrezime: "+this.getPrezime();
+		s+="\nAdresa stanovanja :"+this.getAdresaStanovanja();
+		s+="\nAdresa kancelarije :"+this.getAdresaKancelarije();
+		s+="\nKontakt telefon: "+this.getKontaktTelefon();
+		s+="\nEmail: "+this.getEmail();
+		s+="\nBroj licne karte: "+this.getBrojLicneKarte();
+		s+="\nTitula: "+this.getTitula().toString();
+		s+="\nZvanje: "+this.getZvanje().toString();
+		s+="\nLista predmeta na kojima je profesor:";
+		for(Predmet p: this.getPredmetiNaKojimaJeProfesor())
+			s+="\t"+p.getSifraPredmeta();
+		
+		
+		
+		return s;
 	}
 
 	

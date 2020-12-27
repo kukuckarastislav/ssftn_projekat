@@ -118,6 +118,15 @@ private static BazaProfesori instance = null;
 		
 	}
 	
+	public boolean jedinstvenBrLicne(String brLicne) {
+		for (Profesor profesor : alProfesori) {
+			if(profesor.getBrojLicneKarte().equals(brLicne)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 
 	
 	
