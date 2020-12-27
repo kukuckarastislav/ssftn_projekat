@@ -15,7 +15,6 @@
     <fullyQualifiedTypeName name="java.awt.Component"/>
     <fullyQualifiedTypeName name="javax.swing.table.AbstractTableModel"/>
     <fullyQualifiedTypeName name="java.awt.List"/>
-    <fullyQualifiedTypeName name="model.BazaStudenti"/>
     <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
     <fullyQualifiedTypeName name="view.DodavanjeStudentaDialog"/>
     <fullyQualifiedTypeName name="javax.swing.BoxLayout"/>
@@ -23,7 +22,6 @@
     <fullyQualifiedTypeName name="javax.swing.Box"/>
     <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
     <fullyQualifiedTypeName name="controller.StudentController"/>
-    <fullyQualifiedTypeName name="model.Student"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
     <fullyQualifiedTypeName name="model.Status"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="model.BazaProfesori"/>
     <fullyQualifiedTypeName name="controller.ProfesorController"/>
     <fullyQualifiedTypeName name="model.Titula"/>
+    <fullyQualifiedTypeName name="model.Student"/>
+    <fullyQualifiedTypeName name="model.BazaStudenti"/>
 </qualifiedTypeNameHistroy>

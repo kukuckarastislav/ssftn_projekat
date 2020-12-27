@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import model.BazaStudenti;
+
 public class ValidacijaUnosa {
 	
 	public static boolean validImePrz(String text) {
@@ -159,6 +161,10 @@ public class ValidacijaUnosa {
 		
 		for(int i = 0; i < sEl[2].length(); i++) {
 			if( !Character.isDigit( sEl[2].charAt(i) ) ) return false;
+		}
+		
+		if(!BazaStudenti.getInstance().jedinstvenIndeks(text)) {
+			return false;
 		}
 		
 		

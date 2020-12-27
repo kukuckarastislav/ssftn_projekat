@@ -131,15 +131,6 @@ public class BazaStudenti {
 		
 	}
 	
-	public boolean jedinstvenIndeks(String noviIndeks) {
-		for (Student student : alStudenti) {
-			if(student.getIndeks().equals(noviIndeks)) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	
 	
 	
