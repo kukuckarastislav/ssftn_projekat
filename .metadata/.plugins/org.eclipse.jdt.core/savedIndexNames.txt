@@ -1,3 +1,2 @@
 INDEX VERSION 1.131+D:\RA\RASTISLAV\OISIS\ssftn_projekat\.metadata\.plugins\org.eclipse.jdt.core
-1461811661.index
 187812788.index
