@@ -50,10 +50,17 @@ public class Toolbar extends JToolBar {
 				DodavanjeStudentaDialog stdDia = new DodavanjeStudentaDialog(parent, "Dodavanje Studenta");
 				stdDia.setVisible(true);
 			}
-			if(tab == 1) {
+			else if(tab == 1) {
 				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora");
 				dp.setVisible(true);
-			}			
+			}	
+			else if(tab == 2) {
+				DodavanjePredmetaDialog dodPredDia = new DodavanjePredmetaDialog(parent);
+				dodPredDia.setVisible(true);
+			}
+			
+			
+			
 			}
 		});
 		

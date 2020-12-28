@@ -61,6 +61,9 @@ public class MenuBar extends JMenuBar {
 			}else if(tab == 1) {
 				DodavanjeProfesora dp = new DodavanjeProfesora(parent, "Dodavanje Profesora");
 				dp.setVisible(true);
+			}else if(tab == 2) {
+				DodavanjePredmetaDialog dodPredDia = new DodavanjePredmetaDialog(parent);
+				dodPredDia.setVisible(true);
 			}
 			
 			}

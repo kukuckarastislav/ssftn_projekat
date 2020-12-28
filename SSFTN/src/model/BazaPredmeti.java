@@ -19,13 +19,27 @@ private static BazaPredmeti instance = null;
 	private ArrayList<Predmet> alPredmeti;
 	private ArrayList<String> alKolone;
 	
+	private void initPredmets() {
+		Predmet pr1 = new Predmet("E13", "Programski Jezici i Strukture Podataka", Semestar.ZIMSKI, 1, 9);
+		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
+		Predmet pr3 = new Predmet("AN1", "Analiza 1", Semestar.ZIMSKI, 1, 9);
+		Predmet pr4 = new Predmet("ARH", "Arhitektura Racunara", Semestar.LETNJI, 1, 9);
+		Predmet pr5 = new Predmet("MISS", "Modelovanje i simulacija sistema", Semestar.ZIMSKI, 2, 8);
+		
+		alPredmeti.add(pr1);
+		alPredmeti.add(pr2);
+		alPredmeti.add(pr3);
+		alPredmeti.add(pr4);
+		alPredmeti.add(pr5);
+	}
 	
-private BazaPredmeti() {
+	
+	private BazaPredmeti() {
 		
 		
 		// initPredmets() 		// neka metoda koja ce da ucita u bazu Predmete pri paljenju app
 		alPredmeti = new ArrayList<Predmet>();
-		
+		initPredmets();
 		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Sifra predmeta");
@@ -120,6 +134,16 @@ private BazaPredmeti() {
 	}
 	
 	
+	
+	
+	public boolean jedinstvenaSifra(String novaSifra) {
+		for (Predmet predmet : alPredmeti) {
+			if(predmet.getSifraPredmeta().equals(novaSifra)) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
 	

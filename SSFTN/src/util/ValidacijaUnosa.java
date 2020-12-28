@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.BazaStudenti;
 
@@ -200,6 +201,52 @@ public class ValidacijaUnosa {
 		if(text.isEmpty() || text.isBlank()) {
 			return false;
 		}
+		return true;
+	}
+
+	public static boolean validSifraPredmeta(String text) {
+		if(text == null) return false;
+		if(text.isEmpty() || text.isBlank()) {
+			return false;
+		}
+		
+		
+		// treba da bude jedinstvena
+		if(!BazaPredmeti.getInstance().jedinstvenaSifra(text)) {
+			return false;
+		}
+		
+		
+		
+		return true;
+	}
+
+	public static boolean validNazivPredmeta(String text) {
+		if(text == null) return false;
+		if(text.isEmpty() || text.isBlank()) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	public static boolean validESPB(String text) {
+		if(text == null) return false;
+		if(text.isEmpty() || text.isBlank()) {
+			return false;
+		}
+		
+		if( text.charAt(0) == '0' ) return false;
+		
+		for(int i = 0; i < text.length(); i++) {
+			if( !Character.isDigit( text.charAt(i) ) ) return false;
+		}
+	
+		
+		// predmet moze da ima maksimalno 60 espb haha xD a minimum 1
+		int brESPB = Integer.parseInt(text);
+		if(brESPB > 60 || brESPB < 1) return false;
+		
 		return true;
 	}
 	

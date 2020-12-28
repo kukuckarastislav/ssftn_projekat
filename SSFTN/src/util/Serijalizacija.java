@@ -47,7 +47,8 @@ public class Serijalizacija{
 		fwp.close();
 		
 		for(Predmet p: BazaPredmeti.getInstance().getPredmeti()) {			
-			 bwpp.write(p.toString());         						
+			bwpp.write(p.toString());       
+			  						
 		}
 		bwpp.close();
 		fwpp.close();

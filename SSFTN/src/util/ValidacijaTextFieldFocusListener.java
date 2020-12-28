@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import view.DodavanjePredmetaDialog;
 import view.DodavanjeProfesora;
 import view.DodavanjeStudentaDialog;
 import view.IzmenaProfesora;
@@ -29,6 +30,7 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	private IzmenaProfesora izmenaProfDia = null;
 	private PanIzmenaStudentaInformacije panIzmenaStd= null;
 	private String orgIndeks = null;
+	private DodavanjePredmetaDialog dodPredmetaDia = null;
 	private int mode = 0; 											// 0 nista 		1-dodavanjeStudenta 	2-dodavanjeProfesora
 	public boolean getValidacija() {return validacija;}
 	
@@ -92,6 +94,17 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	}
 
 
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt,
+			final DodavanjePredmetaDialog dodPredmetaDia) 
+	{
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = false;
+		this.dodPredmetaDia = dodPredmetaDia;
+		mode = 5;
+	}
+
+
 	public String getName() {
 		return lbl.getText();
 	}
@@ -99,9 +112,11 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	
 	public void setValidacija(boolean B) {
 		validacija = B;
-		lbl.setForeground(Color.black);
-		txt.setForeground(Color.black);
-		txt.setBorder(defaultBorder);
+		if(B) {
+			lbl.setForeground(Color.black);
+			txt.setForeground(Color.black);
+			txt.setBorder(defaultBorder);
+		}
 	}
 
 	@Override
@@ -141,6 +156,12 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
 			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+		}else if(txt.getName().equals("txtSifra")) {
+			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+		}else if(txt.getName().equals("txtNaziv")) {
+			validacija = ValidacijaUnosa.validNazivPredmeta(txt.getText());
+		}else if(txt.getName().equals("txtBrojESPB")) {
+			validacija = ValidacijaUnosa.validESPB(txt.getText());
 		}
 		
 		
@@ -172,6 +193,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(mode == 4) {
 			if(panIzmenaStd != null) {
 				panIzmenaStd.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 5) {
+			if(dodPredmetaDia != null) {
+				dodPredmetaDia.omoguciDugmePotvrdi();
 			}
 		}
 	}
@@ -207,7 +232,17 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
 			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+		}else if(txt.getName().equals("txtSifra")) {
+			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+		}else if(txt.getName().equals("txtNaziv")) {
+			validacija = ValidacijaUnosa.validNazivPredmeta(txt.getText());
+		}else if(txt.getName().equals("txtBrojESPB")) {
+			validacija = ValidacijaUnosa.validESPB(txt.getText());
 		}
+		
+		
+		
+		
 		//System.out.println(txt.getName()+" "+txt.getText());
 		if(mode == 1) {
 			if(stdDia != null) {
@@ -224,6 +259,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(mode == 4) {
 			if(panIzmenaStd != null) {
 				panIzmenaStd.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 5) {
+			if(dodPredmetaDia != null) {
+				dodPredmetaDia.omoguciDugmePotvrdi();
 			}
 		}
 	}

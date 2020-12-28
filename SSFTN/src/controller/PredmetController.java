@@ -20,9 +20,9 @@ public class PredmetController {
 	}
 	
 	
-	public void dodajPredmet(Predmet st1) {
+	public void dodajPredmet(Predmet predmet) {
 		
-		BazaPredmeti.getInstance().dodajPredmet(st1);
+		BazaPredmeti.getInstance().dodajPredmet(predmet);
 		Frame1.getInstance().azurirajPrikazTabelePredmeta("DODAT", 1);
 	}
 	
@@ -31,7 +31,7 @@ public class PredmetController {
 	}
 	
 	public void izbrisiPredmet() {
-		
+		// Milica
 	}
 
 }

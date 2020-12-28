@@ -34,6 +34,7 @@ public class Predmet implements Serializable {
 	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
 			int godinaStudijaUKojojSePredmetIzvodi, int brojESPBbodova) {
 		super();
+		predmetniProfesor = null;
 		this.sifraPredmeta = sifraPredmeta;
 		this.nazivPredmeta = nazivPredmeta;
 		this.semestar = semestar;
@@ -111,18 +112,26 @@ public class Predmet implements Serializable {
 	@Override
 	public String toString() {
 		
+		
 		String s="Sifra predmeta : "+this.getSifraPredmeta();
 		s+="\nNaziv predmeta : "+this.getNazivPredmeta();
 		s+="\nGodina studija u kojoj se predmet izvodi : "+this.getGodinaStudijaUKojojSePredmetIzvodi();
 		s+="\nBroj ESPB bodova je :  "+this.getBrojESPBbodova();
 		s+="\nSemestar: "+this.getSemestar().toString();
-		s+="\nPredmetni profesor je :"+this.getPredmetniProfesor().getIme()+" "+this.getPredmetniProfesor().getPrezime();
+		s+="\nPredmetni profesor je :";
+		if(this.getPredmetniProfesor() != null) {
+			s+=this.getPredmetniProfesor().getIme()+" "+this.getPredmetniProfesor().getPrezime();
+		}
 		s+="\nLista studenata koji su polozili:";
-		for(Student student :this.studentiKojiSuPolozili)
-			s+="\t"+student.getIme()+" "+student.getPrezime();
+		
+		if(this.studentiKojiSuPolozili != null)
+			for(Student student :this.studentiKojiSuPolozili)
+				s+="\t"+student.getIme()+" "+student.getPrezime();
+		
 		s+="\nLista studenata koji nisu polozili:";
-		for(Student student :this.studentiKojiNisuPolozili)
-			s+="\t"+student.getIme()+" "+student.getPrezime();
+		if(this.studentiKojiNisuPolozili != null)
+			for(Student student :this.studentiKojiNisuPolozili)
+				s+="\t"+student.getIme()+" "+student.getPrezime();
 		
 		return s;
 	}

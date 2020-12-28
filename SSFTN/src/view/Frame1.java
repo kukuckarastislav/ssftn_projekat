@@ -163,6 +163,10 @@ public class Frame1 extends JFrame{
 		return tabelaStudenata.getSelectedRow();
 	}
 	
+	public int getSelectedPredmet() {
+		return tabelaPredmeta.getSelectedRow();
+	}
+	
 	
 		
 }
