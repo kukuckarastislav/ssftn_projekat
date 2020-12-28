@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import model.Student;
 
@@ -86,10 +87,9 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int tab = Frame1.getInstance().getSelectedTab();
-				int selStud = Frame1.getInstance().getSelectedStudent();
 				
 				if(tab == 0) {
-					
+					int selStud = Frame1.getInstance().getSelectedStudent();
 					if(selStud == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
 					}
@@ -97,10 +97,12 @@ public class MenuBar extends JMenuBar {
 					StudentController.getInstance().izbrisiStudenta(selStud);
 					
 				}else if(tab == 1) {
-					
-					if(selStud == -1) {
+					int selProf = Frame1.getInstance().getSelectedProfesor();
+					if(selProf == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite obrisati", "Upozorenje", 0, null);
 					}
+					
+					ProfesorController.getInstance().izbrisiProfesora(selProf);
 					
 				}else if(tab == 2) {
 					//brisi predmet

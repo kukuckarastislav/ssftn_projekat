@@ -3,7 +3,9 @@ package controller;
 import java.util.Date;
 
 import model.BazaProfesori;
+import model.BazaStudenti;
 import model.Profesor;
+import model.Student;
 import model.Titula;
 import model.Zvanje;
 import view.Frame1;
@@ -37,8 +39,14 @@ public class ProfesorController {
 		Frame1.getInstance().azurirajPrikazTabeleProfesora("IZMENJEN", 1);
 	}
 	
-	public void izbrisiProfesora() {
-		
+	public void izbrisiProfesora(int rowSelectedIndex) {
+		if(rowSelectedIndex < 0) {
+			return;
+		}
+		Profesor prof = BazaProfesori.getInstance().getProfesor(rowSelectedIndex);
+		BazaProfesori.getInstance().izbrisiProfesora(prof); 		// mogli smo poslati i licnu kartu ali moze i ovako
+	
+		Frame1.getInstance().azurirajPrikazTabeleProfesora("UKLONJEN", 2);
 	}
 	
 	public Profesor getProfesor(int rowIndex) {

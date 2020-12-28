@@ -148,7 +148,7 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(txt.getName().equals("txtlicna")) {
 			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
 		}
-		System.out.println(txt.getName()+" "+txt.getText());
+		//System.out.println(txt.getName()+" "+txt.getText());
 		if(mode == 1) {
 			if(stdDia != null) {
 				stdDia.omoguciDugmePotvrdi();

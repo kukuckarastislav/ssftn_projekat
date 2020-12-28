@@ -126,6 +126,11 @@ private static BazaProfesori instance = null;
 		}
 		return true;
 	}
+
+
+	public void izbrisiProfesora(Profesor prof) {
+		alProfesori.remove(prof);
+	}
 	
 
 	
