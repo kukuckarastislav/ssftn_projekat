@@ -166,9 +166,11 @@ public class ValidacijaUnosa {
 			if( !Character.isDigit( sEl[2].charAt(i) ) ) return false;
 		}
 		
+		
 		if(!BazaStudenti.getInstance().jedinstvenIndeks(text)) {
 			return false;
 		}
+		
 		
 		
 		return true;

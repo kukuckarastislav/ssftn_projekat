@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 
 import controller.ProfesorController;
 import controller.StudentController;
+import model.Profesor;
 import model.Student;
 
 public class MenuBar extends JMenuBar {
@@ -82,6 +83,41 @@ public class MenuBar extends JMenuBar {
 		
 		miEdit.setToolTipText("Izmena postojeceg entiteta");
 		miDelete.setToolTipText("Brisanje postojeceg entiteta");
+		
+		miEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int tab = Frame1.getInstance().getSelectedTab();
+				
+				if(tab == 0) {
+					int selStud = Frame1.getInstance().getSelectedStudent();
+					if(selStud == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite izmeniti", "Upozorenje", 0, null);
+					}else {
+						Student student = StudentController.getInstance().getStudent(selStud);
+						
+						IzmenaStudentaDialog izmStudDia = new IzmenaStudentaDialog(parent, student);
+						izmStudDia.setVisible(true);
+					}
+					
+				}else if(tab == 1) {
+					// Milica #izmena_profesora
+					int selProf = Frame1.getInstance().getSelectedProfesor();
+					if(selProf == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite izmeniti", "Upozorenje", 0, null);
+					}else {
+						Profesor p=ProfesorController.getInstance().getProfesor(selProf);
+						
+						IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
+						ip.setVisible(true);
+					}
+					
+				}else if(tab == 2) {
+					// izmena predmete rastislav
+				}
+				
+			}
+		});
 		
 		miDelete.addActionListener(new ActionListener() {
 			@Override

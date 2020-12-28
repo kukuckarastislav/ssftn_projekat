@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 import view.DodavanjeProfesora;
 import view.DodavanjeStudentaDialog;
 import view.IzmenaProfesora;
+import view.PanIzmenaStudentaInformacije;
 
 public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListener {
 	
@@ -26,6 +27,8 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	private DodavanjeStudentaDialog stdDia = null;
 	private DodavanjeProfesora profDia = null;
 	private IzmenaProfesora izmenaProfDia = null;
+	private PanIzmenaStudentaInformacije panIzmenaStd= null;
+	private String orgIndeks = null;
 	private int mode = 0; 											// 0 nista 		1-dodavanjeStudenta 	2-dodavanjeProfesora
 	public boolean getValidacija() {return validacija;}
 	
@@ -61,8 +64,31 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		this.txt = txt;
 		validacija = false;
 		this.izmenaProfDia = izmenaProfDia; 
-		mode = 3;
-		
+		mode = 3;	
+	}
+	
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
+											final PanIzmenaStudentaInformacije panIzmenaStd) 
+	{
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = true; 		// ovde je pocetno stanje true jer je sve validno kad idemo da menjamo
+		mode = 4;
+		this.panIzmenaStd = panIzmenaStd;
+	}
+	
+	
+	// ovaj konstruktor je samo za JTextField za indeks za izmenu studenata jer imamo problem on uzme indeks
+	// i kaze da nije jedinstven zato sto je to zapravo njegov indeks
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
+											final PanIzmenaStudentaInformacije panIzmenaStd, String orgIndeks) 
+	{
+		this.orgIndeks = orgIndeks;
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = true; 	// ako idemo da menjamo studetan znamo da je sve validno do sada
+		mode = 4;
+		this.panIzmenaStd = panIzmenaStd;
 	}
 
 
@@ -70,6 +96,13 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		return lbl.getText();
 	}
 	
+	
+	public void setValidacija(boolean B) {
+		validacija = B;
+		lbl.setForeground(Color.black);
+		txt.setForeground(Color.black);
+		txt.setBorder(defaultBorder);
+	}
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
@@ -93,12 +126,23 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(txt.getName().equals("txtEmail")) {
 			validacija = ValidacijaUnosa.validEmail(txt.getText());
 		}else if(txt.getName().equals("txtIndeks")) {
-			validacija = ValidacijaUnosa.validIndeks(txt.getText());
+			if(mode == 4) { 							// u slucaju izmene studenta tada ako nije diran indeks to je ok
+				if(txt.getText().equals(orgIndeks)) {
+					validacija = true;
+				}else {
+					validacija = ValidacijaUnosa.validIndeks(txt.getText()); 	 
+				}
+				
+			}else {
+				validacija = ValidacijaUnosa.validIndeks(txt.getText());
+			}
+	
 		}else if(txt.getName().equals("txtGodUpisa")) {
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
 			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
 		}
+		
 		
 		
 		if(validacija) {
@@ -125,7 +169,11 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			if(izmenaProfDia != null) {
 				//izmenaProfDia.omoguciDugmePotvrdi();
 			}
-		}	
+		}else if(mode == 4) {
+			if(panIzmenaStd != null) {
+				panIzmenaStd.omoguciDugmePotvrdi();
+			}
+		}
 	}
 	
 	
@@ -142,7 +190,19 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(txt.getName().equals("txtEmail")) {
 			validacija = ValidacijaUnosa.validEmail(txt.getText());
 		}else if(txt.getName().equals("txtIndeks")) {
-			validacija = ValidacijaUnosa.validIndeks(txt.getText());
+			
+			if(mode == 4) { 							// u slucaju izmene studenta tada ako nije diran indeks to je ok
+				if(txt.getText().equals(orgIndeks)) {
+					validacija = true;
+				}else {
+					validacija = ValidacijaUnosa.validIndeks(txt.getText()); 	 
+				}
+				
+			}else {
+				validacija = ValidacijaUnosa.validIndeks(txt.getText());
+			}
+			
+			
 		}else if(txt.getName().equals("txtGodUpisa")) {
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
@@ -160,6 +220,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(mode == 3) {
 			if(izmenaProfDia != null) {
 				//izmenaProfDia.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 4) {
+			if(panIzmenaStd != null) {
+				panIzmenaStd.omoguciDugmePotvrdi();
 			}
 		}
 	}

@@ -126,7 +126,7 @@ public class Frame1 extends JFrame{
 
 	    }
 	*/
-	
+
 	
 	}
 

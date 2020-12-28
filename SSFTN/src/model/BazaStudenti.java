@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -19,12 +21,39 @@ public class BazaStudenti {
 	private ArrayList<Student> alStudenti;
 	private ArrayList<String> alKolone;
 	
+	private void initStudents() {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		dateFormat.setLenient(false);
+		Date datumRodjenja = null;
+		try {
+			datumRodjenja = dateFormat.parse("7.1.2000");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Student st1 = new Student("Kukucka", "Rastislav", datumRodjenja, "Novi Sad", "5846868", 
+								  "ras@gmail.com", "ra-129-2018", 2018, 3, Status.B);
+		
+		try {
+			datumRodjenja = dateFormat.parse("29.7.1999");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Student st2 = new Student("Vucinic", "Milica", datumRodjenja, "Novi Sad", "24233", 
+				        		  "milica@uns", "ra-139-2018", 2018, 3, Status.B);
+		
+		alStudenti.add(st1);
+		alStudenti.add(st2);
+	}
+	
 	
 	private BazaStudenti() {
 		
-		
-		// initStudents() 		// neka metoda koja ce da ucita u bazu studente pri paljenju app
 		alStudenti = new ArrayList<Student>();
+		initStudents(); 		// neka metoda koja ce da ucita u bazu studente pri paljenju app
+		
 		
 		
 		alKolone = new ArrayList<String>();

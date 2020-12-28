@@ -25,7 +25,19 @@ public class StudentController {
 		Frame1.getInstance().azurirajPrikazTabeleStudenata("DODAT", 1);
 	}
 	
-	public void izmeniStudenta() {
+	public void izmeniStudenta(Student st1, Student st2) {
+		st1.setIme(st2.getIme());
+		st1.setPrezime(st2.getPrezime());
+		st1.setDatumRodjenja(st2.getDatumRodjenja());
+		st1.setAdresa(st2.getAdresa());
+		st1.setKontaktTelefon(st2.getKontaktTelefon());
+		st1.setEmail(st2.getEmail());
+		st1.setIndeks(st2.getIndeks());
+		st1.setTrenGodStudija(st2.getTrenGodStudija());
+		st1.setGodinaUpisa(st2.getGodinaUpisa());
+		st1.setStatus(st2.getStatus());
+		
+		Frame1.getInstance().azurirajPrikazTabeleStudenata("IZMENJEN", 3);
 		
 	}
 	
@@ -37,6 +49,11 @@ public class StudentController {
 		BazaStudenti.getInstance().izbrisiStudenta(student); 		// mogli smo i indeks poslati al ovako je EFIKASNIJE :)
 		
 		Frame1.getInstance().azurirajPrikazTabeleStudenata("UKLONJEN", 2);
+	}
+	
+	public Student getStudent(int indexRow) {
+		Student student = BazaStudenti.getInstance().getStudent(indexRow);
+		return student;
 	}
 
 }
