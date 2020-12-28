@@ -53,6 +53,10 @@ public class DodavanjePredmetaDialog extends JDialog{
 	private Dimension dimLbl; 		// dimanzija za labelu
 	
 	private Profesor profesor;
+	// metoda da dodamo profesora iz dialoga za dodavanje profesora
+	public void setPredmetniProfesor(Profesor pro) {
+		profesor = pro;
+	}
 	
 	private ArrayList<ValidacijaTextFieldFocusListener> lValid;
 	public boolean svaPoljaValidna() {
@@ -75,6 +79,15 @@ public class DodavanjePredmetaDialog extends JDialog{
 		}
 	}
 	
+	public void setOmoguciDodavanjeProfesora(boolean omoguc) {
+		if(omoguc) {
+			btnDodajProf.setEnabled(true);
+			btnUkloniProf.setEnabled(false);
+		}else {
+			btnDodajProf.setEnabled(false);
+			btnUkloniProf.setEnabled(true);
+		}
+	}
 	
 	
 	public DodavanjePredmetaDialog(Frame parent) {
@@ -191,6 +204,32 @@ public class DodavanjePredmetaDialog extends JDialog{
 		btnUkloniProf = new DiaButton();
 		btnUkloniProf.setIcon(new ImageIcon("images"+File.separator+"iconClose16x16.png"));
 		btnUkloniProf.setPreferredSize(new Dimension(20,20));
+		btnUkloniProf.setEnabled(false);
+		
+		
+		btnDodajProf.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// sa ovom metodom pocinjemo jer u pocetku nema profesora pa mozemo da ga dodamo
+				DodavanjePrfNaPredmetDialog dodajProfNaPredmet = new DodavanjePrfNaPredmetDialog(parent);
+				profesor = dodajProfNaPredmet.dajMiSelektovanogProfesora();
+				if(profesor != null) {
+					txtGlavniProf.setText(profesor.getIme()+" "+profesor.getPrezime());
+					setOmoguciDodavanjeProfesora(false);
+				}
+				
+				
+			}
+		});
+		
+		btnUkloniProf.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				profesor = null; 
+				setOmoguciDodavanjeProfesora(true);
+				txtGlavniProf.setText("");
+			}
+		});
 		
 		panOdabirProf.add(txtGlavniProf);
 		panOdabirProf.add(Box.createHorizontalStrut(10));
