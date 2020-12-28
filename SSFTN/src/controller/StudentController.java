@@ -21,9 +21,6 @@ public class StudentController {
 	
 	
 	public void dodajStudenta(Student st1) {
-		//Student st1 = new Student("Kukucka", "Rastislav", "07.01.2020", "BackiPetrovac", 
-		//		  "324", "ras@gmail.com", "RA129/2018", 2018, 3, model.Status.B);
-		
 		BazaStudenti.getInstance().dodajStudenta(st1);
 		Frame1.getInstance().azurirajPrikazTabeleStudenata("DODAT", 1);
 	}
@@ -32,8 +29,14 @@ public class StudentController {
 		
 	}
 	
-	public void izbrisiStudenta() {
+	public void izbrisiStudenta(int rowSelectedIndex) {
+		if(rowSelectedIndex < 0) {
+			return;
+		}
+		Student student = BazaStudenti.getInstance().getStudent(rowSelectedIndex);
+		BazaStudenti.getInstance().izbrisiStudenta(student); 		// mogli smo i indeks poslati al ovako je EFIKASNIJE :)
 		
+		Frame1.getInstance().azurirajPrikazTabeleStudenata("UKLONJEN", 2);
 	}
 
 }

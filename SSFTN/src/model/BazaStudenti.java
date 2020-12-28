@@ -95,6 +95,7 @@ public class BazaStudenti {
 	
 	
 	
+	// brisanje studenta kad znamo indeks
 	public void izbrisiStudenta(String indeks) {
 		for (Student student : alStudenti) {
 			if(student.getIndeks().equals(indeks)) {
@@ -102,6 +103,11 @@ public class BazaStudenti {
 				break;
 			}
 		}
+	}
+	
+	// brisanje studenta kad znamo studenta
+	public void izbrisiStudenta(Student student) {
+		alStudenti.remove(student);
 	}
 	
 	

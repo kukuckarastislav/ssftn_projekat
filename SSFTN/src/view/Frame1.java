@@ -162,6 +162,10 @@ public class Frame1 extends JFrame{
 		return rowSlectedProfesor;
 	}
 	
+	public int getSelectedStudent() {
+		return tabelaStudenata.getSelectedRow();
+	}
+	
 	
 		
 }

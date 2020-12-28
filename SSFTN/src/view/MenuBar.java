@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import controller.StudentController;
@@ -80,6 +81,34 @@ public class MenuBar extends JMenuBar {
 		
 		miEdit.setToolTipText("Izmena postojeceg entiteta");
 		miDelete.setToolTipText("Brisanje postojeceg entiteta");
+		
+		miDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int tab = Frame1.getInstance().getSelectedTab();
+				int selStud = Frame1.getInstance().getSelectedStudent();
+				
+				if(tab == 0) {
+					
+					if(selStud == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
+					}
+					
+					StudentController.getInstance().izbrisiStudenta(selStud);
+					
+				}else if(tab == 1) {
+					
+					if(selStud == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite obrisati", "Upozorenje", 0, null);
+					}
+					
+				}else if(tab == 2) {
+					//brisi predmet
+					// Milica
+				}
+			}
+		});
+		
 		
 		edit.add(miEdit);
 		edit.addSeparator();
