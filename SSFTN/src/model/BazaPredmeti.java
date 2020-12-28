@@ -19,6 +19,12 @@ private static BazaPredmeti instance = null;
 	private ArrayList<Predmet> alPredmeti;
 	private ArrayList<String> alKolone;
 	
+	private ArrayList<Predmet> trazeniPredmeti;
+	private boolean SearchMode;
+	
+
+
+
 	private void initPredmets() {
 		Predmet pr1 = new Predmet("E13", "Programski Jezici i Strukture Podataka", Semestar.ZIMSKI, 1, 9);
 		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
@@ -72,6 +78,8 @@ private static BazaPredmeti instance = null;
 	}
 	
 	public String getVrednostU(int x, int y) {
+		
+		if(SearchMode == false) {
 		Predmet predmet = alPredmeti.get(x);
 		switch (y) {
 		case 0:
@@ -87,6 +95,25 @@ private static BazaPredmeti instance = null;
 			
 		default:
 			return null;
+		}
+		}else {
+			Predmet predmet = trazeniPredmeti.get(x);
+			switch (y) {
+			case 0:
+				return predmet.getSifraPredmeta();
+			case 1:
+				return predmet.getNazivPredmeta();
+			case 2:
+				return Integer.toString(predmet.getBrojESPBbodova());
+			case 3:
+				return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+			case 4:
+				return predmet.getSemestar().toString();
+				
+			default:
+				return null;
+					
+					}
 		}
 	}
 	
@@ -145,9 +172,20 @@ private static BazaPredmeti instance = null;
 		return true;
 	}
 	
+	public boolean isSearchMode() {
+		return SearchMode;
+	}
+	public void setSearchMode(boolean searchMode) {
+		SearchMode = searchMode;
+	}
 	
-	
-	
+	public ArrayList<Predmet> getTrazeniPredmeti() {
+		return trazeniPredmeti;
+	}
+
+	public void setTrazeniPredmeti(ArrayList<Predmet> trazeniPredmeti) {
+		this.trazeniPredmeti = trazeniPredmeti;
+	}
 	
 	
 	

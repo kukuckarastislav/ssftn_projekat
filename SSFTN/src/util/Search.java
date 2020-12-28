@@ -2,7 +2,9 @@ package util;
 
 import java.util.ArrayList;
 
+import model.BazaPredmeti;
 import model.BazaProfesori;
+import model.Predmet;
 import model.Profesor;
 import view.Frame1;
 
@@ -37,14 +39,26 @@ public class Search {
 			
 	BazaProfesori.getInstance().setTrazeniProfesori(trazeniProfesori);
 	BazaProfesori.getInstance().setSearchMode(true);
-	Frame1.getInstance().azurirajPrikazTabeleProfesora("IZMENJEN", 1);
-	
+	Frame1.getInstance().azurirajPrikazTabeleProfesora("PRONADJEN", 1);
+	if(trazeniProfesori.size()==0) return false;
 	return true;
 	}
-	
-	
-	
-	public void searchPredmet(String text) {		
+		
+	public boolean searchPredmet(String text) {
+		
+		ArrayList<Predmet> trazeniPredmeti=new ArrayList<>();
+		
+		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+			if(p.getNazivPredmeta().toLowerCase().contains(text.toLowerCase()))
+			trazeniPredmeti.add(p);
+			
+		}
+		
+	BazaPredmeti.getInstance().setTrazeniPredmeti(trazeniPredmeti);
+	BazaPredmeti.getInstance().setSearchMode(true);
+	Frame1.getInstance().azurirajPrikazTabelePredmeta("PRONADJEN", 1);
+	if(trazeniPredmeti.size()==0) return false;
+	return true;	
 	}
 	
 	

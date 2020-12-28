@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaPredmeti;
+import model.BazaProfesori;
 import model.Predmet;
 
 
@@ -22,7 +23,10 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 	// broj redova
 		@Override
 		public int getRowCount() {
-			return BazaPredmeti.getInstance().getPredmeti().size();
+			if(BazaPredmeti.getInstance().isSearchMode() == false)
+				return BazaPredmeti.getInstance().getPredmeti().size();
+				
+				return BazaPredmeti.getInstance().getTrazeniPredmeti().size();
 		}
 		
 		// broj kolona
@@ -43,7 +47,7 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 			return BazaPredmeti.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
 		
-
+		/*
 		//REF: https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
 		@Override
 		public Class<?> getColumnClass(int columnIndex) {
@@ -53,7 +57,7 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 		    return getValueAt(0, columnIndex).getClass();
 		}
 		
-	
+	*/
 	
 }
 
