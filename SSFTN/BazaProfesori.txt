@@ -1,0 +1,28 @@
+Ime: Veljko
+Prezime: Petrovic
+Adresa stanovanja :Novi sad
+Adresa kancelarije :Radnicka 30
+Kontakt telefon: 66666
+Email: helou@gmail
+Broj licne karte: 123456789
+Titula: dr
+Zvanje: Redovni profesor
+Lista predmeta na kojima je profesor:Ime: Alex
+Prezime: Erdeljan
+Adresa stanovanja :Novi sad
+Adresa kancelarije :Radnicka 333
+Kontakt telefon: 55555
+Email: helddou@gmail
+Broj licne karte: 123456787
+Titula: dr
+Zvanje: Redovni profesor
+Lista predmeta na kojima je profesor:Ime: Dunja
+Prezime: Vrbaski
+Adresa stanovanja :Novi sad
+Adresa kancelarije :Radnicka 3334
+Kontakt telefon: 55455
+Email: dunjciu@gmail
+Broj licne karte: 723456787
+Titula: BSc
+Zvanje: Profesor emeritus
+Lista predmeta na kojima je profesor:

@@ -2,10 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class ProfesoriJTable extends JTable{
@@ -42,5 +48,30 @@ public class ProfesoriJTable extends JTable{
 		return c;
 	}
 	
+
+	//REF:https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
+	public void sorted() {
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<>(this.getModel());
+		this.setRowSorter(sorter);
+		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+		 
+		//kako zelimo da bude sortiramo kada otvorimo aplikaciju, sada je po prezimenu
+		int columnIndexToSort = 1;
+		sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+		 
+		//pa posle prezimena, po imenu
+		int columnIndexForName = 0;
+		sortKeys.add(new RowSorter.SortKey(columnIndexForName, SortOrder.ASCENDING));
+		
+		sorter.setSortKeys(sortKeys);
+		sorter.sort();
+		
+		//Ako zelimo da onemogucimo sortiranje za nenku kolonu
+		//sorter.setSortable(0, false);
+		
+		
+		
+	}
 	
 }

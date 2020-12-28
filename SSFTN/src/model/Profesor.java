@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Profesor {
-	
+public class Profesor implements Serializable {
 	
 
+	private static final long serialVersionUID = 1L;
+	
 	private String prezime;
 	private String ime;
 	private Date datumRodjenja;
@@ -142,10 +144,12 @@ public class Profesor {
 		s+="\nTitula: "+this.getTitula().toString();
 		s+="\nZvanje: "+this.getZvanje().toString();
 		s+="\nLista predmeta na kojima je profesor:";
+		/*
+		if(!this.getPredmetiNaKojimaJeProfesor().isEmpty()) {
 		for(Predmet p: this.getPredmetiNaKojimaJeProfesor())
 			s+="\t"+p.getSifraPredmeta();
-		
-		
+		}
+		*/
 		
 		return s;
 	}

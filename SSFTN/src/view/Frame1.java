@@ -119,18 +119,12 @@ public class Frame1 extends JFrame{
 	
 	tabelaProfesora.getCellSelectionEnabled();
 	tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	/*
-	if (tabelaProfesora.getCellSelectionEnabled()) {
-	      tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	      rowSlectedProfesor = tabelaProfesora.getSelectedRow();
-
-	    }
-	*/
-
 	
+	
+	tabelaProfesora.setAutoCreateRowSorter(true);
+	((ProfesoriJTable) tabelaProfesora).sorted();
+
 	}
-
-
 	
 	public void azurirajPrikazTabeleStudenata(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenata.getModel();

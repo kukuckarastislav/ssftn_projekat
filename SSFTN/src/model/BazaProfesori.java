@@ -1,5 +1,7 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,6 +20,7 @@ private static BazaProfesori instance = null;
 	private ArrayList<String> alKolone;
 	
 	
+	
 	private BazaProfesori() {
 		
 		
@@ -32,6 +35,36 @@ private static BazaProfesori instance = null;
 		alKolone.add("Zvanje");
 
 	}
+	
+	public void init() {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		dateFormat.setLenient(false);
+		Date datumRodjenja = null;
+		try {
+			datumRodjenja = dateFormat.parse("7.1.2000");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Profesor p1=new Profesor("Petrovic", "Veljko",datumRodjenja, "Novi sad", "66666",
+				"helou@gmail","Radnicka 30", "123456789", Titula.dr, Zvanje.redovni_profesor);
+		Profesor p2=new Profesor("Erdeljan", "Alex",datumRodjenja, "Novi sad", "55555",
+				"helddou@gmail","Radnicka 333", "123456787", Titula.dr, Zvanje.redovni_profesor);		
+		Profesor p3=new Profesor("Vrbaski", "Dunja",datumRodjenja, "Novi sad", "55455",
+				"dunjciu@gmail","Radnicka 3334", "723456787", Titula.BSc, Zvanje.profesor_emeritus);
+		
+		alProfesori.add(p1);
+		alProfesori.add(p2);
+		alProfesori.add(p3);
+		
+		
+		
+	}
+	
+	
+	
 	
 	
 	public ArrayList<Profesor> getProfesori(){

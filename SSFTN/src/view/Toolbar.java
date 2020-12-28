@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import controller.ProfesorController;
 import model.Profesor;
 
+
 public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = 1209699209668701828L;
