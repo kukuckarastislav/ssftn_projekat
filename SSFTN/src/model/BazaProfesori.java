@@ -19,8 +19,11 @@ private static BazaProfesori instance = null;
 	private ArrayList<Profesor> alProfesori;
 	private ArrayList<String> alKolone;
 	
-	
-	
+	private ArrayList<Profesor> trazeniProfesori;
+	private boolean SearchMode;
+
+
+
 	private BazaProfesori() {
 		
 		
@@ -88,6 +91,8 @@ private static BazaProfesori instance = null;
 	}
 	
 	public String getVrednostU(int x, int y) {
+		
+		if(SearchMode == false) {
 		Profesor profesor = alProfesori.get(x);
 		switch (y) {
 		case 0:
@@ -102,6 +107,26 @@ private static BazaProfesori instance = null;
 		default:
 			return null;
 		}
+		}else {
+			if(trazeniProfesori.size()!=0) {
+			Profesor profesor = trazeniProfesori.get(x);
+			switch (y) {
+			case 0:
+				return profesor.getIme();
+			case 1:
+				return profesor.getPrezime();
+			case 2:
+				return profesor.getTitula().toString();
+			case 3:
+				return profesor.getZvanje().toString();
+				
+			default:
+				return null;
+			}	
+			}
+			
+		}
+		return null;
 	}
 	
 	public void dodajProfesora(Profesor Profesor) {
@@ -165,8 +190,24 @@ private static BazaProfesori instance = null;
 		alProfesori.remove(prof);
 	}
 	
+	
+	
+	public ArrayList<Profesor> getTrazeniProfesori() {
+		return trazeniProfesori;
+	}
+	public void setTrazeniProfesori(ArrayList<Profesor> trazeni) {
+		this.trazeniProfesori = trazeni;
+	}
+	
 
-	
-	
+	public boolean isSearchMode() {
+		return SearchMode;
+	}
+	public void setSearchMode(boolean searchMode) {
+		SearchMode = searchMode;
+	}
+
+
+
 
 }

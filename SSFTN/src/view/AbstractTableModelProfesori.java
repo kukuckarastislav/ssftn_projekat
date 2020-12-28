@@ -23,7 +23,10 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 	// broj redova
 		@Override
 		public int getRowCount() {
+			if(BazaProfesori.getInstance().isSearchMode() == false)
 			return BazaProfesori.getInstance().getProfesori().size();
+			
+			return BazaProfesori.getInstance().getTrazeniProfesori().size();
 		}
 		
 		// broj kolona
@@ -41,11 +44,21 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		// sadrzaj celije
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
+			
 			return BazaProfesori.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		//REF: https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
-		@Override
+		
+		/*
 		public Class<?> getColumnClass(int columnIndex) {
 		    if (this.profesoriList.isEmpty()) {
 		        return Object.class;
@@ -53,7 +66,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 		    return getValueAt(0, columnIndex).getClass();
 		}
 		
-		
+		*/
 	
 	
 }

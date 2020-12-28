@@ -23,12 +23,16 @@ import javax.swing.SwingConstants;
 
 import controller.ProfesorController;
 import model.Profesor;
+import util.Search;
 
 
 public class Toolbar extends JToolBar {
 
 	private static final long serialVersionUID = 1209699209668701828L;
 
+	private Search search=new Search();
+	private JTextField searchTextField=new JTextField();
+	
 	public Toolbar(final JFrame parent) {
 		
 
@@ -80,17 +84,13 @@ public class Toolbar extends JToolBar {
 				stdDia.setVisible(true);
 			}
 			if(tab == 1) {
-
-				//Profesor profesor = new Profesor("petrovic", "velko", "1970", "negde", "000", "v@", "NTP111", "333333333", "prof", "dr");
-				
-				//ovo ne radi.. ali eto 
 				
 				int indexProfesora=Frame1.getInstance().getSelectedProfesor();
 				Profesor p=ProfesorController.getInstance().getProfesor(indexProfesora);
 				
 				IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
 				ip.setVisible(true);
-			}			
+						 }			
 			}
 		});
 		
@@ -116,12 +116,27 @@ public class Toolbar extends JToolBar {
 		add(Box.createHorizontalGlue());
 		
 		
-		JTextField tf = new JTextField(15);
-		tf.setPreferredSize(new Dimension(200,24));
-        tf.setMaximumSize(tf.getPreferredSize());
-        add(tf);
+		searchTextField.setPreferredSize(new Dimension(200,24));
+		searchTextField.setMaximumSize(searchTextField.getPreferredSize());
+        add(searchTextField);
 		
 		add(btnSearch);
+		btnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			int tab = Frame1.getInstance().getSelectedTab();
+			
+			if(tab == 0) {
+				
+			}else if(tab == 1) {
+				search.searchProfesor(searchTextField.getText());
+			}else if(tab == 2) {
+				search.searchPredmet(searchTextField.getText());
+				
+			}
+			
+			}
+		});
 
 
 
