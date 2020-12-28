@@ -1,8 +1,12 @@
 package view;
 
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaPredmeti;
+import model.Predmet;
+
 
 public class AbstractTableModelPredmeti extends AbstractTableModel{
 
@@ -11,6 +15,8 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = -7349770694737017202L;
 
+	private List<Predmet> predmetiList=BazaPredmeti.getInstance().getPredmeti();
+	
 	public AbstractTableModelPredmeti(){}
 	
 	// broj redova
@@ -36,6 +42,17 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			return BazaPredmeti.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
+		
+
+		//REF: https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
+		@Override
+		public Class<?> getColumnClass(int columnIndex) {
+		    if (this.predmetiList.isEmpty()) {
+		        return Object.class;
+		    }
+		    return getValueAt(0, columnIndex).getClass();
+		}
+		
 	
 	
 }

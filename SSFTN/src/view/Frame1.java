@@ -123,6 +123,9 @@ public class Frame1 extends JFrame{
 	
 	tabelaProfesora.setAutoCreateRowSorter(true);
 	((ProfesoriJTable) tabelaProfesora).sorted();
+	
+	tabelaPredmeta.setAutoCreateRowSorter(true);
+	((PredmetiJTable) tabelaPredmeta).sorted();
 
 	}
 	
