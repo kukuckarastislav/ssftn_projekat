@@ -8,7 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,6 +89,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtIme.setName("txtIme");
 		ValidacijaTextFieldFocusListener vtffl0 = new ValidacijaTextFieldFocusListener(lblIme, txtIme,this);
 		txtIme.addFocusListener(vtffl0);
+		txtIme.addKeyListener(vtffl0);
 		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panIme.add(lblIme);
 		panIme.add(txtIme);
@@ -102,6 +104,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtPrezime.setName("txtPrezime");
 		ValidacijaTextFieldFocusListener vtffl1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime,this);
 		txtPrezime.addFocusListener(vtffl1);
+		txtPrezime.addKeyListener(vtffl1);
 		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panPrezime.add(lblPrezime);
 		panPrezime.add(txtPrezime);
@@ -119,6 +122,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtDatmR.setName("txtDatmR");
 		ValidacijaTextFieldFocusListener vtffl2 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR,this);
 		txtDatmR.addFocusListener(vtffl2);
+		txtDatmR.addKeyListener(vtffl2);
 		JPanel panDatmR = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panDatmR.add(lblDatmR);
 		panDatmR.add(txtDatmR);
@@ -133,6 +137,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtAdrS.setName("txtAdrS");
 		ValidacijaTextFieldFocusListener vtffl3 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS,this);
 		txtAdrS.addFocusListener(vtffl3);
+		txtAdrS.addKeyListener(vtffl3);
 		JPanel panAdrS = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panAdrS.add(lblAdrS);
 		panAdrS.add(txtAdrS);
@@ -147,6 +152,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtBrTel.setName("txtBrTel");
 		ValidacijaTextFieldFocusListener vtffl4 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel,this);
 		txtBrTel.addFocusListener(vtffl4);
+		txtBrTel.addKeyListener(vtffl4);
 		JPanel panBrTel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panBrTel.add(lblBrTel);
 		panBrTel.add(txtBrTel);
@@ -161,6 +167,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtEmail.setName("txtEmail");
 		ValidacijaTextFieldFocusListener vtffl5 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail,this);
 		txtEmail.addFocusListener(vtffl5);
+		txtEmail.addKeyListener(vtffl5);
 		JPanel panEmail = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panEmail.add(lblEmail);
 		panEmail.add(txtEmail);
@@ -175,6 +182,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtIndeks.setName("txtIndeks");
 		ValidacijaTextFieldFocusListener vtffl6 = new ValidacijaTextFieldFocusListener(lblIndeks, txtIndeks,this);
 		txtIndeks.addFocusListener(vtffl6);
+		txtIndeks.addKeyListener(vtffl6);
 		JPanel panIndeks = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panIndeks.add(lblIndeks);
 		panIndeks.add(txtIndeks);
@@ -189,6 +197,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		txtGodUpisa.setName("txtGodUpisa");
 		ValidacijaTextFieldFocusListener vtffl7 = new ValidacijaTextFieldFocusListener(lblGodUpisa, txtGodUpisa,this);
 		txtGodUpisa.addFocusListener(vtffl7);
+		txtGodUpisa.addKeyListener(vtffl7);
 		JPanel panGodUpisa = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panGodUpisa.add(lblGodUpisa);
 		panGodUpisa.add(txtGodUpisa);
@@ -299,6 +308,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 				}
 			}
 		});
+	
 		
 		btOdustani.addActionListener(new ActionListener() {
 			
