@@ -32,7 +32,8 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 	public PanIzmenaStudentaNePolozeni(Student student) {
 		this.student=student;
 		
-		//BazaPredmeti.getInstance().prepareFailedExams(student);
+		nepolozeniPredmeti=new ArrayList<>();
+		nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
 		
 		JTable tabelaNepolozenih = new TabelaNepolozeni();
 		JScrollPane nepolozeniScrollPane = new JScrollPane(tabelaNepolozenih);
@@ -53,61 +54,79 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 
 
 
 // PONOVO TABELA SA PREDMETIMA
-private class TabelaNepolozeni extends JTable{
-	private static final long serialVersionUID = -3805554009583860187L;
-
-	public TabelaNepolozeni() {
-		setRowSelectionAllowed(true);
-		setColumnSelectionAllowed(true);
-		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		setModel(new SadrzajTabeleNepolozeni());
-	}
-	@Override
-	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-
-		Component c = super.prepareRenderer(renderer, row, column);
-		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
-		} else {
-			c.setBackground(Color.WHITE);
+	private class TabelaNepolozeni extends JTable{
+		private static final long serialVersionUID = -3805554009583860187L;
+	
+		public TabelaNepolozeni() {
+			setRowSelectionAllowed(true);
+			setColumnSelectionAllowed(true);
+			setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			setModel(new SadrzajTabeleNepolozeni());
 		}
-		return c;
+		@Override
+		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+	
+			Component c = super.prepareRenderer(renderer, row, column);
+			if (isRowSelected(row)) {
+				c.setBackground(Color.LIGHT_GRAY);
+			} else {
+				c.setBackground(Color.WHITE);
+			}
+			return c;
+		}
+	
+	}
+	
+	private class SadrzajTabeleNepolozeni extends AbstractTableModel{
+	
+		private static final long serialVersionUID = 2335644876350909315L;
+	
+		@Override
+		public int getRowCount() {	
+			return nepolozeniPredmeti.size();
+		}
+	
+		@Override
+		public int getColumnCount() {
+			return 5;
+		}
+	
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			return getPredmeti(rowIndex,columnIndex);
+		}
+		@Override
+		public String getColumnName(int column) {
+			return BazaPredmeti.getInstance().getNazivKolona(column);
+		}
+	
 	}
 
-}
-
-private class SadrzajTabeleNepolozeni extends AbstractTableModel{
-
-	private static final long serialVersionUID = 2335644876350909315L;
-
-	@Override
-	public int getRowCount() {	
-		return 3;
+	public String getPredmeti(int x,int y) {
+		
+		Predmet predmet = nepolozeniPredmeti.get(x);
+		switch (y) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getBrojESPBbodova());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+		case 4:
+			return predmet.getSemestar().toString();
+			
+		default:
+			return null;
+		}
 	}
 
-	@Override
-	public int getColumnCount() {
-		return 3;
-	}
 
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		return null;
-	}
-
-
-}
 
 
 }
