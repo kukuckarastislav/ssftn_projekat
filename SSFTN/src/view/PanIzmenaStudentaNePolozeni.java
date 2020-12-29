@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -13,6 +16,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import controller.PredmetController;
 import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.BazaStudenti;
@@ -28,14 +32,16 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 	private Student student;
 	private ArrayList<Predmet> nepolozeniPredmeti;
 	
+	private TabelaNepolozeni tabelaNepolozenih;
+	private Predmet predmet;
 	
-	public PanIzmenaStudentaNePolozeni(Student student) {
+	public PanIzmenaStudentaNePolozeni(Frame parent,Student student) {
 		this.student=student;
 		
 		nepolozeniPredmeti=new ArrayList<>();
-		nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
+		//nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
 		
-		JTable tabelaNepolozenih = new TabelaNepolozeni();
+		tabelaNepolozenih = new TabelaNepolozeni();
 		JScrollPane nepolozeniScrollPane = new JScrollPane(tabelaNepolozenih);
 		
 		JPanel panButtons = new JPanel(new FlowLayout());
@@ -46,6 +52,18 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		panButtons.add(btnDodaj);
 		panButtons.add(btnObrisi);
 		panButtons.add(btnPolaganje);
+		
+		btnPolaganje.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int iPred = getSelectedPredmet();
+				predmet=new Predmet();
+				predmet = PredmetController.getInstance().getPredmet(iPred);
+				UpisOcene uo=new UpisOcene(parent,student,predmet);
+				//dispose();
+			}
+		});
 		
 		
 		this.add(panButtons,BorderLayout.NORTH);
@@ -124,6 +142,13 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		default:
 			return null;
 		}
+	}
+	public int getSelectedPredmet() {
+		return tabelaNepolozenih.getSelectedRow();
+	}
+
+	public Predmet selektovaniPredmet() {
+		return predmet;
 	}
 
 
