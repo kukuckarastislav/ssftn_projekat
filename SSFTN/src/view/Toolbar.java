@@ -16,13 +16,16 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import controller.ProfesorController;
+import controller.StudentController;
 import model.Profesor;
+import model.Student;
 import util.Search;
 
 
@@ -79,18 +82,26 @@ public class Toolbar extends JToolBar {
 			public void actionPerformed(ActionEvent arg0) {
 			int tab = Frame1.getInstance().getSelectedTab();
 			
-			if(tab == 0) {
-				DodavanjeStudentaDialog stdDia = new DodavanjeStudentaDialog(parent, "Dodavanje Studenta");
-				stdDia.setVisible(true);
-			}
-			if(tab == 1) {
+				if(tab == 0) {
+					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
+					if(selStud == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite izmeniti", "Upozorenje", 0, null);
+					}else {
+						Student student = StudentController.getInstance().getStudentByIndex
+								(Frame1.getInstance().getSelectedStudentByIndeks());
+					
+						IzmenaStudentaDialog izmStudDia = new IzmenaStudentaDialog(parent, student);
+						izmStudDia.setVisible(true);
+					}
+				}
+				else if(tab == 1) {
 				
-				int indexProfesora=Frame1.getInstance().getSelectedProfesor();
-				Profesor p=ProfesorController.getInstance().getProfesor(indexProfesora);
+					int indexProfesora=Frame1.getInstance().getSelectedProfesor();
+					Profesor p=ProfesorController.getInstance().getProfesor(indexProfesora);
 				
-				IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
-				ip.setVisible(true);
-						 }			
+					IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
+					ip.setVisible(true);
+				}			
 			}
 		});
 		
@@ -106,6 +117,36 @@ public class Toolbar extends JToolBar {
 		add(btnDelete);
 		
 		addSeparator();		
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int tab = Frame1.getInstance().getSelectedTab();
+				
+				if(tab == 0) {
+					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
+					if(selStud == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
+					}
+					String indeks = Frame1.getInstance().getSelectedStudentByIndeks();
+					StudentController.getInstance().izbrisiStudentaByIndex(indeks);
+					
+				}else if(tab == 1) {
+					int selProf = Frame1.getInstance().getSelectedProfesor();
+					if(selProf == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite obrisati", "Upozorenje", 0, null);
+					}
+					
+					ProfesorController.getInstance().izbrisiProfesora(selProf);
+					
+				}else if(tab == 2) {
+					//brisi predmet
+					// Milica
+				}
+				
+			}
+		});
 		
 		
 		CustomButton btnSearch = new CustomButton();

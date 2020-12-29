@@ -93,11 +93,12 @@ public class MenuBar extends JMenuBar {
 				int tab = Frame1.getInstance().getSelectedTab();
 				
 				if(tab == 0) {
-					int selStud = Frame1.getInstance().getSelectedStudent();
+					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
 					if(selStud == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite izmeniti", "Upozorenje", 0, null);
 					}else {
-						Student student = StudentController.getInstance().getStudent(selStud);
+						Student student = StudentController.getInstance().getStudentByIndex
+								(Frame1.getInstance().getSelectedStudentByIndeks());
 						
 						IzmenaStudentaDialog izmStudDia = new IzmenaStudentaDialog(parent, student);
 						izmStudDia.setVisible(true);
@@ -128,13 +129,16 @@ public class MenuBar extends JMenuBar {
 				int tab = Frame1.getInstance().getSelectedTab();
 				
 				if(tab == 0) {
-					int selStud = Frame1.getInstance().getSelectedStudent();
+					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
 					if(selStud == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
 					}
+					String indeks = Frame1.getInstance().getSelectedStudentByIndeks();
 					
-					StudentController.getInstance().izbrisiStudenta(selStud);
+					// NE ZABORAVI OVDE TREBA DA SE POJAVI DIALOG KOJI NAS PITA DAL ZELIMO DA OBRISEMO
+					StudentController.getInstance().izbrisiStudentaByIndex(indeks);
 					
+						
 				}else if(tab == 1) {
 					int selProf = Frame1.getInstance().getSelectedProfesor();
 					if(selProf == -1) {

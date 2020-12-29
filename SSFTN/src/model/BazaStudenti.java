@@ -87,6 +87,15 @@ public class BazaStudenti {
 		return alStudenti.get(rowIndex);
 	}
 	
+	public Student getStudentByIndex(String indeks) {
+		for (Student student : alStudenti) {
+			if(student.getIndeks().equals(indeks)) {
+				return student;
+			}
+		}
+		return null;
+	}
+	
 	public String getVrednostU(int x, int y) {
 		Student student = alStudenti.get(x);
 		switch (y) {
@@ -174,6 +183,9 @@ public class BazaStudenti {
 		}
 		return true;
 	}
+
+
+
 	
 	
 	

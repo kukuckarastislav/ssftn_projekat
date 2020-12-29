@@ -120,6 +120,8 @@ public class Frame1 extends JFrame{
 	tabelaProfesora.getCellSelectionEnabled();
 	tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	
+	tabelaStudenata.setAutoCreateRowSorter(true);
+	//((StudentiJTable) tabelaStudenata).sorted();
 	
 	tabelaProfesora.setAutoCreateRowSorter(true);
 	((ProfesoriJTable) tabelaProfesora).sorted();
@@ -159,12 +161,24 @@ public class Frame1 extends JFrame{
 		return rowSlectedProfesor;
 	}
 	
-	public int getSelectedStudent() {
+	public int getSelectedStudentIndexInTable() {
+		// vraca indeks sta smo mi selektovali
+		// al onda bi morali i bazu studente da sortiramo kako bi se indksi poklapali
+		// ovo ne mozemo koristiti nakon sortiranja
+		System.out.println("selekcija row: "+tabelaStudenata.getSelectedRow());
 		return tabelaStudenata.getSelectedRow();
 	}
 	
 	public int getSelectedPredmet() {
 		return tabelaPredmeta.getSelectedRow();
+	}
+	
+	
+	
+	public String getSelectedStudentByIndeks() {
+		String indeksStudenta = (String) tabelaStudenata.getValueAt(getSelectedStudentIndexInTable(), 0);
+		System.out.println("Indeks selektovanog studenta: "+indeksStudenta);
+		return indeksStudenta;
 	}
 	
 	

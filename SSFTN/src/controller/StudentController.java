@@ -51,8 +51,20 @@ public class StudentController {
 		Frame1.getInstance().azurirajPrikazTabeleStudenata("UKLONJEN", 2);
 	}
 	
+	public void izbrisiStudentaByIndex(String indeks) {
+		Student student = BazaStudenti.getInstance().getStudentByIndex(indeks);
+		BazaStudenti.getInstance().izbrisiStudenta(student); 		// mogli smo i indeks poslati al ovako je EFIKASNIJE :)
+		
+		Frame1.getInstance().azurirajPrikazTabeleStudenata("UKLONJEN", 2);
+	}
+	
 	public Student getStudent(int indexRow) {
 		Student student = BazaStudenti.getInstance().getStudent(indexRow);
+		return student;
+	}
+	
+	public Student getStudentByIndex(String indeks) {
+		Student student = BazaStudenti.getInstance().getStudentByIndex(indeks);
 		return student;
 	}
 
