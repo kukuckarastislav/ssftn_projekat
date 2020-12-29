@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,18 +25,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import controller.ProfesorController;
+import model.BazaPredmeti;
+import model.BazaProfesori;
 import model.Profesor;
 import util.ValidacijaTextFieldFocusListener;
 
 public class IzmenaProfesora extends JDialog {
 	
 	private static final long serialVersionUID = 94580162855038262L;
+	
 	private JTabbedPane tpane;
 	private JTable tabelaPredmetaProfesora;	
 	private ArrayList<ValidacijaTextFieldFocusListener> validnost;
+	private Profesor aktuelniProfesor=new Profesor();
+	
 	public boolean svaPoljaValidna() {
 		for (ValidacijaTextFieldFocusListener val : validnost) {
 			if(val.getValidacija() == false) {
@@ -47,8 +58,11 @@ public class IzmenaProfesora extends JDialog {
 
 	public IzmenaProfesora(Frame parent, String naslov,Profesor profesor) {		
 		super(parent,naslov,true);
-			
-	
+		
+		aktuelniProfesor=profesor;
+		BazaPredmeti.getInstance().prepareSubjectDisplay(aktuelniProfesor);
+		
+
 		setSize(490,550);
 		setResizable(false);
 		setLocationRelativeTo(parent);
@@ -89,13 +103,15 @@ public class IzmenaProfesora extends JDialog {
 		//validnost.add(v2);
 		
 		
+		
 		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblDatmR = new JLabel("Datum rodjenja*");
 		lblDatmR.setPreferredSize(dim);
 		JTextField txtDatmR = new JTextField();
 		txtDatmR.setPreferredSize(dim);
 		txtDatmR.setName("txtDatmR");
-		//txtDatmR.setText(profesor.getDatumRodjenja());
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		txtDatmR.setText( dateFormat.format(profesor.getDatumRodjenja()) );
 		txtDatmR.setToolTipText("Na datumu cemo jos da poradimo..");
 		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR,this);
 		txtDatmR.addFocusListener(v3);	
@@ -256,17 +272,101 @@ public class IzmenaProfesora extends JDialog {
 		panelProfesor.add(boxCentar, BorderLayout.WEST);
 
 		
-	
+		JPanel ButtonPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
+		DiaButton btnDodaj=new DiaButton("Dodaj predmet");	
+		DiaButton btnUkloni=new DiaButton("Ukloni predmet");
+		ButtonPanel.add(btnDodaj);
+		ButtonPanel.add(btnUkloni);
 		
-		tabelaPredmetaProfesora = new PredmetiJTable();
+		tabelaPredmetaProfesora = new tabelaPredmetaprofesora();
 		JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmetaProfesora);
+		
+		panelPredmeti.add(ButtonPanel,BorderLayout.NORTH);
 		panelPredmeti.add(panelPredmetiScrollPane,BorderLayout.CENTER);
 		
 		
 		
 		tpane.addTab("Informacije", panelProfesor);
 		tpane.addTab("Predmeti", panelPredmeti);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//ovo je prikaz predmeta koje profesor predaje
+	
+	
+	
+	private class tabelaPredmetaprofesora extends JTable{
+		private static final long serialVersionUID = -3805554009583860187L;
+		
+		public tabelaPredmetaprofesora() {
+			setRowSelectionAllowed(true);
+			setColumnSelectionAllowed(true);
+			setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			setModel(new AbstractTablePredmetiProfesora());
+		}
+		@Override
+		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+
+			Component c = super.prepareRenderer(renderer, row, column);
+			if (isRowSelected(row)) {
+				c.setBackground(Color.LIGHT_GRAY);
+			} else {
+				c.setBackground(Color.WHITE);
+			}
+			return c;
+		}
+		
+	}
+	
+	private class AbstractTablePredmetiProfesora extends AbstractTableModel{
+
+		private static final long serialVersionUID = 2335644876350909315L;
+
+		@Override
+		public int getColumnCount() {
+			return 4;
+		}
+
+		@Override
+		public int getRowCount() {
+			return BazaPredmeti.getInstance().getPredmetiIzabranogProfesora().size();
+			}
+
+		@Override
+		public String getValueAt(int rowIndex, int columnIndex) {
+			return BazaPredmeti.getInstance().getPredmetiProfesora(rowIndex, columnIndex); 
+		}
+		@Override
+		public String getColumnName(int column) {
+			return BazaPredmeti.getInstance().getNazivTrazenihKolona(column);
+		}
+
+	}
+	
+	public void azurirajPrikazTabelePredmeta(String akcija, int vrednost) {
+		AbstractTablePredmetiProfesora model = (AbstractTablePredmetiProfesora) tabelaPredmetaProfesora.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
+	public int getSelectedPredmet() {
+		return tabelaPredmetaProfesora.getSelectedRow();
+	}
 
 	
-	}
+	
+	
 }
+	
+	
+	
+	
+	
+

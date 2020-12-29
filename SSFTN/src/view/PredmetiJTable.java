@@ -25,19 +25,12 @@ public class PredmetiJTable extends JTable{
 		setRowSelectionAllowed(true);
 		setColumnSelectionAllowed(true);
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		// Sama JTable komponenta je implementirana postujuci MVC arhitekturu.
 		setModel(new AbstractTableModelPredmeti());
 	}
 	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-		// Svaka celija ima renderer, koji se poziva prilikom njenog iscrtavanja.
-		// Podrazumevano se pozivaju prilikom inicijalnog iscrtavanja tabele.
-		// Ukoliko korisnik selektuje neku celiju, dolazi do ponovnog
-		// iscrtavanje svih celija u redu koji je selektovan, kao i u redu
-		// koji je prethodno bio selektovan.
-		// TODO: Probati na primeru!
-		// System.out.println(row + " " + column);
+
 		Component c = super.prepareRenderer(renderer, row, column);
 		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {

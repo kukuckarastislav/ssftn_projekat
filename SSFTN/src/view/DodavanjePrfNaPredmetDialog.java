@@ -26,53 +26,53 @@ import model.Profesor;
 public class DodavanjePrfNaPredmetDialog extends JDialog {
 
 	private static final long serialVersionUID = 8561976962718904066L;
-	
+
 	private TabelaProfesoraOdabir tabelaProfesoraOdabir;
-	
+
 	private Profesor profesor = null;
 
 	public DodavanjePrfNaPredmetDialog(Frame parent) {
 		super(parent, "Odaberi Profesora", true);
-		
+
 		setSize(350,300);
 		setResizable(false);
 		setLocationRelativeTo(null); 	// ToDo : popraviti treba da se pozicionira u odnosu na JDialog a ne JFrame
 		setLayout(new BorderLayout());
-		
-		
+
+
 		JPanel gornjiUkrasniPan = new JPanel();
 		JPanel panDiaButtons = new JPanel(new FlowLayout(10,10,10));//,FlowLayout.CENTER));
 		JPanel leviUkrasniPan = new JPanel();
 		JPanel desniUkrasniPan = new JPanel();
-		
+
 		gornjiUkrasniPan.setPreferredSize(new Dimension(30,30));
 		panDiaButtons.setPreferredSize(new Dimension(50,50));
 		leviUkrasniPan.setPreferredSize(new Dimension(10,10));
 		desniUkrasniPan.setPreferredSize(new Dimension(10,10));
-		
+
 		JPanel centralniPanel = new JPanel(new BorderLayout());
 		centralniPanel.setBackground(Color.white);
-		
+
 		tabelaProfesoraOdabir = new TabelaProfesoraOdabir();
 		JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesoraOdabir);
 		centralniPanel.add(panelProfesoriScrollPane,BorderLayout.CENTER);
 		azurirajPrikazTabeleProfesora("POCETNA", 0);
-		
-		
-		
+
+
+
 		DiaButton btnPotvrdi = new DiaButton("Potvrdi");
 		btnPotvrdi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int iProf = getSelectedProfesor();
-				
+
 				profesor = ProfesorController.getInstance().getProfesor(iProf);
-				
-			
+
+
 				dispose();
 			}
 		});
-		
+
 		DiaButton btnOdustani = new DiaButton("Odustani");
 		btnOdustani.addActionListener(new ActionListener() {
 			@Override
@@ -80,30 +80,30 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 				dispose();
 			}
 		});
-		
+
 		panDiaButtons.add(Box.createHorizontalStrut(52));
 		panDiaButtons.add(btnPotvrdi);
 		panDiaButtons.add(Box.createHorizontalStrut(10));
 		panDiaButtons.add(btnOdustani);
-		
-		
-		
+
+
+
 		add(gornjiUkrasniPan, BorderLayout.NORTH);
 		add(panDiaButtons, BorderLayout.SOUTH);
 		add(leviUkrasniPan, BorderLayout.WEST);
 		add(desniUkrasniPan, BorderLayout.EAST);
-		
+
 		add(centralniPanel, BorderLayout.CENTER);
-		
+
 		setVisible(true);
 	}
-	
-	
-	
+
+
+
 	// OVDE DODATI SVE ZIVE KLASE POTREBNE ZA TABLE unutrasnje klase
 	private class TabelaProfesoraOdabir extends JTable{
 		private static final long serialVersionUID = -3805554009583860187L;
-		
+
 		public TabelaProfesoraOdabir() {
 			setRowSelectionAllowed(true);
 			setColumnSelectionAllowed(true);
@@ -129,9 +129,9 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 			}
 			return c;
 		}
-		
+
 	}
-	
+
 	private class AbstractTableProfesoriOdabir extends AbstractTableModel{
 
 		private static final long serialVersionUID = 2335644876350909315L;
@@ -158,14 +158,14 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		}
 
 	}
-	
+
 	public void azurirajPrikazTabeleProfesora(String akcija, int vrednost) {
 		AbstractTableProfesoriOdabir model = (AbstractTableProfesoriOdabir) tabelaProfesoraOdabir.getModel();
 		// azuriranje modela tabele, kao i njenog prikaza
 		model.fireTableDataChanged();
 		validate();
 	}
-	
+
 	public int getSelectedProfesor() {
 		return tabelaProfesoraOdabir.getSelectedRow();
 	}
@@ -173,7 +173,8 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 	public Profesor dajMiSelektovanogProfesora() {
 		return profesor;
 	}
-	
-	
-	
+
+
+
 }
+

@@ -3,7 +3,7 @@ Naziv predmeta : Programski Jezici i Strukture Podataka
 Godina studija u kojoj se predmet izvodi : 1
 Broj ESPB bodova je :  9
 Semestar: Zimski
-Predmetni profesor je :
+Predmetni profesor je :Veljko Petrovic
 Lista studenata koji su polozili:
 Lista studenata koji nisu polozili:Sifra predmeta : E15
 Naziv predmeta : OISISI

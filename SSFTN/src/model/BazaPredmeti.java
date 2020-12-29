@@ -1,6 +1,9 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Predmet;
 //import model.Semestar;
@@ -22,11 +25,32 @@ private static BazaPredmeti instance = null;
 	private ArrayList<Predmet> trazeniPredmeti;
 	private boolean SearchMode;
 	
+	private ArrayList<Predmet> predmetiIzabranogProfesora;
+	private ArrayList<String> trazeneKolone;
+
 
 
 
 	private void initPredmets() {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		dateFormat.setLenient(false);
+		Date datumRodjenja = null;
+		try {
+			datumRodjenja = dateFormat.parse("7.1.2000");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Profesor p1=new Profesor("Petrovic", "Veljko",datumRodjenja, "Novi sad", "66666",
+				"helou@gmail","Radnicka 30", "123456789", Titula.dr, Zvanje.redovni_profesor);
+		
+		
+		
 		Predmet pr1 = new Predmet("E13", "Programski Jezici i Strukture Podataka", Semestar.ZIMSKI, 1, 9);
+		
+		pr1.setPredmetniProfesor(p1);
+		
 		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
 		Predmet pr3 = new Predmet("AN1", "Analiza 1", Semestar.ZIMSKI, 1, 9);
 		Predmet pr4 = new Predmet("ARH", "Arhitektura Racunara", Semestar.LETNJI, 1, 9);
@@ -45,6 +69,7 @@ private static BazaPredmeti instance = null;
 		
 		// initPredmets() 		// neka metoda koja ce da ucita u bazu Predmete pri paljenju app
 		alPredmeti = new ArrayList<Predmet>();
+		predmetiIzabranogProfesora = new ArrayList<Predmet>();
 		initPredmets();
 		
 		alKolone = new ArrayList<String>();
@@ -53,6 +78,13 @@ private static BazaPredmeti instance = null;
 		alKolone.add("Broj ESPB bodova");
 		alKolone.add("Godina u kojoj se predmet izvodi");
 		alKolone.add("Semestar u kome se predmet izvodi");
+		
+		trazeneKolone=new ArrayList<String>();
+		trazeneKolone.add("Sifra");
+		trazeneKolone.add("Naziv");
+		trazeneKolone.add("Godina");
+		trazeneKolone.add("Semestar");
+				
 
 	}
 	
@@ -71,6 +103,9 @@ private static BazaPredmeti instance = null;
 	
 	public String getNazivKolona(int index) {
 		return alKolone.get(index);
+	}
+	public String getNazivTrazenihKolona(int index) {
+		return trazeneKolone.get(index);
 	}
 	
 	public Predmet getPredmet(int rowIndex) {
@@ -97,23 +132,41 @@ private static BazaPredmeti instance = null;
 			return null;
 		}
 		}else {
-			Predmet predmet = trazeniPredmeti.get(x);
-			switch (y) {
-			case 0:
-				return predmet.getSifraPredmeta();
-			case 1:
-				return predmet.getNazivPredmeta();
-			case 2:
-				return Integer.toString(predmet.getBrojESPBbodova());
-			case 3:
-				return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
-			case 4:
-				return predmet.getSemestar().toString();
+		Predmet predmet = trazeniPredmeti.get(x);
+		switch (y) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getBrojESPBbodova());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+		case 4:
+			return predmet.getSemestar().toString();
 				
-			default:
-				return null;
+		default:
+			return null;
 					
 					}
+		}
+	}
+	
+	public String getPredmetiProfesora(int x,int y) {
+		
+		Predmet predmet = predmetiIzabranogProfesora.get(x);
+		switch (y) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+		case 3:
+			return predmet.getSemestar().toString();
+			
+		default:
+			return null;
 		}
 	}
 	
@@ -187,7 +240,24 @@ private static BazaPredmeti instance = null;
 		this.trazeniPredmeti = trazeniPredmeti;
 	}
 	
+	public void prepareSubjectDisplay(Profesor prof) {
+		for(Predmet p: alPredmeti) {
+			if(p.getPredmetniProfesor()!=null) {
+				if(prof.getIme().equals(p.getPredmetniProfesor().getIme()))
+					predmetiIzabranogProfesora.add(p);
+			}
+		}		
+	}
 	
+
+	
+
+	public ArrayList<Predmet> getPredmetiIzabranogProfesora() {
+		return predmetiIzabranogProfesora;
+	}
+	public void setPredmetiIzabranogProfesora(ArrayList<Predmet> predmetiIzabranogProfesora) {
+		this.predmetiIzabranogProfesora = predmetiIzabranogProfesora;
+	}
 	
 	
 

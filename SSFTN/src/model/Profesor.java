@@ -154,6 +154,4 @@ public class Profesor implements Serializable {
 		return s;
 	}
 
-	
-
 }

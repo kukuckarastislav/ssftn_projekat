@@ -11,9 +11,7 @@ import model.Predmet;
 
 public class AbstractTableModelPredmeti extends AbstractTableModel{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7349770694737017202L;
 
 	private List<Predmet> predmetiList=BazaPredmeti.getInstance().getPredmeti();
@@ -24,9 +22,8 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 		@Override
 		public int getRowCount() {
 			if(BazaPredmeti.getInstance().isSearchMode() == false)
-				return BazaPredmeti.getInstance().getPredmeti().size();
-				
-				return BazaPredmeti.getInstance().getTrazeniPredmeti().size();
+				return BazaPredmeti.getInstance().getPredmeti().size();	
+			return BazaPredmeti.getInstance().getTrazeniPredmeti().size();
 		}
 		
 		// broj kolona

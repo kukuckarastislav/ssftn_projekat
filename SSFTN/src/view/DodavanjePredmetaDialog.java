@@ -210,6 +210,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 		btnDodajProf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				// sa ovom metodom pocinjemo jer u pocetku nema profesora pa mozemo da ga dodamo
 				DodavanjePrfNaPredmetDialog dodajProfNaPredmet = new DodavanjePrfNaPredmetDialog(parent);
 				profesor = dodajProfNaPredmet.dajMiSelektovanogProfesora();
