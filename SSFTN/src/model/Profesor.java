@@ -153,5 +153,9 @@ public class Profesor implements Serializable {
 		
 		return s;
 	}
+	
+	public void dodajPredmetProfesoru(Predmet pre) {
+		this.getPredmetiNaKojimaJeProfesor().add(pre);		
+	}
 
 }

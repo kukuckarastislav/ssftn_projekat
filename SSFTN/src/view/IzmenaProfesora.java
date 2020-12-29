@@ -33,6 +33,7 @@ import javax.swing.table.TableCellRenderer;
 import controller.ProfesorController;
 import model.BazaPredmeti;
 import model.BazaProfesori;
+import model.Predmet;
 import model.Profesor;
 import util.ValidacijaTextFieldFocusListener;
 
@@ -273,34 +274,40 @@ public class IzmenaProfesora extends JDialog {
 
 		
 		JPanel ButtonPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
-		DiaButton btnDodaj=new DiaButton("Dodaj predmet");	
+		DiaButton btnDodaj=new DiaButton("Dodaj predmet");		
 		DiaButton btnUkloni=new DiaButton("Ukloni predmet");
 		ButtonPanel.add(btnDodaj);
 		ButtonPanel.add(btnUkloni);
+		
+		btnDodaj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				DodavanjePredmetaProfesoru dpp=new DodavanjePredmetaProfesoru(parent,aktuelniProfesor);
+				Predmet pred=dpp.selektovaniPredmet();
+				ProfesorController.getInstance().dodajPredmetProfesoru(profesor,pred);
+				BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
+				azurirajPrikazTabelePredmeta("DOPUNA" ,1);
+				dispose();
+			}
+		});
+		
+		
+		
 		
 		tabelaPredmetaProfesora = new tabelaPredmetaprofesora();
 		JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaPredmetaProfesora);
 		
 		panelPredmeti.add(ButtonPanel,BorderLayout.NORTH);
 		panelPredmeti.add(panelPredmetiScrollPane,BorderLayout.CENTER);
-		
-		
-		
+			
 		tpane.addTab("Informacije", panelProfesor);
 		tpane.addTab("Predmeti", panelPredmeti);
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	//ovo je prikaz predmeta koje profesor predaje
-	
-	
+		// TABELA PREDMETA PROFESORA
 	
 	private class tabelaPredmetaprofesora extends JTable{
 		private static final long serialVersionUID = -3805554009583860187L;
@@ -359,14 +366,7 @@ public class IzmenaProfesora extends JDialog {
 	public int getSelectedPredmet() {
 		return tabelaPredmetaProfesora.getSelectedRow();
 	}
-
-	
 	
 	
 }
-	
-	
-	
-	
-	
 

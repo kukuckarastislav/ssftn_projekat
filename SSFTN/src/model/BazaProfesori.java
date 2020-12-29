@@ -223,6 +223,14 @@ private static BazaProfesori instance = null;
 	public void setSearchMode(boolean searchMode) {
 		SearchMode = searchMode;
 	}
+	
+	public void dodajPredmetProfesoru(Profesor pro,Predmet pre) {
+		for(Profesor p: alProfesori) {
+			if(pro.getBrojLicneKarte().equals(p.getBrojLicneKarte()))
+				p.dodajPredmetProfesoru(pre);
+		}
+		
+	}
 
 
 

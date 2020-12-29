@@ -29,8 +29,6 @@ private static BazaPredmeti instance = null;
 	private ArrayList<String> trazeneKolone;
 
 
-
-
 	private void initPredmets() {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -212,10 +210,8 @@ private static BazaPredmeti instance = null;
 		}
 		
 	}
-	
-	
-	
-	
+
+
 	public boolean jedinstvenaSifra(String novaSifra) {
 		for (Predmet predmet : alPredmeti) {
 			if(predmet.getSifraPredmeta().equals(novaSifra)) {
@@ -257,6 +253,10 @@ private static BazaPredmeti instance = null;
 	}
 	public void setPredmetiIzabranogProfesora(ArrayList<Predmet> predmetiIzabranogProfesora) {
 		this.predmetiIzabranogProfesora = predmetiIzabranogProfesora;
+	}
+	
+	public void podajPredmetProfesoru(Predmet p) {
+		predmetiIzabranogProfesora.add(p);
 	}
 	
 	

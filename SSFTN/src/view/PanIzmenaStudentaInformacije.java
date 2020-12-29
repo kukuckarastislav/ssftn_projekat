@@ -53,6 +53,8 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		}
 	}
 	
+	
+	
 	private JTextField txtIme;
 	private JTextField txtPrezime;
 	private JTextField txtDatmR;

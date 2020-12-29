@@ -4,6 +4,7 @@ import java.util.Date;
 
 import model.BazaProfesori;
 import model.BazaStudenti;
+import model.Predmet;
 import model.Profesor;
 import model.Student;
 import model.Titula;
@@ -53,6 +54,11 @@ public class ProfesorController {
 		
 		Profesor p=BazaProfesori.getInstance().getProfesor(rowIndex);		
 		return p;
+	}
+	
+	public void dodajPredmetProfesoru(Profesor pro,Predmet pre) {
+		
+		BazaProfesori.getInstance().dodajPredmetProfesoru(pro,pre);
 	}
 
 }

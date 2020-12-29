@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,15 +18,21 @@ import model.BazaProfesori;
 import model.BazaStudenti;
 import model.Profesor;
 import model.Student;
+import model.Predmet;
 
 public class PanIzmenaStudentaNePolozeni extends JPanel{
 	
+
+	private static final long serialVersionUID = 1L;
+	
 	private Student student;
+	private ArrayList<Predmet> nepolozeniPredmeti;
+	
 	
 	public PanIzmenaStudentaNePolozeni(Student student) {
 		this.student=student;
 		
-		//BazaPredmeti.getInstance().prepareSubjectDisplay(student);
+		//BazaPredmeti.getInstance().prepareFailedExams(student);
 		
 		JTable tabelaNepolozenih = new TabelaNepolozeni();
 		JScrollPane nepolozeniScrollPane = new JScrollPane(tabelaNepolozenih);
@@ -56,7 +63,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 
 
 
-// PRAVIMO PONOVO TABELU SA PREDMETIMA
+// PONOVO TABELA SA PREDMETIMA
 private class TabelaNepolozeni extends JTable{
 	private static final long serialVersionUID = -3805554009583860187L;
 

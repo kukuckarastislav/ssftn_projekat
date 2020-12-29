@@ -8,31 +8,51 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
-import controller.ProfesorController;
-import model.BazaProfesori;
+import controller.PredmetController;
+import model.BazaPredmeti;
+import model.Predmet;
 import model.Profesor;
 
-public class DodavanjePrfNaPredmetDialog extends JDialog {
+public class DodavanjePredmetaProfesoru  extends JDialog {
 
-	private static final long serialVersionUID = 8561976962718904066L;
 
-	private TabelaProfesoraOdabir tabelaProfesoraOdabir;
+	private static final long serialVersionUID = 1L;
+	
+	private TabelaPredmetaOdabir tabelaPredmetaOdabir;
+	private Predmet predmet = null;
+	
+	private ArrayList<Predmet> predmetiZaDodavanje;
+	
 
-	private Profesor profesor = null;
-
-	public DodavanjePrfNaPredmetDialog(Frame parent) {
+	public DodavanjePredmetaProfesoru(Frame parent,Profesor p) {
 		super(parent, "Odaberi Profesora", true);
+		
+		
+		//cistimo listu svih predmeta od predmeta na kojima je nas profesor , sta radim pogresno???
+		predmetiZaDodavanje = new ArrayList<>();
+		predmetiZaDodavanje=BazaPredmeti.getInstance().getPredmeti();
+		ArrayList<Predmet>predmetiZaBrisanje=new ArrayList<Predmet>();
+		
+		for(Predmet pr: predmetiZaDodavanje) {
+			for(Predmet pre: p.getPredmetiNaKojimaJeProfesor()) {
+				if(pre.getSifraPredmeta().equals(pr.getSifraPredmeta()))
+					predmetiZaBrisanje.add(pr);
+				
+			}		
+		}
+		
+		predmetiZaDodavanje.removeAll(predmetiZaBrisanje); 
 
 		setSize(350,300);
 		setResizable(false);
@@ -53,10 +73,10 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		JPanel centralniPanel = new JPanel(new BorderLayout());
 		centralniPanel.setBackground(Color.white);
 
-		tabelaProfesoraOdabir = new TabelaProfesoraOdabir();
-		JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesoraOdabir);
-		centralniPanel.add(panelProfesoriScrollPane,BorderLayout.CENTER);
-		azurirajPrikazTabeleProfesora("POCETNA", 0);
+		tabelaPredmetaOdabir = new TabelaPredmetaOdabir();
+		JScrollPane panelPredmetaScrollPane = new JScrollPane(tabelaPredmetaOdabir);
+		centralniPanel.add(panelPredmetaScrollPane,BorderLayout.CENTER);
+		azurirajPrikazTabelePredmeta("POCETNA", 0);
 
 
 
@@ -64,11 +84,9 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		btnPotvrdi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int iProf = getSelectedProfesor();
-
-				profesor = ProfesorController.getInstance().getProfesor(iProf);
-
-
+				
+				int iPred = getSelectedPredmet();
+				predmet = PredmetController.getInstance().getPredmet(iPred);
 				dispose();
 			}
 		});
@@ -87,41 +105,30 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		panDiaButtons.add(btnOdustani);
 
 
-
+		
 		add(gornjiUkrasniPan, BorderLayout.NORTH);
 		add(panDiaButtons, BorderLayout.SOUTH);
 		add(leviUkrasniPan, BorderLayout.WEST);
 		add(desniUkrasniPan, BorderLayout.EAST);
 
 		add(centralniPanel, BorderLayout.CENTER);
-
+	
 		setVisible(true);
 	}
-
-
-
-	// OVDE DODATI SVE ZIVE KLASE POTREBNE ZA TABLE unutrasnje klase
-	private class TabelaProfesoraOdabir extends JTable{
+	
+	private class TabelaPredmetaOdabir extends JTable{
 		private static final long serialVersionUID = -3805554009583860187L;
 
-		public TabelaProfesoraOdabir() {
+		public TabelaPredmetaOdabir() {
 			setRowSelectionAllowed(true);
 			setColumnSelectionAllowed(true);
 			setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			// Sama JTable komponenta je implementirana postujuci MVC arhitekturu.
-			setModel(new AbstractTableProfesoriOdabir());
+			setModel(new SadrzajTabeleOdabirPredmeta());
 		}
 		@Override
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-			// Svaka celija ima renderer, koji se poziva prilikom njenog iscrtavanja.
-			// Podrazumevano se pozivaju prilikom inicijalnog iscrtavanja tabele.
-			// Ukoliko korisnik selektuje neku celiju, dolazi do ponovnog
-			// iscrtavanje svih celija u redu koji je selektovan, kao i u redu
-			// koji je prethodno bio selektovan.
-			// TODO: Probati na primeru!
-			// System.out.println(row + " " + column);
+			
 			Component c = super.prepareRenderer(renderer, row, column);
-			// selektovani red ce imati drugaciju boju od ostalih
 			if (isRowSelected(row)) {
 				c.setBackground(Color.LIGHT_GRAY);
 			} else {
@@ -132,7 +139,7 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 
 	}
 
-	private class AbstractTableProfesoriOdabir extends AbstractTableModel{
+	private class SadrzajTabeleOdabirPredmeta extends AbstractTableModel{
 
 		private static final long serialVersionUID = 2335644876350909315L;
 
@@ -143,37 +150,49 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 
 		@Override
 		public int getRowCount() {
-			return BazaProfesori.getInstance().getProfesori().size();
+			return predmetiZaDodavanje.size();
 		}
 
 		@Override
 		public String getValueAt(int arg0, int arg1) {
-			String prof = BazaProfesori.getInstance().getVrednostU(arg0,0)+" "+
-					      BazaProfesori.getInstance().getVrednostU(arg0,1);
-			return prof; // vracamo ime i prezime
+			return getPredmeti(arg0,arg1);
 		}
 		@Override
 		public String getColumnName(int column) {
-			return "Ime i Prezime";
+			return "Naziv predmeta";
 		}
 
 	}
 
-	public void azurirajPrikazTabeleProfesora(String akcija, int vrednost) {
-		AbstractTableProfesoriOdabir model = (AbstractTableProfesoriOdabir) tabelaProfesoraOdabir.getModel();
+	public void azurirajPrikazTabelePredmeta(String akcija, int vrednost) {
+		SadrzajTabeleOdabirPredmeta model = (SadrzajTabeleOdabirPredmeta) tabelaPredmetaOdabir.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
 
-	public int getSelectedProfesor() {
-		return tabelaProfesoraOdabir.getSelectedRow();
+	public int getSelectedPredmet() {
+		return tabelaPredmetaOdabir.getSelectedRow();
 	}
 
-	public Profesor dajMiSelektovanogProfesora() {
-		return profesor;
+	public Predmet selektovaniPredmet() {
+		return predmet;
 	}
 
-
+	public String getPredmeti(int x,int y) {
+		
+		Predmet predmet = predmetiZaDodavanje.get(x);
+		switch (y) {
+		case 0:
+			return predmet.getNazivPredmeta();
+		
+		default:
+			return null;
+		}
+	}	
+	
+	
+	
+	
+	
 
 }
-

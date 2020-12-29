@@ -1,7 +1,9 @@
 package controller;
 
 import model.BazaPredmeti;
+import model.BazaProfesori;
 import model.Predmet;
+import model.Profesor;
 import view.Frame1;
 
 public class PredmetController {
@@ -32,6 +34,11 @@ public class PredmetController {
 	
 	public void izbrisiPredmet() {
 		// Milica
+	}
+
+	public Predmet getPredmet(int rowIndex) {
+		Predmet p=BazaPredmeti.getInstance().getPredmet(rowIndex);		
+		return p;
 	}
 
 }
