@@ -29,6 +29,8 @@ public class Predmet implements Serializable {
 		this.godinaStudijaUKojojSePredmetIzvodi = godinaStudijaUKojojSePredmetIzvodi;
 		this.predmetniProfesor = predmetniProfesor;
 		this.brojESPBbodova = brojESPBbodova;
+		studentiKojiSuPolozili = new ArrayList<>(); 	// moramo ovo dadati da ne bi bio null
+		studentiKojiNisuPolozili = new ArrayList<>();
 	}
 	//bez profesora
 	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
@@ -40,9 +42,14 @@ public class Predmet implements Serializable {
 		this.semestar = semestar;
 		this.godinaStudijaUKojojSePredmetIzvodi = godinaStudijaUKojojSePredmetIzvodi;
 		this.brojESPBbodova = brojESPBbodova;
+		studentiKojiSuPolozili = new ArrayList<>(); 	// moramo ovo dadati da ne bi bio null
+		studentiKojiNisuPolozili = new ArrayList<>();
 	}
 
-	public Predmet() {}
+	public Predmet() {
+		studentiKojiSuPolozili = new ArrayList<>(); 	// moramo ovo dadati da ne bi bio null
+		studentiKojiNisuPolozili = new ArrayList<>();
+	}
 	
 	
 	

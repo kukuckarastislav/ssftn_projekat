@@ -259,6 +259,33 @@ private static BazaPredmeti instance = null;
 		predmetiIzabranogProfesora.add(p);
 	}
 	
+	/*
+	 *  Ova metoda prima studenta, i vraca ArrayList predmeta koje student moze da polaze
+	 *  tj da mu dodamo kao nepolozene predmete
+	 *  predmeti moraju da zadovolje dva uslova
+	 *  	1. Predmet nije polozio
+	 *  	2. Godina izvodjenja Predmeta je ista ili niza od godine studije studenta 
+	 */
+	public ArrayList<Predmet> getMoguciPredmetiZaStudenta(Student student){
+		ArrayList<Predmet> alMoguciPredmeti = new ArrayList<Predmet>();
+		
+		// predjimo kroz sve predmete
+		for (Predmet predmet : alPredmeti) {
+			// ako je godina izvodjenja predmeta manja ili jednaka od god studije studenta 
+			if(predmet.getGodinaStudijaUKojojSePredmetIzvodi() <= student.getTrenGodStudija()) {
+				// ok sada proverimo dal je on taj predmet vec polozio
+				// al proverimo dal slucajno vec ima taj predmet u nepolozenim
+				if( !student.jePolozioPredmet(predmet) && !student.trebaDaPolozi(predmet)) {
+					// student nije polozio taj predmet, znaci mozemo ga dodati da polaze :)
+					alMoguciPredmeti.add(predmet);
+				}
+			}
+		}
+
+		
+		return alMoguciPredmeti;
+	}
+	
 	
 
 }

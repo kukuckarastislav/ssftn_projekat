@@ -8,38 +8,42 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import controller.ProfesorController;
+import model.BazaPredmeti;
 import model.BazaProfesori;
-import model.Profesor;
+import model.BazaStudenti;
+import model.Predmet;
+import model.Student;
 
-public class DodavanjePrfNaPredmetDialog extends JDialog {
+public class DodavanjePredmetaStudentuDialog extends JDialog {
 
-	private static final long serialVersionUID = 8561976962718904066L;
-
-	private TabelaProfesoraOdabir tabelaProfesoraOdabir;
-
-	private Profesor profesor = null;
-
-	public DodavanjePrfNaPredmetDialog(Frame parent) {
-		super(parent, "Odaberi Profesora", true);
-
+	private static final long serialVersionUID = -716876777577274323L;
+	private Student student;
+	
+	private TabelaMogucihPredmetaZaStudenta tabelaMogPredZaStd;
+	private ArrayList<Predmet> alMoguciPredmetiZaStudenta;
+	
+	public DodavanjePredmetaStudentuDialog(PanIzmenaStudentaNePolozeni panIzmenaStudNePolozeni, Frame parent,Student student) {
+		super(parent, "Dodavanje predmeta", true);
+		this.student = student;
+		
 		setSize(350,300);
 		setResizable(false);
-		setLocationRelativeTo(null); 	// ToDo : popraviti treba da se pozicionira u odnosu na JDialog a ne JFrame
+		setLocationRelativeTo(parent); 	// ToDo : popraviti treba da se pozicionira u odnosu na JDialog a ne JFrame
 		setLayout(new BorderLayout());
-
-
+		
 		JPanel gornjiUkrasniPan = new JPanel();
 		JPanel panDiaButtons = new JPanel(new FlowLayout(10,10,10));//,FlowLayout.CENTER));
 		JPanel leviUkrasniPan = new JPanel();
@@ -52,24 +56,35 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 
 		JPanel centralniPanel = new JPanel(new BorderLayout());
 		centralniPanel.setBackground(Color.white);
-
-		tabelaProfesoraOdabir = new TabelaProfesoraOdabir();
-		JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesoraOdabir);
-		centralniPanel.add(panelProfesoriScrollPane,BorderLayout.CENTER);
-		azurirajPrikazTabeleProfesora("POCETNA", 0);
-
-
-
-		DiaButton btnPotvrdi = new DiaButton("Potvrdi");
-		btnPotvrdi.addActionListener(new ActionListener() {
+		
+		alMoguciPredmetiZaStudenta = BazaPredmeti.getInstance().getMoguciPredmetiZaStudenta(student);
+		
+		tabelaMogPredZaStd = new TabelaMogucihPredmetaZaStudenta();
+		JScrollPane panelPredmetiScrollPane = new JScrollPane(tabelaMogPredZaStd);
+		centralniPanel.add(panelPredmetiScrollPane,BorderLayout.CENTER);
+		azurirajPrikazTabeleMogucihPredmetaZaStudenta();
+		
+		
+		
+		
+		
+		DiaButton btnDodaj = new DiaButton("Dodaj");
+		btnDodaj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int iProf = getSelectedProfesor();
-
-				profesor = ProfesorController.getInstance().getProfesor(iProf);
-
-
-				dispose();
+				
+				int pred = getSelectedPredmet();
+				
+				if(pred == -1) {
+					JOptionPane.showMessageDialog(parent, "Selektujte Predmet", "Upozorenje", 0, null);
+				}else {
+					// dodajemo predmet studentu u nepoloznee predmete
+					Predmet predmet = alMoguciPredmetiZaStudenta.get(pred);
+					student.dodajNePolozenIspit(predmet);
+					panIzmenaStudNePolozeni.azurirajPrikazTabeleNePolozenihPredmetaZaStudenta();
+					dispose();
+				}
+				
 			}
 		});
 
@@ -82,44 +97,36 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		});
 
 		panDiaButtons.add(Box.createHorizontalStrut(52));
-		panDiaButtons.add(btnPotvrdi);
+		panDiaButtons.add(btnDodaj);
 		panDiaButtons.add(Box.createHorizontalStrut(10));
 		panDiaButtons.add(btnOdustani);
-
-
-
+		
+		
+		
+		
+		
 		add(gornjiUkrasniPan, BorderLayout.NORTH);
 		add(panDiaButtons, BorderLayout.SOUTH);
 		add(leviUkrasniPan, BorderLayout.WEST);
 		add(desniUkrasniPan, BorderLayout.EAST);
 
 		add(centralniPanel, BorderLayout.CENTER);
-
+		
 		setVisible(true);
 	}
-
-
-
-	// OVDE DODATI SVE ZIVE KLASE POTREBNE ZA TABLE unutrasnje klase
-	private class TabelaProfesoraOdabir extends JTable{
-		private static final long serialVersionUID = -3805554009583860187L;
-
-		public TabelaProfesoraOdabir() {
+	
+	
+	private class TabelaMogucihPredmetaZaStudenta extends JTable{
+		
+		private static final long serialVersionUID = -8040177113408533820L;
+		public TabelaMogucihPredmetaZaStudenta() {
 			setRowSelectionAllowed(true);
 			setColumnSelectionAllowed(true);
 			setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			// Sama JTable komponenta je implementirana postujuci MVC arhitekturu.
-			setModel(new AbstractTableProfesoriOdabir());
+			setModel(new AbstractTablePredmetiZaStudenta());
 		}
 		@Override
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-			// Svaka celija ima renderer, koji se poziva prilikom njenog iscrtavanja.
-			// Podrazumevano se pozivaju prilikom inicijalnog iscrtavanja tabele.
-			// Ukoliko korisnik selektuje neku celiju, dolazi do ponovnog
-			// iscrtavanje svih celija u redu koji je selektovan, kao i u redu
-			// koji je prethodno bio selektovan.
-			// TODO: Probati na primeru!
-			// System.out.println(row + " " + column);
 			Component c = super.prepareRenderer(renderer, row, column);
 			// selektovani red ce imati drugaciju boju od ostalih
 			if (isRowSelected(row)) {
@@ -131,11 +138,10 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 		}
 
 	}
+	
+	public class AbstractTablePredmetiZaStudenta extends AbstractTableModel{
 
-	public class AbstractTableProfesoriOdabir extends AbstractTableModel{
-
-		private static final long serialVersionUID = 2335644876350909315L;
-
+		private static final long serialVersionUID = 3488675154619442430L;
 		@Override
 		public int getColumnCount() {
 			return 1;
@@ -143,37 +149,35 @@ public class DodavanjePrfNaPredmetDialog extends JDialog {
 
 		@Override
 		public int getRowCount() {
-			return BazaProfesori.getInstance().getProfesori().size();
+			return alMoguciPredmetiZaStudenta.size();
 		}
 
 		@Override
 		public String getValueAt(int arg0, int arg1) {
-			String prof = BazaProfesori.getInstance().getVrednostU(arg0,0)+" "+
-					      BazaProfesori.getInstance().getVrednostU(arg0,1);
-			return prof; // vracamo ime i prezime
+			// dobavi mi predmet
+			Predmet p = alMoguciPredmetiZaStudenta.get(arg0); 
+			String predmet = p.getSifraPredmeta() + " - " + p.getNazivPredmeta();
+			return predmet; // vracamo Sifru i naziv predmeta
 		}
 		@Override
 		public String getColumnName(int column) {
-			return "Ime i Prezime";
+			return "Predmeti";
 		}
 
 	}
-
-	public void azurirajPrikazTabeleProfesora(String akcija, int vrednost) {
-		AbstractTableProfesoriOdabir model = (AbstractTableProfesoriOdabir) tabelaProfesoraOdabir.getModel();
+	
+	public void azurirajPrikazTabeleMogucihPredmetaZaStudenta() {
+		AbstractTablePredmetiZaStudenta model = (AbstractTablePredmetiZaStudenta) tabelaMogPredZaStd.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
-
-	public int getSelectedProfesor() {
-		return tabelaProfesoraOdabir.getSelectedRow();
+	
+	
+	public int getSelectedPredmet() {
+		return tabelaMogPredZaStd.getSelectedRow();
 	}
-
-	public Profesor dajMiSelektovanogProfesora() {
-		return profesor;
-	}
-
-
+	
+	
+	
 
 }
-

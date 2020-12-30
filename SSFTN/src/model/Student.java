@@ -25,7 +25,7 @@ public class Student implements Serializable{
 	private double prosecnaOcena;
 	
 	private ArrayList<Ocena> lPolIspita;
-	private ArrayList<Ocena> lNePolIspita;
+	private ArrayList<Predmet> lNePolIspita;
 	
 	
 	// KONSTRUKTORI
@@ -34,7 +34,7 @@ public class Student implements Serializable{
 	public Student(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon, String email,
 
 			String indeks, int godinaUpisa, int trenGodStudija, Status status, double prosecnaOcena,
-			ArrayList<Ocena> lPolIspita, ArrayList<Ocena> lNePolIspita) {
+			ArrayList<Ocena> lPolIspita, ArrayList<Predmet> lNePolIspita) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -70,7 +70,11 @@ public class Student implements Serializable{
 		this.lPolIspita = new ArrayList<>();
 		this.lNePolIspita = new ArrayList<>();
 	}
-	public Student() {}
+	public Student() {
+		this.lPolIspita = new ArrayList<>();
+		this.lNePolIspita = new ArrayList<>();
+		
+	}
 	
 	// Moje dodate metode
 	// dodaj ispit  u listu polozenih ispita
@@ -78,8 +82,8 @@ public class Student implements Serializable{
 		lPolIspita.add(oc);
 	}
 	// dodaj ispit u listu ne polozenih ispita
-	public void dodajNePolozenIspit(Ocena oc) {
-		lNePolIspita.add(oc);
+	public void dodajNePolozenIspit(Predmet predmet) {
+		lNePolIspita.add(predmet);
 	}
 	
 	// GET I SET METODE GENERISANE
@@ -158,10 +162,10 @@ public class Student implements Serializable{
 	public void setlPolIspita(ArrayList<Ocena> lPolIspita) {
 		this.lPolIspita = lPolIspita;
 	}
-	public ArrayList<Ocena> getlNePolIspita() {
+	public ArrayList<Predmet> getlNePolIspita() {
 		return lNePolIspita;
 	}
-	public void setlNePolIspita(ArrayList<Ocena> lNePolIspita) {
+	public void setlNePolIspita(ArrayList<Predmet> lNePolIspita) {
 		this.lNePolIspita = lNePolIspita;
 	}
 	
@@ -187,13 +191,37 @@ public class Student implements Serializable{
 		
 		if(!lNePolIspita.isEmpty()) {
 			str += "=== LISTA NE POLOZENIH PREDMETA ==="+"\n";
-			for (Ocena ocena : lNePolIspita) {
-				str += ocena.getPredmet().getNazivPredmeta()+"\n";
+			for (Predmet predmet : lNePolIspita) {
+				str += predmet.getNazivPredmeta()+"\n";
 			}
 		}
 		
 		
 		return str;
+	}
+
+	public boolean jePolozioPredmet(Predmet predmet) {
+		for (Ocena ocena : lPolIspita) {
+			if(ocena.getPredmet().equals(predmet)) {		// upozorenje? da li su preklopljenji operatori za uporedjivanje
+				// student je polozio taj predmet
+				return true;
+			}
+		}
+		// student nije polozio taj predmet
+		return false;
+	}
+
+	
+	public boolean trebaDaPolozi(Predmet predmet) {
+		for (Predmet pr : lNePolIspita) {
+			if(pr.equals(predmet)) {
+				// student ima nepolozen predmet u listi nepolozenih predmeta
+				return true;
+			}
+		}
+		
+		// student ne treba da polozi predmet il ga je polozio ili ga nije polozio al nije ni trebao
+		return false;
 	}
 
 	

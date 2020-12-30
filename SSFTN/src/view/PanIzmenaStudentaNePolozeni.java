@@ -3,12 +3,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +24,7 @@ import model.BazaProfesori;
 import model.BazaStudenti;
 import model.Profesor;
 import model.Student;
+import view.DodavanjePredmetaStudentuDialog.AbstractTablePredmetiZaStudenta;
 import model.Predmet;
 
 public class PanIzmenaStudentaNePolozeni extends JPanel{
@@ -35,23 +38,54 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 	private TabelaNepolozeni tabelaNepolozenih;
 	private Predmet predmet;
 	
+	private DiaButton btnDodaj;
+	private DiaButton btnObrisi;
+	private DiaButton btnPolaganje;
+	private PanIzmenaStudentaNePolozeni panIzmenaStudenataNePolozenih;
+	
 	public PanIzmenaStudentaNePolozeni(Frame parent,Student student) {
 		this.student=student;
+		setLayout(new BorderLayout());
+		panIzmenaStudenataNePolozenih = this;
 		
-		nepolozeniPredmeti=new ArrayList<>();
-		//nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
+		//nepolozeniPredmeti=new ArrayList<>();
+		nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
+		
+		//JPanel ukrasniGornjiPanel = new JPanel();
+		JPanel ukrasniDonjiPanel = new JPanel();
+		ukrasniDonjiPanel.setPreferredSize(new Dimension(50,50));
+		JPanel ukrasniLeviPanel = new JPanel();
+		ukrasniLeviPanel.setPreferredSize(new Dimension(30,30));
+		JPanel ukrasniDesniPanel = new JPanel();
+		ukrasniDesniPanel.setPreferredSize(new Dimension(30,30));
+		
 		
 		tabelaNepolozenih = new TabelaNepolozeni();
 		JScrollPane nepolozeniScrollPane = new JScrollPane(tabelaNepolozenih);
+		JPanel centralniPanelSaTablicom = new JPanel(new BorderLayout());
+		centralniPanelSaTablicom.add(nepolozeniScrollPane, BorderLayout.CENTER);
+		centralniPanelSaTablicom.add(ukrasniLeviPanel, BorderLayout.WEST);
+		centralniPanelSaTablicom.add(ukrasniDesniPanel, BorderLayout.EAST);
+		centralniPanelSaTablicom.add(ukrasniDonjiPanel, BorderLayout.SOUTH);
 		
-		JPanel panButtons = new JPanel(new FlowLayout());
-		DiaButton btnDodaj=new DiaButton("Dodaj");	
-		DiaButton btnObrisi=new DiaButton("Obrisi");	
-		DiaButton btnPolaganje=new DiaButton("Polaganje");	
+		JPanel panButtons = new JPanel(new FlowLayout(30,15,30));
+		panButtons.setPreferredSize(new Dimension(60,60));
+		btnDodaj=new DiaButton("Dodaj");	
+		btnObrisi=new DiaButton("Obrisi");	
+		btnPolaganje=new DiaButton("Polaganje");	
 		
+		panButtons.add(Box.createHorizontalStrut(0));
 		panButtons.add(btnDodaj);
 		panButtons.add(btnObrisi);
 		panButtons.add(btnPolaganje);
+		
+		btnDodaj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjePredmetaStudentuDialog dpsd = new DodavanjePredmetaStudentuDialog(
+												panIzmenaStudenataNePolozenih, parent, student);
+			}
+		});
 		
 		btnPolaganje.addActionListener(new ActionListener() {
 			@Override
@@ -67,7 +101,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		
 		
 		this.add(panButtons,BorderLayout.NORTH);
-		this.add(nepolozeniScrollPane,BorderLayout.CENTER);
+		this.add(centralniPanelSaTablicom,BorderLayout.CENTER);
 		
 	
 	}
@@ -143,6 +177,8 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 			return null;
 		}
 	}
+	
+	// 
 	public int getSelectedPredmet() {
 		return tabelaNepolozenih.getSelectedRow();
 	}
@@ -151,6 +187,11 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		return predmet;
 	}
 
+	public void azurirajPrikazTabeleNePolozenihPredmetaZaStudenta() {
+		SadrzajTabeleNepolozeni model = (SadrzajTabeleNepolozeni) tabelaNepolozenih.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
 
 
 

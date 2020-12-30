@@ -36,9 +36,12 @@ public class Profesor implements Serializable {
 		this.brojLicneKarte = brojLicneKarte;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		predmetiNaKojimaJeProfesor = new ArrayList<Predmet>();
 	}
 	
-	public Profesor() {}
+	public Profesor() {
+		predmetiNaKojimaJeProfesor = new ArrayList<Predmet>();
+	}
 	
 	
 	public String getPrezime() {
