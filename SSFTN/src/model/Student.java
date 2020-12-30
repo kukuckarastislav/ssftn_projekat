@@ -81,9 +81,15 @@ public class Student implements Serializable{
 	public void dodajPolozenIspit(Ocena oc) {
 		lPolIspita.add(oc);
 	}
+	public void ponistiPolozenIspit(Ocena oc) {
+		lPolIspita.remove(oc);
+	}
 	// dodaj ispit u listu ne polozenih ispita
 	public void dodajNePolozenIspit(Predmet predmet) {
 		lNePolIspita.add(predmet);
+	}
+	public void ukloniNePolozenIspit(Predmet predmet) {
+		lNePolIspita.remove(predmet);
 	}
 	
 	// GET I SET METODE GENERISANE

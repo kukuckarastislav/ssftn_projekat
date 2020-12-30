@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Box;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -84,6 +86,25 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				DodavanjePredmetaStudentuDialog dpsd = new DodavanjePredmetaStudentuDialog(
 												panIzmenaStudenataNePolozenih, parent, student);
+			}
+		});
+		
+		btnObrisi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int x = getSelectedPredmet();
+				if(x == -1) {
+					JOptionPane.showMessageDialog(parent, "Selektujte Predmet", "Upozorenje", 0, null);
+				}else {
+					String poruka = "Da li ste sigurni da želite da uklonite predmet";
+					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Uklanjanje Predmeta", JOptionPane.YES_NO_OPTION);
+					if(option == JOptionPane.YES_OPTION) {
+						Predmet predmet = nepolozeniPredmeti.get(x);
+						nepolozeniPredmeti.remove(x);
+						student.ukloniNePolozenIspit(predmet);
+						azurirajPrikazTabeleNePolozenihPredmetaZaStudenta();
+					}
+				}
 			}
 		});
 		
