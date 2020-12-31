@@ -128,10 +128,14 @@ public class Toolbar extends JToolBar {
 					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
 					if(selStud == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
+					}else {
+						String poruka = "Da li ste sigurni da zelite da obrišete studenta?";
+						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje studenta", JOptionPane.YES_NO_OPTION);
+						if(option == JOptionPane.YES_OPTION) {
+							String indeks = Frame1.getInstance().getSelectedStudentByIndeks();
+							StudentController.getInstance().izbrisiStudentaByIndex(indeks);
+						}
 					}
-					String indeks = Frame1.getInstance().getSelectedStudentByIndeks();
-					StudentController.getInstance().izbrisiStudentaByIndex(indeks);
-					
 				}else if(tab == 1) {
 					int selProf = Frame1.getInstance().getSelectedProfesor();
 					if(selProf == -1) {
