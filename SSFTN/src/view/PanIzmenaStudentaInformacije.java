@@ -314,6 +314,7 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 					noviStudent.setKontaktTelefon(txtBrTel.getText());
 					noviStudent.setEmail(txtEmail.getText());
 					noviStudent.setIndeks(txtIndeks.getText());
+					vtffl6.setOrgIndeks(noviStudent.getIndeks());
 					noviStudent.setGodinaUpisa( Integer.parseInt(txtGodUpisa.getText()) );
 					noviStudent.setTrenGodStudija( TGS.getSelectedIndex() + 1); 					// treba +1 jer je "I (prva)" na nultom indeksu
 					if(CBStatus.getSelectedIndex() == 0) {

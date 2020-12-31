@@ -92,6 +92,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		mode = 4;
 		this.panIzmenaStd = panIzmenaStd;
 	}
+	// metoda kojom setujemo originalni indeks studenta, potrebno je zbog osvezavanja
+	public void setOrgIndeks(String indeks) {
+		orgIndeks = indeks;
+	}
 
 
 	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt,
