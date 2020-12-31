@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumnModel;
 
 import model.Profesor;
 
@@ -103,6 +104,9 @@ public class Frame1 extends JFrame{
 	azurirajPrikazTabeleStudenata("POCETNA", 0);
 	
 	tabelaProfesora = new ProfesoriJTable();
+	TableColumnModel tcm = tabelaProfesora.getColumnModel();
+	tcm.getColumn(4).setMinWidth(0); 			// ovako cemo da sakrijemo vizualno kolonu sa licnom kartom
+	tcm.getColumn(4).setMaxWidth(0);
 	JScrollPane panelProfesoriScrollPane = new JScrollPane(tabelaProfesora);
 	panelProfesori.add(panelProfesoriScrollPane,BorderLayout.CENTER);
 	azurirajPrikazTabeleProfesora("POCETNA", 0);
@@ -160,7 +164,7 @@ public class Frame1 extends JFrame{
 		rowSlectedProfesor = tabelaProfesora.getSelectedRow(); 
 		return rowSlectedProfesor;
 	}
-	
+	// 		ovo je isto kao sto je pre bilo getSelectedStudent
 	public int getSelectedStudentIndexInTable() {
 		// vraca indeks sta smo mi selektovali
 		// al onda bi morali i bazu studente da sortiramo kako bi se indksi poklapali
@@ -179,6 +183,15 @@ public class Frame1 extends JFrame{
 		String indeksStudenta = (String) tabelaStudenata.getValueAt(getSelectedStudentIndexInTable(), 0);
 		System.out.println("Indeks selektovanog studenta: "+indeksStudenta);
 		return indeksStudenta;
+	}
+	
+	public String getSelectedProfesorByLicnaKarta() {
+		String licnaKarta = (String) tabelaProfesora.getValueAt(getSelectedProfesor(), 4);
+		System.out.println(licnaKarta);
+		return licnaKarta;
+	}
+	public String getSelectedPredmetBySifraPredmeta() {
+		return null;
 	}
 	
 	

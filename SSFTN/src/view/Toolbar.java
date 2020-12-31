@@ -136,10 +136,15 @@ public class Toolbar extends JToolBar {
 					int selProf = Frame1.getInstance().getSelectedProfesor();
 					if(selProf == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite obrisati", "Upozorenje", 0, null);
+					}else {
+						String poruka = "Da li ste sigurni da zelite da obrišete profesora?";
+						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje profesora", JOptionPane.YES_NO_OPTION);
+						if(option == JOptionPane.YES_OPTION) {
+							String licnaKarta = Frame1.getInstance().getSelectedProfesorByLicnaKarta();
+							ProfesorController.getInstance().izbrisiProfesoraByLicnaKarta(licnaKarta);
+						}
 					}
-					
-					ProfesorController.getInstance().izbrisiProfesora(selProf);
-					
+	
 				}else if(tab == 2) {
 					//brisi predmet
 					// Milica

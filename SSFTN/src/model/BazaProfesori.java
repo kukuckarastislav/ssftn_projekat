@@ -36,6 +36,7 @@ private static BazaProfesori instance = null;
 		alKolone.add("Prezime");
 		alKolone.add("Titula");
 		alKolone.add("Zvanje");
+		alKolone.add("LicnaKarta");
 
 	}
 	
@@ -87,7 +88,7 @@ private static BazaProfesori instance = null;
 	}
 	
 	public int getBrKolona() {
-		return 4;
+		return 4+1; 	// +1 neviljdiva
 	}
 	
 	public String getNazivKolona(int index) {
@@ -120,6 +121,8 @@ private static BazaProfesori instance = null;
 			return profesor.getTitula().toString();
 		case 3:
 			return profesor.getZvanje().toString();
+		case 4:
+			return profesor.getBrojLicneKarte(); 			// jedno polje koje cemo koristi da dobijemo licnu kartu
 			
 		default:
 			return null;
@@ -136,6 +139,8 @@ private static BazaProfesori instance = null;
 				return profesor.getTitula().toString();
 			case 3:
 				return profesor.getZvanje().toString();
+			case 4:
+				return profesor.getBrojLicneKarte(); 
 				
 			default:
 				return null;
@@ -230,6 +235,20 @@ private static BazaProfesori instance = null;
 				p.dodajPredmetProfesoru(pre);
 		}
 		
+	}
+
+	// poksajmo da nadjemo profesora pomocu licne karte
+	public Profesor getProfesorByLicnaKarta(String licnaKarta) {
+		if(licnaKarta == null) return null;
+		
+		for (Profesor profesor : alProfesori) {
+			if(profesor.getBrojLicneKarte().equals(licnaKarta)) {
+				return profesor;
+			}
+		}
+		
+		// ako nismo nasli profesora vracamo null
+		return null;
 	}
 
 

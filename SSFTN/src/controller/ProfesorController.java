@@ -49,6 +49,14 @@ public class ProfesorController {
 	
 		Frame1.getInstance().azurirajPrikazTabeleProfesora("UKLONJEN", 2);
 	}
+	public void izbrisiProfesoraByLicnaKarta(String licnaKarta) {
+		if(licnaKarta != null) {
+			Profesor profesor = BazaProfesori.getInstance().getProfesorByLicnaKarta(licnaKarta);
+			BazaProfesori.getInstance().izbrisiProfesora(profesor);
+			
+			Frame1.getInstance().azurirajPrikazTabeleProfesora("UKLONJEN", 2);
+		}
+	}
 	
 	public Profesor getProfesor(int rowIndex) {
 		
