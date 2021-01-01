@@ -30,6 +30,7 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	private IzmenaProfesora izmenaProfDia = null;
 	private PanIzmenaStudentaInformacije panIzmenaStd= null;
 	private String orgIndeks = null;
+	private String orgLicnaKarta = null;
 	private DodavanjePredmetaDialog dodPredmetaDia = null;
 	private int mode = 0; 											// 0 nista 		1-dodavanjeStudenta 	2-dodavanjeProfesora
 	public boolean getValidacija() {return validacija;}
@@ -64,9 +65,22 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, final IzmenaProfesora izmenaProfDia) {
 		this.lbl = lbl;
 		this.txt = txt;
-		validacija = false;
+		validacija = true; 	// ovde je pocetno stanje true jer je sve validno kad idemo da menjamo
 		this.izmenaProfDia = izmenaProfDia; 
 		mode = 3;	
+	}
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
+			final IzmenaProfesora izmenaProfDia, String orgLicnaKarta) 
+	{
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = true; 	// ovde je pocetno stanje true jer je sve validno kad idemo da menjamo
+		this.izmenaProfDia = izmenaProfDia; 
+		this.orgLicnaKarta = orgLicnaKarta;
+		mode = 3;	
+	}
+	public void setOrgLicnaKarta(String orgLicnaKarta) {
+		this.orgLicnaKarta = orgLicnaKarta;
 	}
 	
 	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
@@ -159,7 +173,17 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(txt.getName().equals("txtGodUpisa")) {
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
-			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+			if(mode == 3) { 	// to je mode gde menjamoInformacije za profesora
+				if(txt.getText().equals(orgLicnaKarta)) {
+					validacija = true; 				// ako je licna karta ne promenjena onda je true
+				}else {
+					validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+				}
+			}else {
+				validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+			}
+			
+		
 		}else if(txt.getName().equals("txtSifra")) {
 			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
 		}else if(txt.getName().equals("txtNaziv")) {
@@ -192,7 +216,7 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			}
 		}else if(mode == 3) {
 			if(izmenaProfDia != null) {
-				//izmenaProfDia.omoguciDugmePotvrdi();
+				izmenaProfDia.omoguciDugmePotvrdi();
 			}
 		}else if(mode == 4) {
 			if(panIzmenaStd != null) {
@@ -235,7 +259,17 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(txt.getName().equals("txtGodUpisa")) {
 			validacija = ValidacijaUnosa.validGodUpisa(txt.getText());
 		}else if(txt.getName().equals("txtlicna")) {
-			validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+			if(mode == 3) { 	// to je mode gde menjamoInformacije za profesora
+				if(txt.getText().equals(orgLicnaKarta)) {
+					validacija = true; 				// ako je licna karta ne promenjena onda je true
+				}else {
+					validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+				}
+			}else {
+				validacija = ValidacijaUnosa.validBrLicne(txt.getText());
+			}
+			
+		
 		}else if(txt.getName().equals("txtSifra")) {
 			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
 		}else if(txt.getName().equals("txtNaziv")) {
@@ -258,7 +292,7 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			}
 		}else if(mode == 3) {
 			if(izmenaProfDia != null) {
-				//izmenaProfDia.omoguciDugmePotvrdi();
+				izmenaProfDia.omoguciDugmePotvrdi();
 			}
 		}else if(mode == 4) {
 			if(panIzmenaStd != null) {

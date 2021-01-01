@@ -39,6 +39,20 @@ public class ProfesorController {
 		BazaProfesori.getInstance().izmeniProfesora(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, email, adresaKancelarije, brojLicneKarte, titula, zvanje);
 		Frame1.getInstance().azurirajPrikazTabeleProfesora("IZMENJEN", 1);
 	}
+	public void izmeniProfesora(Profesor aktuelniProfesor, Profesor noviProfesor) {
+		aktuelniProfesor.setIme(noviProfesor.getIme());
+		aktuelniProfesor.setPrezime(noviProfesor.getPrezime());
+		aktuelniProfesor.setDatumRodjenja(noviProfesor.getDatumRodjenja());
+		aktuelniProfesor.setAdresaStanovanja(noviProfesor.getAdresaStanovanja());
+		aktuelniProfesor.setKontaktTelefon(noviProfesor.getKontaktTelefon());
+		aktuelniProfesor.setEmail(noviProfesor.getEmail());
+		aktuelniProfesor.setAdresaKancelarije(noviProfesor.getAdresaKancelarije());
+		aktuelniProfesor.setBrojLicneKarte(noviProfesor.getBrojLicneKarte());
+		aktuelniProfesor.setTitula(noviProfesor.getTitula());
+		aktuelniProfesor.setZvanje(noviProfesor.getZvanje());
+		
+		Frame1.getInstance().azurirajPrikazTabeleProfesora("IZMENEJ", 1);
+	}
 	
 	public void izbrisiProfesora(int rowSelectedIndex) {
 		if(rowSelectedIndex < 0) {
@@ -68,5 +82,12 @@ public class ProfesorController {
 		
 		BazaProfesori.getInstance().dodajPredmetProfesoru(pro,pre);
 	}
+
+	public Profesor getProfesorByLicnaKarta(String licnaKarta) {
+		Profesor prof = BazaProfesori.getInstance().getProfesorByLicnaKarta(licnaKarta);
+		return prof;
+	}
+
+
 
 }

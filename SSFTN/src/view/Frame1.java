@@ -169,7 +169,6 @@ public class Frame1 extends JFrame{
 		// vraca indeks sta smo mi selektovali
 		// al onda bi morali i bazu studente da sortiramo kako bi se indksi poklapali
 		// ovo ne mozemo koristiti nakon sortiranja
-		System.out.println("selekcija row: "+tabelaStudenata.getSelectedRow());
 		return tabelaStudenata.getSelectedRow();
 	}
 	
@@ -191,7 +190,9 @@ public class Frame1 extends JFrame{
 		return licnaKarta;
 	}
 	public String getSelectedPredmetBySifraPredmeta() {
-		return null;
+		String sifraPredmeta = (String) tabelaPredmeta.getValueAt(getSelectedPredmet(), 0);
+		System.out.println(sifraPredmeta);
+		return sifraPredmeta;
 	}
 	
 	

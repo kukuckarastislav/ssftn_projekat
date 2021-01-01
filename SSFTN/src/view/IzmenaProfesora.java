@@ -35,6 +35,8 @@ import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.Predmet;
 import model.Profesor;
+import model.Titula;
+import model.Zvanje;
 import util.ValidacijaTextFieldFocusListener;
 
 public class IzmenaProfesora extends JDialog {
@@ -43,17 +45,62 @@ public class IzmenaProfesora extends JDialog {
 	
 	private JTabbedPane tpane;
 	private JTable tabelaPredmetaProfesora;	
-	private ArrayList<ValidacijaTextFieldFocusListener> validnost;
-	private Profesor aktuelniProfesor=new Profesor();
+	private ArrayList<ValidacijaTextFieldFocusListener> lValid;
+	private Profesor aktuelniProfesor;
 	
 	public boolean svaPoljaValidna() {
-		for (ValidacijaTextFieldFocusListener val : validnost) {
+		for (ValidacijaTextFieldFocusListener val : lValid) {
 			if(val.getValidacija() == false) {
-				JOptionPane.showMessageDialog(this, "Greska pri unosu: "+val.getName(), "Upozorenje", 0, null);
+				//JOptionPane.showMessageDialog(this, "Greska pri unosu: "+val.getName(), "Upozorenje", 0, null);
 				return false;
 			}
 		}
 		return true;
+	}
+	
+	private DiaButton btnPotvrdi;
+	private DiaButton btnOdustani;
+	
+	private JTextField txtPrezime;
+	private JTextField txtIme;
+	private JTextField txtDatmR;
+	private JTextField txtAdrS;
+	private JTextField txtBrTel;
+	private JTextField txtEmail;
+	private JTextField txtAdrKan;
+	private JTextField txtlicna;
+	private JComboBox<String> cbTitule;
+	private JComboBox<String> cbZvanja;
+	
+	public void omoguciDugmePotvrdi() {
+		if(svaPoljaValidna()) {
+			btnPotvrdi.setEnabled(true);
+		}else {
+			btnPotvrdi.setEnabled(false);
+		}
+	}
+	
+	public void inicijalizujPolja() {
+		txtPrezime.setText(aktuelniProfesor.getPrezime());
+		txtIme.setText(aktuelniProfesor.getIme());
+		// referenca za konverziju Date to String 
+		// https://www.javatpoint.com/java-date-to-string
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		txtDatmR.setText(dateFormat.format(aktuelniProfesor.getDatumRodjenja()));
+		txtAdrS.setText(aktuelniProfesor.getAdresaStanovanja());
+		txtBrTel.setText(aktuelniProfesor.getKontaktTelefon());
+		txtEmail.setText(aktuelniProfesor.getEmail());
+		txtAdrKan.setText(aktuelniProfesor.getAdresaKancelarije());
+		txtlicna.setText(aktuelniProfesor.getBrojLicneKarte());
+		cbTitule.setSelectedIndex( aktuelniProfesor.getTitula().ordinal() );
+		cbZvanja.setSelectedIndex( aktuelniProfesor.getZvanje().ordinal() );
+		
+		// kad inicijalizujemo opet vrednosti pocetno stanje svih polja bi trebalo da bude true
+		// jer je validno
+		for (ValidacijaTextFieldFocusListener val : lValid) {
+			val.setValidacija(true);
+		}
+		
 	}
 	
 
@@ -68,7 +115,9 @@ public class IzmenaProfesora extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setLayout(new BorderLayout());
-		Dimension dim = new Dimension(120, 20);
+		Dimension dim = new Dimension(150, 20);
+		
+		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
 		
 		tpane = new JTabbedPane();
 		this.add(tpane,BorderLayout.CENTER);
@@ -79,36 +128,38 @@ public class IzmenaProfesora extends JDialog {
 		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));			
 		JLabel lblPrezime = new JLabel("Prezime*:");
 		lblPrezime.setPreferredSize(dim);
-		JTextField txtPrezime = new JTextField();
+		txtPrezime = new JTextField();
 		txtPrezime.setPreferredSize(dim);
 		txtPrezime.setName("txtPrezime");
 		txtPrezime.setText(profesor.getPrezime());
 		ValidacijaTextFieldFocusListener v1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime,this);
 		txtPrezime.addFocusListener(v1);
+		txtPrezime.addKeyListener(v1);
 		panPrezime.add(lblPrezime);
 		panPrezime.add(txtPrezime);
-		//validnost.add(v1);
+		
 		
 		
 		JPanel panIme = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblIme = new JLabel("Ime*:");
 		lblIme.setPreferredSize(dim);
-		JTextField txtIme = new JTextField();
+		txtIme = new JTextField();
 		txtIme.setPreferredSize(dim);
 		txtIme.setName("txtIme");
 		txtIme.setText(profesor.getIme());
 		ValidacijaTextFieldFocusListener v2 = new ValidacijaTextFieldFocusListener(lblIme, txtIme,this);
 		txtIme.addFocusListener(v2);
+		txtIme.addKeyListener(v2);
 		panIme.add(lblIme);
 		panIme.add(txtIme);
-		//validnost.add(v2);
+		
 		
 		
 		
 		JPanel panDatum = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblDatmR = new JLabel("Datum rodjenja*");
 		lblDatmR.setPreferredSize(dim);
-		JTextField txtDatmR = new JTextField();
+		txtDatmR = new JTextField();
 		txtDatmR.setPreferredSize(dim);
 		txtDatmR.setName("txtDatmR");
 		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -116,106 +167,127 @@ public class IzmenaProfesora extends JDialog {
 		txtDatmR.setToolTipText("Na datumu cemo jos da poradimo..");
 		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR,this);
 		txtDatmR.addFocusListener(v3);	
+		txtDatmR.addKeyListener(v3);
 		panDatum.add(lblDatmR);
 		panDatum.add(txtDatmR);
-		//validnost.add(v3);
+		
 		
 		JLabel lblAdrS = new JLabel("Adresa stanovanja*");
 		lblAdrS.setPreferredSize(dim);
-		JTextField txtAdrS = new JTextField();
+		txtAdrS = new JTextField();
 		txtAdrS.setPreferredSize(dim);
 		txtAdrS.setName("txtAdrS");
 		txtAdrS.setText(profesor.getAdresaStanovanja());
 		ValidacijaTextFieldFocusListener v4 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS,this);
 		txtAdrS.addFocusListener(v4);
+		txtAdrS.addKeyListener(v4);
 		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panAdresa.add(lblAdrS);
 		panAdresa.add(txtAdrS);
-		//validnost.add(v4);
+		
 		
 		JPanel panTel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblBrTel = new JLabel("Kontakt telefon*");
 		lblBrTel.setPreferredSize(dim);
-		JTextField txtBrTel = new JTextField();
+		txtBrTel = new JTextField();
 		txtBrTel.setPreferredSize(dim);
 		txtBrTel.setName("txtBrTel");
 		txtBrTel.setText(profesor.getKontaktTelefon());
 		txtBrTel.setToolTipText("Broj telefona je niz od najmanje 3 a najvise 12 decimalnih cifara");
 		ValidacijaTextFieldFocusListener v5 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel,this);
 		txtBrTel.addFocusListener(v5);	
+		txtBrTel.addKeyListener(v5);
 		panTel.add(lblBrTel);
 		panTel.add(txtBrTel);
-		//validnost.add(v5);
+		
 		
 		JPanel panMail = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblEmail = new JLabel("E-mail adresa*");
 		lblEmail.setPreferredSize(dim);
-		JTextField txtEmail = new JTextField();
+		txtEmail = new JTextField();
 		txtEmail.setToolTipText("Format emaila: korisnickoIme@domen");
 		txtEmail.setPreferredSize(dim);
 		txtEmail.setName("txtEmail");
 		txtEmail.setText(profesor.getEmail());
 		ValidacijaTextFieldFocusListener v6 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail,this);
 		txtEmail.addFocusListener(v6);
+		txtEmail.addKeyListener(v6);
 		panMail.add(lblEmail);
 		panMail.add(txtEmail);
-		//validnost.add(v6);
+		
 		
 
 		JPanel panAdr = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblAdrKan = new JLabel("Adresa kancelarije*");
 		lblAdrKan.setPreferredSize(dim);
-		JTextField txtAdrKan = new JTextField();
+		txtAdrKan = new JTextField();
 		txtAdrKan.setPreferredSize(dim);
 		txtAdrKan.setName("txtAdrS");
 		txtAdrKan.setText(profesor.getAdresaKancelarije());
 		ValidacijaTextFieldFocusListener v7 = new ValidacijaTextFieldFocusListener(lblAdrKan, txtAdrS,this);
 		txtAdrKan.addFocusListener(v7);
+		txtAdrKan.addKeyListener(v7);
 		panAdr.add(lblAdrKan);
 		panAdr.add(txtAdrKan);
-		//validnost.add(v7);
+		
 		
 	
 		JPanel panLicna = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lbllicna = new JLabel("Broj licne karte*:");
 		lbllicna.setPreferredSize(dim);
-		JTextField txtlicna = new JTextField();
+		txtlicna = new JTextField();
 		txtlicna.setPreferredSize(dim);
 		txtlicna.setName("txtlicna");
 		txtlicna.setText(profesor.getBrojLicneKarte());
 		txtBrTel.setToolTipText("Tacno 9 cifara");
-		ValidacijaTextFieldFocusListener v8 = new ValidacijaTextFieldFocusListener(lbllicna,txtlicna,this);
+		ValidacijaTextFieldFocusListener v8 = new ValidacijaTextFieldFocusListener(lbllicna,txtlicna,this, 
+															aktuelniProfesor.getBrojLicneKarte());
 		txtlicna.addFocusListener(v8);
+		txtlicna.addKeyListener(v8);
 		panLicna.add(lbllicna);
 		panLicna.add(txtlicna);
-		//validnost.add(v8);
+		
 		
 		
 		
 		
 		JLabel lblTitula = new JLabel("Titula*");
 		lblTitula.setPreferredSize(dim);
-		String[] titule = {"Doktor", "Magistar"};
-		JComboBox<String> Titule = new JComboBox<>(titule);
-		Titule.setName("Titule");	
-		Titule.setPreferredSize(dim);
+		String[] tituleStr = {"BSc","MSc","mr","dr","profDr"};
+		cbTitule = new JComboBox<>(tituleStr);
+		cbTitule.setName("Titule");	
+		cbTitule.setPreferredSize(dim);
 		JPanel panTitula = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panTitula.add(lblTitula);
-		panTitula.add(Titule);	
+		panTitula.add(cbTitule);	
 	
 		JLabel lblZvanje = new JLabel("Zvanje*");
 		lblZvanje.setPreferredSize(dim);
-		String[] zvanja = {"Redovni profesor", "Vanredni profesor"};
-		JComboBox<String> Zvanja = new JComboBox<>(zvanja);
-		Zvanja.setName("Zvanja");	
-		Zvanja.setPreferredSize(dim);
+		String[] zvanjaStr = {"Saradnik u nastavi","Asistent","Asistent sa doktoratom","Docent","Vanredni profesor","Redovni profesor","Profesor emeritus"};
+		cbZvanja = new JComboBox<>(zvanjaStr);
+		cbZvanja.setName("Zvanja");	
+		cbZvanja.setPreferredSize(dim);
 		JPanel panZvanje = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panZvanje.add(lblZvanje);
-		panZvanje.add(Zvanja);
+		panZvanje.add(cbZvanja);
 	
+		lValid.add(v1);
+		lValid.add(v2);
+		lValid.add(v3);
+		lValid.add(v4);
+		lValid.add(v5);
+		lValid.add(v6);
+		lValid.add(v7);
+		lValid.add(v8);
+		
+		
+		// INICIJALIZACIJA SVIH PODATAKA
+		inicijalizujPolja();
+		
+		
 		JPanel panButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		DiaButton btnPotvrdi=new DiaButton("Potvrdi");
-		DiaButton btnOdustani=new DiaButton("Odustani");
+		btnPotvrdi=new DiaButton("Potvrdi");
+		btnOdustani=new DiaButton("Odustani");
 		panButtons.add(btnPotvrdi);
 		panButtons.add(btnOdustani);
 		
@@ -223,7 +295,8 @@ public class IzmenaProfesora extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
+				inicijalizujPolja(); // mozda bolje da sve vrati na incijalno
+				//dispose();
 			}
 		});
 		
@@ -233,8 +306,7 @@ public class IzmenaProfesora extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					
 					if(svaPoljaValidna()) {
-						String izabranaTitula = (String)Titule.getSelectedItem();
-						String izabranoZvanje = (String)Zvanja.getSelectedItem();
+						
 						SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 						dateFormat.setLenient(false);
 						Date datumRodjenja = null;
@@ -244,9 +316,22 @@ public class IzmenaProfesora extends JDialog {
 							e.printStackTrace();
 						}
 						
-						//ProfesorController.getInstance().izmeniProfesora(txtPrezime.getText(),txtIme.getText(),datumRodjenja,txtAdrS.getText(),
-		//txtBrTel.getText(),txtEmail.getText(),txtAdrKan.getText(),txtlicna.getText(),izabranaTitula,izabranoZvanje);
-						dispose();
+						Profesor noviProfesor = new Profesor();
+						
+						noviProfesor.setIme(txtIme.getText());
+						noviProfesor.setPrezime(txtPrezime.getText());
+						noviProfesor.setDatumRodjenja(datumRodjenja);
+						noviProfesor.setAdresaStanovanja(txtAdrS.getText());
+						noviProfesor.setKontaktTelefon(txtBrTel.getText());
+						noviProfesor.setEmail(txtEmail.getText());
+						noviProfesor.setAdresaKancelarije(txtAdrKan.getText());
+						noviProfesor.setBrojLicneKarte(txtlicna.getText());
+						v8.setOrgLicnaKarta(noviProfesor.getBrojLicneKarte());
+						noviProfesor.setTitula(Titula.byOrdinal( cbTitule.getSelectedIndex()+1 ));
+						noviProfesor.setZvanje( Zvanje.byOrdinal( cbZvanja.getSelectedIndex()+1 ));
+						
+						ProfesorController.getInstance().izmeniProfesora(aktuelniProfesor, noviProfesor);
+						
 					}else {
 						
 					}
@@ -288,7 +373,7 @@ public class IzmenaProfesora extends JDialog {
 				ProfesorController.getInstance().dodajPredmetProfesoru(profesor,pred);
 				BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
 				azurirajPrikazTabelePredmeta("DOPUNA" ,1);
-				dispose();
+				//dispose();
 			}
 		});
 		

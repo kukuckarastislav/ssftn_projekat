@@ -64,7 +64,7 @@ public class DodavanjeProfesora extends JDialog {
 		setLocationRelativeTo(parent);
 		
 		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
-		Dimension dim = new Dimension(120, 20);			
+		Dimension dim = new Dimension(150, 20);			
 		
 		JPanel panPrezime = new JPanel(new FlowLayout(FlowLayout.CENTER));			
 		JLabel lblPrezime = new JLabel("Prezime*:");
@@ -75,6 +75,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtPrezime.setToolTipText("Prezime je niz alfabetskih karaktera");
 		ValidacijaTextFieldFocusListener v1 = new ValidacijaTextFieldFocusListener(lblPrezime, txtPrezime,this);
 		txtPrezime.addFocusListener(v1);
+		txtPrezime.addKeyListener(v1);
 		panPrezime.add(lblPrezime);
 		panPrezime.add(txtPrezime);
 		lValid.add(v1);
@@ -88,6 +89,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtIme.setToolTipText("Ime je niz alfabetskih karaktera");
 		ValidacijaTextFieldFocusListener v2 = new ValidacijaTextFieldFocusListener(lblIme, txtIme,this);
 		txtIme.addFocusListener(v2);
+		txtIme.addKeyListener(v2);
 		panIme.add(lblIme);
 		panIme.add(txtIme);
 		lValid.add(v2);		
@@ -100,7 +102,8 @@ public class DodavanjeProfesora extends JDialog {
 		txtDatmR.setName("txtDatmR");
 		txtDatmR.setToolTipText("Trazen format: DD.MM.GGGG");
 		ValidacijaTextFieldFocusListener v3 = new ValidacijaTextFieldFocusListener(lblDatmR, txtDatmR,this);
-		txtDatmR.addFocusListener(v3);	
+		txtDatmR.addFocusListener(v3);
+		txtDatmR.addKeyListener(v3);
 		panDatum.add(lblDatmR);
 		panDatum.add(txtDatmR);
 		lValid.add(v3);
@@ -113,6 +116,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtAdrS.setToolTipText("Unesite svoju Adresu stanovanja");
 		ValidacijaTextFieldFocusListener v4 = new ValidacijaTextFieldFocusListener(lblAdrS, txtAdrS,this);
 		txtAdrS.addFocusListener(v4);
+		txtAdrS.addKeyListener(v4);
 		JPanel panAdresa = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panAdresa.add(lblAdrS);
 		panAdresa.add(txtAdrS);
@@ -127,6 +131,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtBrTel.setToolTipText("Broj telefona je niz od najmanje 3 a najvise 12 decimalnih cifara");
 		ValidacijaTextFieldFocusListener v5 = new ValidacijaTextFieldFocusListener(lblBrTel, txtBrTel,this);
 		txtBrTel.addFocusListener(v5);	
+		txtBrTel.addKeyListener(v5);	
 		panTel.add(lblBrTel);
 		panTel.add(txtBrTel);
 		lValid.add(v5);
@@ -140,6 +145,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtEmail.setName("txtEmail");
 		ValidacijaTextFieldFocusListener v6 = new ValidacijaTextFieldFocusListener(lblEmail, txtEmail,this);
 		txtEmail.addFocusListener(v6);
+		txtEmail.addKeyListener(v6);
 		panMail.add(lblEmail);
 		panMail.add(txtEmail);
 		lValid.add(v6);
@@ -153,6 +159,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtAdrKan.setToolTipText("Unesite adresu kancelarije");
 		ValidacijaTextFieldFocusListener v7 = new ValidacijaTextFieldFocusListener(lblAdrKan, txtAdrS,this);
 		txtAdrKan.addFocusListener(v7);
+		txtAdrKan.addKeyListener(v7);
 		panAdr.add(lblAdrKan);
 		panAdr.add(txtAdrKan);
 		lValid.add(v7);
@@ -166,6 +173,7 @@ public class DodavanjeProfesora extends JDialog {
 		txtlicna.setToolTipText("Tacno 9 cifara");
 		ValidacijaTextFieldFocusListener v8 = new ValidacijaTextFieldFocusListener(lbllicna,txtlicna,this);
 		txtlicna.addFocusListener(v8);
+		txtlicna.addKeyListener(v8);
 		panLicna.add(lbllicna);
 		panLicna.add(txtlicna);
 		lValid.add(v8);

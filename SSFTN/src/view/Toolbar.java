@@ -95,12 +95,17 @@ public class Toolbar extends JToolBar {
 					}
 				}
 				else if(tab == 1) {
-				
-					int indexProfesora=Frame1.getInstance().getSelectedProfesor();
-					Profesor p=ProfesorController.getInstance().getProfesor(indexProfesora);
-				
-					IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
-					ip.setVisible(true);
+					// Milica #izmena_profesora
+					int selProf = Frame1.getInstance().getSelectedProfesor();
+					if(selProf == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite izmeniti", "Upozorenje", 0, null);
+					}else {
+						String licnaKarta = Frame1.getInstance().getSelectedProfesorByLicnaKarta();
+						Profesor prof = ProfesorController.getInstance().getProfesorByLicnaKarta(licnaKarta);
+						IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",prof);
+						ip.setVisible(true);
+					}
+					
 				}			
 			}
 		});

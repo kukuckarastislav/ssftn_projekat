@@ -110,9 +110,9 @@ public class MenuBar extends JMenuBar {
 					if(selProf == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite izmeniti", "Upozorenje", 0, null);
 					}else {
-						Profesor p=ProfesorController.getInstance().getProfesor(selProf);
-						
-						IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",p);
+						String licnaKarta = Frame1.getInstance().getSelectedProfesorByLicnaKarta();
+						Profesor prof = ProfesorController.getInstance().getProfesorByLicnaKarta(licnaKarta);
+						IzmenaProfesora ip = new IzmenaProfesora(parent, "Izmena Profesora",prof);
 						ip.setVisible(true);
 					}
 					
