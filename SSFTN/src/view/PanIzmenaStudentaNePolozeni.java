@@ -51,7 +51,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		panIzmenaStudenataNePolozenih = this;
 		
 		//nepolozeniPredmeti=new ArrayList<>();
-		nepolozeniPredmeti=student.getlNePolIspita();  //samo ovo treba da bude lista ocjena i pretposvicemo da radi sve xd
+		nepolozeniPredmeti=student.getlNePolIspita();  
 		
 		//JPanel ukrasniGornjiPanel = new JPanel();
 		JPanel ukrasniDonjiPanel = new JPanel();
@@ -113,10 +113,14 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				int iPred = getSelectedPredmet();
-				predmet=new Predmet();
-				predmet = PredmetController.getInstance().getPredmet(iPred);
-				UpisOcene uo=new UpisOcene(parent,student,predmet);
-				//dispose();
+				if(iPred == -1) {
+					JOptionPane.showMessageDialog(parent, "Selektujte Predmet", "Upozorenje", 0, null);
+				}else {
+					predmet = nepolozeniPredmeti.get(iPred);
+					UpisOcene uo=new UpisOcene(parent,student,predmet);
+					uo.setVisible(true);
+				}
+				
 			}
 		});
 		

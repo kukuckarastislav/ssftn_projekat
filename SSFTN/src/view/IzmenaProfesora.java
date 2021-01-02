@@ -369,9 +369,12 @@ public class IzmenaProfesora extends JDialog {
 				
 				DodavanjePredmetaProfesoru dpp=new DodavanjePredmetaProfesoru(parent,aktuelniProfesor);
 				Predmet pred=dpp.selektovaniPredmet();
-				ProfesorController.getInstance().dodajPredmetProfesoru(profesor,pred);
-				//BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
-				azurirajPrikazTabelePredmeta("DOPUNA" ,1);
+				if(pred != null) {
+					ProfesorController.getInstance().dodajPredmetProfesoru(profesor,pred);
+					azurirajPrikazTabelePredmeta("DOPUNA" ,1);
+				}
+					//BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
+				
 				//dispose();
 			}
 		});

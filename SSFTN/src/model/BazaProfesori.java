@@ -61,7 +61,7 @@ private static BazaProfesori instance = null;
 		
 		Profesor p1=new Profesor("Petrovic", "Veljko",datumRodjenja, "Novi sad", "66666",
 				"helou@gmail","Radnicka 30", "123456789", Titula.dr, Zvanje.redovni_profesor);
-		p1.setPredmetiNaKojimaJeProfesor(predmeti);
+		//p1.setPredmetiNaKojimaJeProfesor(predmeti);
 		Profesor p2=new Profesor("Erdeljan", "Alex",datumRodjenja, "Novi sad", "55555",
 				"helddou@gmail","Radnicka 333", "123456787", Titula.dr, Zvanje.redovni_profesor);		
 		Profesor p3=new Profesor("Vrbaski", "Dunja",datumRodjenja, "Novi sad", "55455",

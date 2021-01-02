@@ -109,7 +109,7 @@ public class UpisOcene extends JDialog{
 		boxCentar.add(panOcene);		
 		boxCentar.add(panDatum);
 		boxCentar.add(panButtons);
-		this.add(boxCentar, BorderLayout.WEST);
+		this.add(boxCentar, BorderLayout.CENTER);
 		
 		
 		btnPotvrdi.addActionListener(new ActionListener() {
