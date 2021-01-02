@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Date;
 
+import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.BazaStudenti;
 import model.Predmet;
@@ -66,6 +67,8 @@ public class ProfesorController {
 	public void izbrisiProfesoraByLicnaKarta(String licnaKarta) {
 		if(licnaKarta != null) {
 			Profesor profesor = BazaProfesori.getInstance().getProfesorByLicnaKarta(licnaKarta);
+			
+			// kad brisemo profesora treba i u predmetu da ga obrisemo u kojima on predaje
 			BazaProfesori.getInstance().izbrisiProfesora(profesor);
 			
 			Frame1.getInstance().azurirajPrikazTabeleProfesora("UKLONJEN", 2);

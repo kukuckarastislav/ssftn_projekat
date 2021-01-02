@@ -209,6 +209,12 @@ private static BazaProfesori instance = null;
 
 
 	public void izbrisiProfesora(Profesor prof) {
+		// ako ima neke predemte na kojima on predaje treba tamo setovati null
+		if(prof == null) return;
+		
+		for (Predmet predmet : prof.getPredmetiNaKojimaJeProfesor()) {
+			predmet.setPredmetniProfesor(null); 	// nece biti vise toga profesora
+		}
 		alProfesori.remove(prof);
 	}
 	

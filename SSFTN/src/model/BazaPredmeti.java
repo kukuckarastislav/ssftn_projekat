@@ -285,7 +285,8 @@ private static BazaPredmeti instance = null;
 		
 		return alMoguciPredmeti;
 	}
-	
+
+
 	
 
 }
