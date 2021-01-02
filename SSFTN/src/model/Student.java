@@ -159,6 +159,23 @@ public class Student implements Serializable{
 	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
+	public double racunajProsecnuOcenu() {
+		double suma = 0;
+		for (Ocena ocena : lPolIspita) {
+			suma += ocena.getOcena();
+		}
+		prosecnaOcena = suma/lPolIspita.size();
+		return prosecnaOcena;
+	}
+	public int getUkupnoESPB() {
+		int espb = 0;
+		for (Ocena ocena : lPolIspita) {
+			if( ocena.getPredmet() != null ) {
+				espb += ocena.getPredmet().getBrojESPBbodova();
+			}
+		}
+		return espb;
+	}
 	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}

@@ -53,7 +53,7 @@ public class IzmenaStudentaDialog extends JDialog {
 		panelSaTabovima.add(tabPanel, BorderLayout.CENTER);
 		
 		PanIzmenaStudentaInformacije panInfo = new PanIzmenaStudentaInformacije(student);
-		PanIzmenaStudentaPolozeni panPolozeni = new PanIzmenaStudentaPolozeni();
+		PanIzmenaStudentaPolozeni panPolozeni = new PanIzmenaStudentaPolozeni(parent, student);
 		PanIzmenaStudentaNePolozeni panNePolozeni = new PanIzmenaStudentaNePolozeni(parent,student);
 		
 		tabPanel.addTab("Informacije", panInfo);

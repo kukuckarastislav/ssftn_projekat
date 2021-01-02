@@ -5,6 +5,16 @@ indeks: ra-129-2018
 godUpisa: 2018
 trenGod: 3
 status: Budzet
+prosecnaOcena: 0.0
+=== LISTA POLOZENIH PREDMETA ===
+Ocena: 10
+student: Rastislav Kukucka
+predmet: OISISI
+datum polaganja: Thu Jul 29 00:00:00 CEST 1999
+Ocena: 9
+student: Rastislav Kukucka
+predmet: Analiza 1
+datum polaganja: Thu Jul 29 00:00:00 CEST 1999
 Student: Milica Vucinic Thu Jul 29 00:00:00 CEST 1999 Novi Sad
 tel: 24233
 email: milica@uns

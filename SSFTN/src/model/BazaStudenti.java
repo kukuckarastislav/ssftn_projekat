@@ -44,6 +44,17 @@ public class BazaStudenti {
 		Student st2 = new Student("Vucinic", "Milica", datumRodjenja, "Novi Sad", "24233", 
 				        		  "milica@uns", "ra-139-2018", 2018, 3, Status.B);
 		
+		
+		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
+		Predmet pr3 = new Predmet("AN1", "Analiza 1", Semestar.ZIMSKI, 1, 9);
+		
+		Ocena ocena1 = new Ocena(st1, pr2, 10, datumRodjenja);
+		Ocena ocena2 = new Ocena(st1, pr3, 9, datumRodjenja);
+		
+		st1.dodajPolozenIspit(ocena1);
+		st1.dodajPolozenIspit(ocena2);
+		
+		
 		alStudenti.add(st1);
 		alStudenti.add(st2);
 	}

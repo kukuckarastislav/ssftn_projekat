@@ -1,5 +1,8 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ocena {
@@ -68,6 +71,12 @@ public class Ocena {
 		String str = "Ocena: "+ocena+"\nstudent: "+student.getIme()+" "+student.getPrezime()+"\n"+
 					 "predmet: "+predmet.getNazivPredmeta()+"\ndatum polaganja: "+datumPolaganjaIspita;
 		return str;
+	}
+
+	public String getDatumPolaganjaIspitaString() {
+		// https://www.javatpoint.com/java-date-to-string
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		return dateFormat.format( datumPolaganjaIspita );
 	}
 	
 	
