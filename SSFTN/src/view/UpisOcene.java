@@ -97,7 +97,6 @@ public class UpisOcene extends JDialog{
 		
 		JPanel panButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		DiaButton btnPotvrdi = new DiaButton("Potvrdi");
-		btnPotvrdi.setEnabled(false);
 		DiaButton btnOdustani = new DiaButton("Odustani");
 		panButtons.add(btnPotvrdi);
 		panButtons.add(btnOdustani);
@@ -130,8 +129,10 @@ public class UpisOcene extends JDialog{
 					}
 					
 					int o=Ocene.getSelectedIndex()+6;		
-					ocena=new Ocena(student,predmet,o,datum);	
+					ocena=new Ocena(student,predmet,o,datum);
 					
+					student.getlPolIspita().add(ocena);
+					student.getlNePolIspita().remove(predmet);
 					
 					
 				}else {
@@ -148,4 +149,9 @@ public class UpisOcene extends JDialog{
 		
 	}
 
+	public Ocena getOcena() {
+		return ocena;
+	}
+
 }
+

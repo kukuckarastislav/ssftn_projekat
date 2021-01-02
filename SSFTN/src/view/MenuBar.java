@@ -164,8 +164,19 @@ public class MenuBar extends JMenuBar {
 					}
 	
 				}else if(tab == 2) {
-					//brisi predmet
-					// Milica
+					int iPred=Frame1.getInstance().getSelectedPredmet();
+					if(iPred==-1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Predmet koji zelite obrisati", "Upozorenje", 0, null);
+					}else {
+						String poruka = "Da li ste sigurni da zelite da obrišete predmet?";
+						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje predmeta", JOptionPane.YES_NO_OPTION);
+						if(option == JOptionPane.YES_OPTION) {
+							String sifraPredmeta = Frame1.getInstance().getSelectedPredmetBySifraPredmeta();
+							PredmetController.getInstance().izbrisiPredmet(sifraPredmeta);
+							Frame1.getInstance().azurirajPrikazTabelePredmeta("IZBRISAN", 1);
+						  }
+					}
+					
 				}
 			}
 		});

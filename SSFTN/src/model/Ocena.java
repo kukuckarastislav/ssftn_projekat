@@ -57,7 +57,7 @@ public class Ocena {
 
 		this.datumPolaganjaIspita = datumPolaganjaIspita;
 	}
-
+	
 
 
 	// STRING

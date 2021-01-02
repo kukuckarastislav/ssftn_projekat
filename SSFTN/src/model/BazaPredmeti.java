@@ -153,6 +153,10 @@ private static BazaPredmeti instance = null;
 	public void dodajPredmet(Predmet predmet) {
 		alPredmeti.add(predmet);
 	}
+	
+	public void izbrisiPredmet(String sifra) {
+		alPredmeti.remove(getPredmet(sifra));		
+	}
 
 	public void dodajPredmeta(String sifraPredmeta, String nazivPredmeta, Semestar semestar,
 			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBbodova) 
@@ -271,6 +275,9 @@ private static BazaPredmeti instance = null;
 			}
 		}
 	}
+
+
+
 
 
 	

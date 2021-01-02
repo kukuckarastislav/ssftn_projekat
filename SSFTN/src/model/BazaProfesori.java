@@ -216,6 +216,11 @@ private static BazaProfesori instance = null;
 			predmet.setPredmetniProfesor(null); 	// nece biti vise toga profesora
 		}
 		alProfesori.remove(prof);
+		
+		// takodje ako smo u search modu treba i iz te liste obrisati
+		if(SearchMode) {
+			trazeniProfesori.remove(prof);
+		}
 	}
 	
 	
@@ -263,8 +268,19 @@ private static BazaProfesori instance = null;
 		// ako nismo nasli profesora vracamo null
 		return null;
 	}
+	
+
+	public void izbrisiPredmetUnutarProfesora(String sifra) {
+		int i1;
+		for(Profesor p: alProfesori) {
+			i1=p.getPredmetiNaKojimaJeProfesor().indexOf(BazaPredmeti.getInstance().getPredmet(sifra));
+			if(i1>=0) p.getPredmetiNaKojimaJeProfesor().remove(i1);
+		}
+		
+	}
 
 
 
 
 }
+

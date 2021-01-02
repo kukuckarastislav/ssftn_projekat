@@ -230,6 +230,17 @@ public class BazaStudenti {
 	}
 
 
+	public void izbrisiPredmetUnutarStudenta(String sifra) {
+		
+		int i1;
+		for(Student p: alStudenti) {
+			i1=p.getlNePolIspita().indexOf(BazaPredmeti.getInstance().getPredmet(sifra));
+			if(i1>=0) p.getlNePolIspita().remove(i1);
+		}
+		
+	}
+
+
 
 	
 	
