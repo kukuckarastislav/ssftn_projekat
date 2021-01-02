@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,25 +39,11 @@ public class DodavanjePredmetaProfesoru  extends JDialog {
 	public DodavanjePredmetaProfesoru(Frame parent,Profesor p) {
 		super(parent, "Odaberi Profesora", true);
 		
+		predmetiZaDodavanje=BazaPredmeti.getInstance().formPredmetiZaDodavanje(p);
 		
-		//cistimo listu svih predmeta od predmeta na kojima je nas profesor , sta radim pogresno???
-		predmetiZaDodavanje = new ArrayList<>();
-		predmetiZaDodavanje=BazaPredmeti.getInstance().getPredmeti();
-		ArrayList<Predmet>predmetiZaBrisanje=new ArrayList<Predmet>();
-		
-		for(Predmet pr: predmetiZaDodavanje) {
-			for(Predmet pre: p.getPredmetiNaKojimaJeProfesor()) {
-				if(pre.getSifraPredmeta().equals(pr.getSifraPredmeta()))
-					predmetiZaBrisanje.add(pr);
-				
-			}		
-		}
-		
-		predmetiZaDodavanje.removeAll(predmetiZaBrisanje); 
-
 		setSize(350,300);
 		setResizable(false);
-		setLocationRelativeTo(null); 	// ToDo : popraviti treba da se pozicionira u odnosu na JDialog a ne JFrame
+		setLocationRelativeTo(null); 
 		setLayout(new BorderLayout());
 
 
@@ -86,8 +73,17 @@ public class DodavanjePredmetaProfesoru  extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				int iPred = getSelectedPredmet();
-				predmet = PredmetController.getInstance().getPredmet(iPred);
+				if(iPred == -1) {
+					
+					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da dodate profesoru", "Ukloni Predmet", 0, null);
+				}else {
+					
+				predmet=predmetiZaDodavanje.get(iPred);
+				p.getPredmetiNaKojimaJeProfesor().add(predmet);
+				//=
+				
 				dispose();
+				}
 			}
 		});
 

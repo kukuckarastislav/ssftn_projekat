@@ -110,9 +110,6 @@ public class IzmenaProfesora extends JDialog {
 		super(parent,naslov,true);
 		
 		aktuelniProfesor=profesor;
-		BazaPredmeti.getInstance().prepareSubjectDisplay(aktuelniProfesor);
-		
-
 		setSize(490,550);
 		setResizable(false);
 		setLocationRelativeTo(parent);
@@ -447,16 +444,16 @@ public class IzmenaProfesora extends JDialog {
 
 		@Override
 		public int getRowCount() {
-			return BazaPredmeti.getInstance().getPredmetiIzabranogProfesora().size();
+			return aktuelniProfesor.getPredmetiNaKojimaJeProfesor().size();
 			}
 
 		@Override
 		public String getValueAt(int rowIndex, int columnIndex) {
-			return BazaPredmeti.getInstance().getPredmetiProfesora(rowIndex, columnIndex); 
+			return getPredmetiProfesora(rowIndex, columnIndex); 
 		}
 		@Override
 		public String getColumnName(int column) {
-			return BazaPredmeti.getInstance().getNazivTrazenihKolona(column);
+			return getNaziviTrazenihKolona(column);
 		}
 
 	}
@@ -469,6 +466,36 @@ public class IzmenaProfesora extends JDialog {
 	
 	public int getSelectedPredmet() {
 		return tabelaPredmetaProfesora.getSelectedRow();
+	}
+	
+	
+	public String getPredmetiProfesora(int x,int y) {
+		
+		Predmet predmet = aktuelniProfesor.getPredmetiNaKojimaJeProfesor().get(x);
+		switch (y) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+		case 3:
+			return predmet.getSemestar().toString();
+			
+		default:
+			return null;
+		}
+	}
+	
+	public String getNaziviTrazenihKolona(int column){
+				
+		ArrayList<String> trazeneKolone=new ArrayList<String>();
+		trazeneKolone.add("Sifra");
+		trazeneKolone.add("Naziv");
+		trazeneKolone.add("Godina");
+		trazeneKolone.add("Semestar");
+		
+		return trazeneKolone.get(column);
 	}
 	
 	

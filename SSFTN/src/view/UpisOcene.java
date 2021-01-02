@@ -10,9 +10,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.Box;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -35,7 +37,7 @@ public class UpisOcene extends JDialog{
 	public UpisOcene(Frame parent,Student student,Predmet predmet) {
 		super(parent,"Upis ocene",true);
 		
-		setSize(200,300);
+		setSize(400,500);
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setLayout(new BorderLayout());
@@ -100,11 +102,15 @@ public class UpisOcene extends JDialog{
 		panButtons.add(btnPotvrdi);
 		panButtons.add(btnOdustani);
 		
-		this.add(panSifra);
-		this.add(panNaziv);
-		this.add(panOcene);
-		this.add(panDatum);
-		this.add(panButtons);
+		Box boxCentar = Box.createVerticalBox();
+		boxCentar.add(Box.createVerticalStrut(20));
+		boxCentar.add(panSifra);
+		boxCentar.add(panNaziv);
+		boxCentar.add(panOcene);		
+		boxCentar.add(panDatum);
+		boxCentar.add(panButtons);
+		this.add(boxCentar, BorderLayout.WEST);
+		
 		
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
@@ -126,9 +132,12 @@ public class UpisOcene extends JDialog{
 					int o=Ocene.getSelectedIndex()+6;		
 					ocena=new Ocena(student,predmet,o,datum);	
 					
-					//sada stvarno dodati polozen ispit profesoru preko kontrolera, refreshovati tabele i to
 					
-				}			
+					
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Upisite datum u trazenom formatu!", "Ukloni Predmet", 0, null);
+				}
 			dispose();				
 			}
 

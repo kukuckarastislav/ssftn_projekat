@@ -25,8 +25,6 @@ private static BazaPredmeti instance = null;
 	private ArrayList<Predmet> trazeniPredmeti;
 	private boolean SearchMode;
 	
-	private ArrayList<Predmet> predmetiIzabranogProfesora;
-	private ArrayList<String> trazeneKolone;
 
 
 	private void initPredmets() {
@@ -67,7 +65,6 @@ private static BazaPredmeti instance = null;
 		
 		// initPredmets() 		// neka metoda koja ce da ucita u bazu Predmete pri paljenju app
 		alPredmeti = new ArrayList<Predmet>();
-		predmetiIzabranogProfesora = new ArrayList<Predmet>();
 		initPredmets();
 		
 		alKolone = new ArrayList<String>();
@@ -77,11 +74,7 @@ private static BazaPredmeti instance = null;
 		alKolone.add("Godina u kojoj se predmet izvodi");
 		alKolone.add("Semestar u kome se predmet izvodi");
 		
-		trazeneKolone=new ArrayList<String>();
-		trazeneKolone.add("Sifra");
-		trazeneKolone.add("Naziv");
-		trazeneKolone.add("Godina");
-		trazeneKolone.add("Semestar");
+
 				
 
 	}
@@ -99,15 +92,20 @@ private static BazaPredmeti instance = null;
 		return 5;
 	}
 	
-	public String getNazivKolona(int index) {
-		return alKolone.get(index);
-	}
-	public String getNazivTrazenihKolona(int index) {
-		return trazeneKolone.get(index);
-	}
-	
 	public Predmet getPredmet(int rowIndex) {
 		return alPredmeti.get(rowIndex);
+	}
+	
+	public Predmet getPredmet(String sifra) {
+		for(Predmet p: alPredmeti) {
+			if(p.getSifraPredmeta().equals(sifra))
+			return p;
+		}
+		return null;
+	}
+	
+	public String getNazivKolona(int index) {
+		return alKolone.get(index);
 	}
 	
 	public String getVrednostU(int x, int y) {
@@ -150,23 +148,7 @@ private static BazaPredmeti instance = null;
 		}
 	}
 	
-	public String getPredmetiProfesora(int x,int y) {
-		
-		Predmet predmet = predmetiIzabranogProfesora.get(x);
-		switch (y) {
-		case 0:
-			return predmet.getSifraPredmeta();
-		case 1:
-			return predmet.getNazivPredmeta();
-		case 2:
-			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
-		case 3:
-			return predmet.getSemestar().toString();
-			
-		default:
-			return null;
-		}
-	}
+
 	
 	public void dodajPredmet(Predmet predmet) {
 		alPredmeti.add(predmet);
@@ -236,28 +218,7 @@ private static BazaPredmeti instance = null;
 		this.trazeniPredmeti = trazeniPredmeti;
 	}
 	
-	public void prepareSubjectDisplay(Profesor prof) {
-		for(Predmet p: alPredmeti) {
-			if(p.getPredmetniProfesor()!=null) {
-				if(prof.getIme().equals(p.getPredmetniProfesor().getIme()))
-					predmetiIzabranogProfesora.add(p);
-			}
-		}		
-	}
-	
 
-	
-
-	public ArrayList<Predmet> getPredmetiIzabranogProfesora() {
-		return predmetiIzabranogProfesora;
-	}
-	public void setPredmetiIzabranogProfesora(ArrayList<Predmet> predmetiIzabranogProfesora) {
-		this.predmetiIzabranogProfesora = predmetiIzabranogProfesora;
-	}
-	
-	public void podajPredmetProfesoru(Predmet p) {
-		predmetiIzabranogProfesora.add(p);
-	}
 	
 	/*
 	 *  Ova metoda prima studenta, i vraca ArrayList predmeta koje student moze da polaze
@@ -284,6 +245,16 @@ private static BazaPredmeti instance = null;
 
 		
 		return alMoguciPredmeti;
+	}
+
+
+	public ArrayList<Predmet> formPredmetiZaDodavanje(Profesor p) {
+		ArrayList<Predmet> ret=new ArrayList<Predmet>(alPredmeti);
+		
+		for(Predmet pre: p.getPredmetiNaKojimaJeProfesor())
+			ret.remove(pre);
+		
+		return ret;
 	}
 
 
