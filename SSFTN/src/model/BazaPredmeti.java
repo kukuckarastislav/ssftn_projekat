@@ -258,6 +258,21 @@ private static BazaPredmeti instance = null;
 	}
 
 
+	public void ukloniProfesoraSaPredmeta(Profesor aktuelniProfesor, Predmet predmet) {
+		// ako posaljemo nullo ve nista bezimo 
+		if(aktuelniProfesor == null || predmet == null )return;
+		
+		// proverimo da li predmet uopste ima profesora
+		if(predmet.getPredmetniProfesor() != null) {
+			// proverimo da li je to taj profesor
+			if(predmet.getPredmetniProfesor().equals(aktuelniProfesor)) {
+				// brisemo ga
+				predmet.setPredmetniProfesor(null);
+			}
+		}
+	}
+
+
 	
 
 }

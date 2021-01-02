@@ -61,4 +61,8 @@ public class PredmetController {
 		}
 	}
 
+	public void ukloniProfesoraSaPredmeta(Profesor aktuelniProfesor, Predmet predmet) {
+		BazaPredmeti.getInstance().ukloniProfesoraSaPredmeta(aktuelniProfesor, predmet);
+	}
+
 }

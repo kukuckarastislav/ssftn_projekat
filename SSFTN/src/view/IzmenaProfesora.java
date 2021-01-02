@@ -31,6 +31,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
 import model.BazaPredmeti;
@@ -392,6 +393,7 @@ public class IzmenaProfesora extends JDialog {
 						Predmet predmet = aktuelniProfesor.getPredmetiNaKojimaJeProfesor().get(selProf);
 						aktuelniProfesor.ukloniPredmetProfesoru(predmet);
 						azurirajPrikazTabelePredmeta("UKLANJANJE PREDMETA",3);
+						PredmetController.getInstance().ukloniProfesoraSaPredmeta(aktuelniProfesor, predmet);
 					}
 				}
 			}
