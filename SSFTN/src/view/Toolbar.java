@@ -194,7 +194,7 @@ public class Toolbar extends JToolBar {
 			int tab = Frame1.getInstance().getSelectedTab();
 			
 			if(tab == 0) {
-				
+				search.searchStudent(searchTextField.getText());
 			}else if(tab == 1) {
 				search.searchProfesor(searchTextField.getText());
 			}else if(tab == 2) {

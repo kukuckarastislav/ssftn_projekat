@@ -54,6 +54,7 @@ public class StudentController {
 	public void izbrisiStudentaByIndex(String indeks) {
 		Student student = BazaStudenti.getInstance().getStudentByIndex(indeks);
 		BazaStudenti.getInstance().izbrisiStudenta(student); 		// mogli smo i indeks poslati al ovako je EFIKASNIJE :)
+		BazaStudenti.getInstance().izbrisiStudentaIzTrazenihStudenata(student);
 		
 		Frame1.getInstance().azurirajPrikazTabeleStudenata("UKLONJEN", 2);
 	}

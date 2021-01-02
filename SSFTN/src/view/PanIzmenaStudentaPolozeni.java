@@ -92,7 +92,7 @@ public class PanIzmenaStudentaPolozeni extends JPanel {
 					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da poništite", "Upozorenje", 0, null);
 				}else {
 					String poruka = "Da li ste sigurni da želite da poništite ocenu?";
-					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje profesora", JOptionPane.YES_NO_OPTION);
+					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Ponistavanje Ocene", JOptionPane.YES_NO_OPTION);
 					if(option == JOptionPane.YES_OPTION) {
 						Ocena ocena = student.getOcena(selPredmet);
 						student.ponistiPolozenIspit(ocena);

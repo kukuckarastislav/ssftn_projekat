@@ -16,7 +16,12 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 	// broj redova
 		@Override
 		public int getRowCount() {
-			return BazaStudenti.getInstance().getStudenti().size();
+			if(BazaStudenti.getInstance().getSearchMode() == true) {
+				return BazaStudenti.getInstance().getTrazeniStudenti().size();
+			}else {
+				return BazaStudenti.getInstance().getStudenti().size();
+			}
+			
 		}
 		
 		// broj kolona

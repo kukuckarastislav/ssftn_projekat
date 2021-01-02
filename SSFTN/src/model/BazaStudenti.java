@@ -21,6 +21,9 @@ public class BazaStudenti {
 	private ArrayList<Student> alStudenti;
 	private ArrayList<String> alKolone;
 	
+	private ArrayList<Student> alTrazeniStudenti;
+	private boolean searchMode;
+	
 	private void initStudents() {
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -61,7 +64,8 @@ public class BazaStudenti {
 	
 	
 	private BazaStudenti() {
-		
+		searchMode = false;
+		alTrazeniStudenti = new ArrayList<Student>();
 		alStudenti = new ArrayList<Student>();
 		initStudents(); 		// neka metoda koja ce da ucita u bazu studente pri paljenju app
 		
@@ -108,7 +112,14 @@ public class BazaStudenti {
 	}
 	
 	public String getVrednostU(int x, int y) {
-		Student student = alStudenti.get(x);
+		Student student = null;
+		if(searchMode) {
+			student = alTrazeniStudenti.get(x);
+		}else {
+			student = alStudenti.get(x);
+		}
+		if(student == null) return null;
+		
 		switch (y) {
 		case 0:
 			return student.getIndeks();
@@ -193,6 +204,29 @@ public class BazaStudenti {
 			}
 		}
 		return true;
+	}
+
+	public boolean getSearchMode() {return searchMode;}
+
+	public void setSearchMode(boolean b) {
+		searchMode = b;
+	}
+
+
+	public void izbrisiStudentaIzTrazenihStudenata(Student student) {
+		
+		if(searchMode) {
+			alTrazeniStudenti.remove(student);
+		}
+		
+	}
+	
+	public ArrayList<Student> getTrazeniStudenti(){
+		return alTrazeniStudenti;
+	}
+	
+	public void setTrazeniStudenti(ArrayList<Student> trazeni) {
+		alTrazeniStudenti = trazeni;
 	}
 
 
