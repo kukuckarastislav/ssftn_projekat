@@ -18,6 +18,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,6 +32,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import controller.ProfesorController;
+import controller.StudentController;
 import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.Predmet;
@@ -371,12 +373,29 @@ public class IzmenaProfesora extends JDialog {
 				DodavanjePredmetaProfesoru dpp=new DodavanjePredmetaProfesoru(parent,aktuelniProfesor);
 				Predmet pred=dpp.selektovaniPredmet();
 				ProfesorController.getInstance().dodajPredmetProfesoru(profesor,pred);
-				BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
+				//BazaPredmeti.getInstance().podajPredmetProfesoru(pred);
 				azurirajPrikazTabelePredmeta("DOPUNA" ,1);
 				//dispose();
 			}
 		});
 		
+		btnUkloni.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int selProf = getSelectedPredmet();
+				if(selProf == -1) {
+					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da uklonite sa Profesora", "Ukloni Predmet", 0, null);
+				}else {
+					String poruka = "Da li ste sigurni da želite da uklonite predmet profesoru?";
+					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Ukloni predmet", JOptionPane.YES_NO_OPTION);
+					if(option == JOptionPane.YES_OPTION) {
+						Predmet predmet = aktuelniProfesor.getPredmetiNaKojimaJeProfesor().get(selProf);
+						aktuelniProfesor.ukloniPredmetProfesoru(predmet);
+						azurirajPrikazTabelePredmeta("UKLANJANJE PREDMETA",3);
+					}
+				}
+			}
+		});
 		
 		
 		

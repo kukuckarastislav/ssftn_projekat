@@ -160,5 +160,11 @@ public class Profesor implements Serializable {
 	public void dodajPredmetProfesoru(Predmet pre) {
 		this.getPredmetiNaKojimaJeProfesor().add(pre);		
 	}
+	public void ukloniPredmetProfesoru(Predmet predmet) {
+		if(predmet == null) return;
+		
+		predmetiNaKojimaJeProfesor.remove(predmet);
+		
+	}
 
 }
