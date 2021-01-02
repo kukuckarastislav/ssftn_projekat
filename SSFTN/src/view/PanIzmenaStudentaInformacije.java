@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -100,6 +102,10 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		Dimension dimKomp = new Dimension(150,20);
 		
 		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
+		
+		btPotvrdi = new DiaButton("Potvrdi");
+		btPotvrdi.setEnabled(false);
+		btOdustani = new DiaButton("Odustani");
 		
 		// IME
 		JLabel lblIme = new JLabel("Ime*");
@@ -234,6 +240,10 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		JPanel panTGS = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panTGS.add(lblTGS);
 		panTGS.add(TGS);
+		TGS.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {omoguciDugmePotvrdi();}
+		});
 
 		// NACIN FINANSIRANJA
 		JLabel lblStatus = new JLabel("Nacin finansiranja*");
@@ -245,7 +255,10 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		JPanel panStatus= new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panStatus.add(lblStatus);
 		panStatus.add(CBStatus);
-		
+		CBStatus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {omoguciDugmePotvrdi();}
+		});
 		
 		// INICIJALIZACIJA POLJAA :)
 		inicijalizujPolja();
@@ -284,9 +297,6 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		JPanel diaButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		diaButtonPanel.setPreferredSize(new Dimension(60,60));
 		//diaButtonPanel.setBackground(new Color(255,255,255));
-		btPotvrdi = new DiaButton("Potvrdi");
-		btPotvrdi.setEnabled(false);
-		btOdustani = new DiaButton("Odustani");
 		
 		btPotvrdi.addActionListener(new ActionListener() {
 			
@@ -324,7 +334,7 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 					}
 					
 					StudentController.getInstance().izmeniStudenta(student, noviStudent);
-					
+					btPotvrdi.setEnabled(false);
 				}else {
 					// metoda svaPoljaValidna izbacuje malecki dialog gde nas upozorava da smo nesto lose uneli
 				}
