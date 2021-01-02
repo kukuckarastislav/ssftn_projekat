@@ -22,8 +22,10 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import model.Predmet;
 import model.Profesor;
 import model.Student;
 import util.Search;
@@ -106,7 +108,17 @@ public class Toolbar extends JToolBar {
 						ip.setVisible(true);
 					}
 					
-				}			
+				}else if(tab == 2) {
+					int selPredmet = Frame1.getInstance().getSelectedPredmet();
+					if(selPredmet == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite izmeniti", "Upozorenje", 0, null);
+					}else {
+						String sifraPredmeta = Frame1.getInstance().getSelectedPredmetBySifraPredmeta();
+						Predmet predmet = PredmetController.getInstance().getPredmetBySifra(sifraPredmeta);
+						IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog(parent, predmet);
+						ipd.setVisible(true);
+					}
+				}
 			}
 		});
 		

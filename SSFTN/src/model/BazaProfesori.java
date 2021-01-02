@@ -236,11 +236,18 @@ private static BazaProfesori instance = null;
 	}
 	
 	public void dodajPredmetProfesoru(Profesor pro,Predmet pre) {
-		for(Profesor p: alProfesori) {
-			if(pro.getBrojLicneKarte().equals(p.getBrojLicneKarte()))
-				p.dodajPredmetProfesoru(pre);
-		}
+
+		if(pro == null || pre == null) return;
 		
+		// proverimo da li vec prof predaje taj predmet
+		for (Predmet predmet : pro.getPredmetiNaKojimaJeProfesor()) {
+			if(predmet.equals(pre)) {
+				return; 		// ok prof vec predaje ovaj predmet
+			}
+		}
+		// prof taj predmet ne predaje zato cemo mu ga dodati
+		pro.dodajPredmetProfesoru(pre);
+		return;
 	}
 
 	// poksajmo da nadjemo profesora pomocu licne karte

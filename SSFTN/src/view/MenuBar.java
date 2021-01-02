@@ -14,8 +14,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import model.Predmet;
 import model.Profesor;
 import model.Student;
 
@@ -117,7 +119,15 @@ public class MenuBar extends JMenuBar {
 					}
 					
 				}else if(tab == 2) {
-					// izmena predmete rastislav
+					int selPredmet = Frame1.getInstance().getSelectedPredmet();
+					if(selPredmet == -1) {
+						JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite izmeniti", "Upozorenje", 0, null);
+					}else {
+						String sifraPredmeta = Frame1.getInstance().getSelectedPredmetBySifraPredmeta();
+						Predmet predmet = PredmetController.getInstance().getPredmetBySifra(sifraPredmeta);
+						IzmenaPredmetaDialog ipd = new IzmenaPredmetaDialog(parent, predmet);
+						ipd.setVisible(true);
+					}
 				}
 				
 			}

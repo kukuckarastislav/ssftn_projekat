@@ -41,4 +41,24 @@ public class PredmetController {
 		return p;
 	}
 
+	public Predmet getPredmetBySifra(String sifraPredmeta) {
+		Predmet p = BazaPredmeti.getInstance().getPredmet(sifraPredmeta);
+		return p;
+	}
+
+	public void izmeniPredmet(Predmet predmet, Predmet noviPredmet) {
+		if(predmet != null && noviPredmet != null) {
+			
+			predmet.setSifraPredmeta(noviPredmet.getSifraPredmeta());
+			predmet.setNazivPredmeta(noviPredmet.getNazivPredmeta());
+			predmet.setGodinaStudijaUKojojSePredmetIzvodi(noviPredmet.getGodinaStudijaUKojojSePredmetIzvodi());
+			predmet.setBrojESPBbodova(noviPredmet.getBrojESPBbodova());
+			predmet.setPredmetniProfesor(noviPredmet.getPredmetniProfesor());
+			predmet.setSemestar(noviPredmet.getSemestar());
+			
+			Frame1.getInstance().azurirajPrikazTabelePredmeta("IZMENA", 0);
+			
+		}
+	}
+
 }

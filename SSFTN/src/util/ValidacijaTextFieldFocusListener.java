@@ -14,6 +14,7 @@ import javax.swing.border.LineBorder;
 import view.DodavanjePredmetaDialog;
 import view.DodavanjeProfesora;
 import view.DodavanjeStudentaDialog;
+import view.IzmenaPredmetaDialog;
 import view.IzmenaProfesora;
 import view.PanIzmenaStudentaInformacije;
 
@@ -32,6 +33,8 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 	private String orgIndeks = null;
 	private String orgLicnaKarta = null;
 	private DodavanjePredmetaDialog dodPredmetaDia = null;
+	private IzmenaPredmetaDialog izmenaPredmetaDialog = null;
+	private String orgSifraPredmeta = null;
 	private int mode = 0; 											// 0 nista 		1-dodavanjeStudenta 	2-dodavanjeProfesora
 	public boolean getValidacija() {return validacija;}
 	
@@ -121,6 +124,28 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		this.dodPredmetaDia = dodPredmetaDia;
 		mode = 5;
 	}
+	
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
+			IzmenaPredmetaDialog izmenaPredmetaDialog) 
+	{
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = true; 		// ovde je pocetno stanje true jer je sve validno kad idemo da menjamo
+		mode = 6;
+		this.izmenaPredmetaDialog = izmenaPredmetaDialog;
+
+	}
+	public ValidacijaTextFieldFocusListener(final JLabel lbl, final JTextField txt, 
+			IzmenaPredmetaDialog izmenaPredmetaDialog, String orgSifraPredmeta) 
+	{
+		this.orgSifraPredmeta = orgSifraPredmeta;
+		this.lbl = lbl;
+		this.txt = txt;
+		validacija = true; 		// ovde je pocetno stanje true jer je sve validno kad idemo da menjamo
+		mode = 6;
+		this.izmenaPredmetaDialog = izmenaPredmetaDialog;
+
+	}
 
 
 	public String getName() {
@@ -185,7 +210,16 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			
 		
 		}else if(txt.getName().equals("txtSifra")) {
-			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+			if(mode == 6) {// mode u kojem menjamo Predmet
+				if(txt.getText().equals(orgSifraPredmeta)) {
+					validacija = true;
+				}else {
+					validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+				}
+			}else {
+				validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+			}
+			
 		}else if(txt.getName().equals("txtNaziv")) {
 			validacija = ValidacijaUnosa.validNazivPredmeta(txt.getText());
 		}else if(txt.getName().equals("txtBrojESPB")) {
@@ -225,6 +259,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(mode == 5) {
 			if(dodPredmetaDia != null) {
 				dodPredmetaDia.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 6) {
+			if(izmenaPredmetaDialog != null) {
+				izmenaPredmetaDialog.omoguciDugmePotvrdi();
 			}
 		}
 	}
@@ -271,7 +309,15 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 			
 		
 		}else if(txt.getName().equals("txtSifra")) {
-			validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+			if(mode == 6) {// mode u kojem menjamo Predmet
+				if(txt.getText().equals(orgSifraPredmeta)) {
+					validacija = true;
+				}else {
+					validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+				}
+			}else {
+				validacija = ValidacijaUnosa.validSifraPredmeta(txt.getText());
+			}
 		}else if(txt.getName().equals("txtNaziv")) {
 			validacija = ValidacijaUnosa.validNazivPredmeta(txt.getText());
 		}else if(txt.getName().equals("txtBrojESPB")) {
@@ -301,6 +347,10 @@ public class ValidacijaTextFieldFocusListener implements KeyListener, FocusListe
 		}else if(mode == 5) {
 			if(dodPredmetaDia != null) {
 				dodPredmetaDia.omoguciDugmePotvrdi();
+			}
+		}else if(mode == 6) {
+			if(izmenaPredmetaDialog != null) {
+				izmenaPredmetaDialog.omoguciDugmePotvrdi();
 			}
 		}
 	}

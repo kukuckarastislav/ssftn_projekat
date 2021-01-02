@@ -22,14 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.PredmetController;
+import controller.ProfesorController;
 import model.Predmet;
 import model.Profesor;
 import model.Semestar;
 import util.ValidacijaTextFieldFocusListener;
 
-public class DodavanjePredmetaDialog extends JDialog{
+public class IzmenaPredmetaDialog extends JDialog{
 
 	private final Frame parent;
+	private Predmet predmet;
 	
 	private JTextField txtSifra;
 	private JTextField txtNaziv;
@@ -59,6 +61,30 @@ public class DodavanjePredmetaDialog extends JDialog{
 	public void setPredmetniProfesor(Profesor pro) {
 		profesor = pro;
 	}
+	
+	private void inicijalizujPolja() {
+		
+		txtSifra.setText( predmet.getSifraPredmeta() );
+		txtNaziv.setText( predmet.getNazivPredmeta() );
+		txtBrojESPB.setText( String.valueOf(predmet.getBrojESPBbodova()) );
+		semestarIzvodjenja.setSelectedIndex( predmet.getSemestar().ordinal() );
+		godinaIzvodjenja.setSelectedIndex( predmet.getGodinaStudijaUKojojSePredmetIzvodi() - 1 );
+		if(predmet.getPredmetniProfesor() != null) {
+			profesor = predmet.getPredmetniProfesor();
+			txtGlavniProf.setText(profesor.getIme()+" "+profesor.getPrezime());
+			setOmoguciDodavanjeProfesora(false);
+		}else {
+			txtGlavniProf.setText("");
+			setOmoguciDodavanjeProfesora(true);
+		}
+		
+		for (ValidacijaTextFieldFocusListener val : lValid) {
+			val.setValidacija(true);
+		}
+	
+	}
+	
+	
 	
 	private ArrayList<ValidacijaTextFieldFocusListener> lValid;
 	public boolean svaPoljaValidna() {
@@ -92,8 +118,9 @@ public class DodavanjePredmetaDialog extends JDialog{
 	}
 	
 	
-	public DodavanjePredmetaDialog(Frame parent) {
-		super(parent, "Dodavanje Predmeta", true);
+	public IzmenaPredmetaDialog(Frame parent, Predmet predmet) {
+		super(parent, "Izmena Predmeta", true);
+		this.predmet = predmet;
 		
 		this.parent = parent;
 		
@@ -115,7 +142,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 		txtSifra.setName("txtSifra");
 		txtSifra.setToolTipText("Sifra mora biti jedinstvena");
 		txtSifra.setPreferredSize(dimKomp);
-		ValidacijaTextFieldFocusListener vtffl0 = new ValidacijaTextFieldFocusListener(lblSifra, txtSifra,this);
+		ValidacijaTextFieldFocusListener vtffl0 = new ValidacijaTextFieldFocusListener(lblSifra, txtSifra,this,predmet.getSifraPredmeta());
 		txtSifra.addFocusListener(vtffl0);
 		txtSifra.addKeyListener(vtffl0);
 		JPanel panSifra = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -219,6 +246,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 				if(profesor != null) {
 					txtGlavniProf.setText(profesor.getIme()+" "+profesor.getPrezime());
 					setOmoguciDodavanjeProfesora(false);
+					svaPoljaValidna();
 				}
 				
 				
@@ -234,6 +262,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 					profesor = null; 
 					setOmoguciDodavanjeProfesora(true);
 					txtGlavniProf.setText("");
+					svaPoljaValidna();
 				}
 			}
 		});
@@ -248,6 +277,15 @@ public class DodavanjePredmetaDialog extends JDialog{
 		panProf.add(lblProfesor);
 		panProf.add(panOdabirProf);
 		
+		lValid.add(vtffl0);
+		lValid.add(vtffl1);
+		lValid.add(vtffl2);
+		
+		
+		// INICIJALIZACIJA
+		inicijalizujPolja();
+		
+		
 		// Dugmad za potrvrdi
 		btnPotvrdi = new DiaButton("Potvrdi");
 		btnPotvrdi.setEnabled(false);
@@ -257,21 +295,25 @@ public class DodavanjePredmetaDialog extends JDialog{
 				
 				if(svaPoljaValidna()) {
 					
-					Predmet predmet = new Predmet();
-					predmet.setSifraPredmeta(txtSifra.getText());
-					predmet.setNazivPredmeta(txtNaziv.getText());
-					predmet.setGodinaStudijaUKojojSePredmetIzvodi(godinaIzvodjenja.getSelectedIndex()+1);
+					Predmet noviPredmet = new Predmet();
+					noviPredmet.setSifraPredmeta(txtSifra.getText());
+					noviPredmet.setNazivPredmeta(txtNaziv.getText());
+					noviPredmet.setGodinaStudijaUKojojSePredmetIzvodi(godinaIzvodjenja.getSelectedIndex()+1);
 					if(semestarIzvodjenja.getSelectedIndex() == 0) {
-						predmet.setSemestar(Semestar.ZIMSKI);
+						noviPredmet.setSemestar(Semestar.ZIMSKI);
 					}else {
-						predmet.setSemestar(Semestar.LETNJI);
+						noviPredmet.setSemestar(Semestar.LETNJI);
 					}
-					predmet.setBrojESPBbodova( Integer.parseInt(txtBrojESPB.getText()) );
+					noviPredmet.setBrojESPBbodova( Integer.parseInt(txtBrojESPB.getText()) );
 					if(profesor != null) {
-						predmet.setPredmetniProfesor(profesor);
+						noviPredmet.setPredmetniProfesor(profesor);
 					}
 					
-					PredmetController.getInstance().dodajPredmet(predmet);
+					PredmetController.getInstance().izmeniPredmet(predmet, noviPredmet);
+					
+					
+					// sada predmet je izmenjen i sad mozemo ga dodati profesoru
+					ProfesorController.getInstance().dodajPredmetProfesoru(profesor, predmet);
 					dispose();
 					
 				}else {
@@ -294,9 +336,6 @@ public class DodavanjePredmetaDialog extends JDialog{
 		diaButtonPanel.add(btnOdustani);
 		
 		
-		lValid.add(vtffl0);
-		lValid.add(vtffl1);
-		lValid.add(vtffl2);
 		
 		
 		
@@ -326,3 +365,4 @@ public class DodavanjePredmetaDialog extends JDialog{
 	
 	
 }
+
