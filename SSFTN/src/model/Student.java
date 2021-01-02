@@ -164,7 +164,11 @@ public class Student implements Serializable{
 		for (Ocena ocena : lPolIspita) {
 			suma += ocena.getOcena();
 		}
-		prosecnaOcena = suma/lPolIspita.size();
+		if(lPolIspita.size() == 0) {
+			prosecnaOcena = 0;
+		}else {
+			prosecnaOcena = suma/lPolIspita.size();
+		}
 		return prosecnaOcena;
 	}
 	public int getUkupnoESPB() {
