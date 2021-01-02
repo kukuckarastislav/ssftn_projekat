@@ -6,10 +6,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -79,6 +83,28 @@ public class PanIzmenaStudentaPolozeni extends JPanel {
 		panelPonistiOcenu.add(Box.createHorizontalStrut(0));
 		panelPonistiOcenu.add(btnPonistiOcenu);
 		
+		btnPonistiOcenu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int selPredmet = tabelaPolozeni.getSelectedRow();
+				
+				if(selPredmet == -1) {
+					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da poništite", "Upozorenje", 0, null);
+				}else {
+					String poruka = "Da li ste sigurni da želite da poništite ocenu?";
+					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje profesora", JOptionPane.YES_NO_OPTION);
+					if(option == JOptionPane.YES_OPTION) {
+						Ocena ocena = student.getOcena(selPredmet);
+						student.ponistiPolozenIspit(ocena);
+						if(ocena.getPredmet() != null) {
+							student.dodajNePolozenIspit(ocena.getPredmet());
+						}
+						azurirajPrikazTabelePolozeni();
+						
+					}
+				}
+			}
+		});
 		
 		
 		

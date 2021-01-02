@@ -73,9 +73,11 @@ public class IzmenaStudentaDialog extends JDialog {
 				}else if(x==1) {
 					setSize(1000,600);
 					setLocationRelativeTo(parent);
+					panPolozeni.azurirajPrikazTabelePolozeni();
 				}else if(x==2) {
 					setSize(1000,600);
 					setLocationRelativeTo(parent);
+					panNePolozeni.azurirajPrikazTabeleNePolozenihPredmetaZaStudenta();
 				}
 			}
 		});

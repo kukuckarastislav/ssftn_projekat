@@ -84,6 +84,11 @@ public class Student implements Serializable{
 	public void ponistiPolozenIspit(Ocena oc) {
 		lPolIspita.remove(oc);
 	}
+	public void ponistiPolozenIspit(int i) {
+		if(i < lPolIspita.size()) {
+			lPolIspita.remove(i);
+		}
+	}
 	// dodaj ispit u listu ne polozenih ispita
 	public void dodajNePolozenIspit(Predmet predmet) {
 		lNePolIspita.add(predmet);
@@ -249,6 +254,13 @@ public class Student implements Serializable{
 		
 		// student ne treba da polozi predmet il ga je polozio ili ga nije polozio al nije ni trebao
 		return false;
+	}
+
+	public Ocena getOcena(int selPredmet) {
+		if(selPredmet < lPolIspita.size()) {
+			return lPolIspita.get(selPredmet);
+		}
+		return null;
 	}
 
 	
