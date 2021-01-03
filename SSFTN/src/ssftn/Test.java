@@ -15,10 +15,11 @@ public class Test {
 		System.out.println("test test");
 		System.out.println("Drugi komit");
 
-		for(int i = 0; i < 10; i++){
-			System.out.println("test");			
+		String text = " aa   lllll ssss ";
+		String s[] = text.split("\\s");
+		for (String string : s) {
+			System.out.println(string);
 		}
-		
 
 		
 		

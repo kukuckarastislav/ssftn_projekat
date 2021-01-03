@@ -214,7 +214,7 @@ public class DodavanjeStudentaDialog extends JDialog{
 		panTGS.add(TGS);
 
 		// NACIN FINANSIRANJA
-		JLabel lblStatus = new JLabel("Nacin finansiranja*");
+		JLabel lblStatus = new JLabel("Način finansiranja*");
 		lblStatus.setPreferredSize(dimKomp);
 		String[] statusiFinansiranja = {"Budzet","Samofinansiranje"};
 		JComboBox<String> CBStatus = new JComboBox<>(statusiFinansiranja);

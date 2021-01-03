@@ -73,6 +73,7 @@ public class Student implements Serializable{
 	public Student() {
 		this.lPolIspita = new ArrayList<>();
 		this.lNePolIspita = new ArrayList<>();
+		//racunajProsecnuOcenu();
 		
 	}
 	

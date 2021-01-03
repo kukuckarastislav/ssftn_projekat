@@ -36,10 +36,10 @@ public class PredmetController {
 	public void izbrisiPredmet(String sifra) {
 		
 		//nisam sigurna treba li ovo 
-		BazaPredmeti.getInstance().izbrisiPredmet(sifra);
+		//BazaPredmeti.getInstance().izbrisiPredmet(sifra);
 		BazaStudenti.getInstance().izbrisiPredmetUnutarStudenta(sifra);
 		BazaProfesori.getInstance().izbrisiPredmetUnutarProfesora(sifra);
-		
+		BazaPredmeti.getInstance().izbrisiPredmet(sifra);
 	}
 
 	public Predmet getPredmet(int rowIndex) {

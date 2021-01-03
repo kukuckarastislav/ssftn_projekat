@@ -45,7 +45,7 @@ public class UpisOcene extends JDialog{
 		Dimension dimKomp = new Dimension(150,20);
 		// SIFRA
 		
-		JLabel lblSifra = new JLabel("Sifra*");
+		JLabel lblSifra = new JLabel("Šifra*");
 		lblSifra.setPreferredSize(dimKomp);
 		JTextField txtSifra = new JTextField();
 		txtSifra.setPreferredSize(dimKomp);

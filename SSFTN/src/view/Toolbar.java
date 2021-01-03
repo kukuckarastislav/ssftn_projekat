@@ -87,7 +87,7 @@ public class Toolbar extends JToolBar {
 				if(tab == 0) {
 					int selStud = Frame1.getInstance().getSelectedStudentIndexInTable();
 					if(selStud == -1) {
-						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite izmeniti", "Upozorenje", 0, null);
+						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg želite izmeniti", "Upozorenje", 0, null);
 					}else {
 						Student student = StudentController.getInstance().getStudentByIndex
 								(Frame1.getInstance().getSelectedStudentByIndeks());
@@ -100,7 +100,7 @@ public class Toolbar extends JToolBar {
 					// Milica #izmena_profesora
 					int selProf = Frame1.getInstance().getSelectedProfesor();
 					if(selProf == -1) {
-						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite izmeniti", "Upozorenje", 0, null);
+						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg želite izmeniti", "Upozorenje", 0, null);
 					}else {
 						String licnaKarta = Frame1.getInstance().getSelectedProfesorByLicnaKarta();
 						Profesor prof = ProfesorController.getInstance().getProfesorByLicnaKarta(licnaKarta);
@@ -146,8 +146,9 @@ public class Toolbar extends JToolBar {
 					if(selStud == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Studenta kojeg zelite obrisati", "Upozorenje", 0, null);
 					}else {
-						String poruka = "Da li ste sigurni da zelite da obrišete studenta?";
-						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje studenta", JOptionPane.YES_NO_OPTION);
+						String poruka = "Da li ste sigurni da želite da obrišete studenta?";
+						Object[] opcije = {"Da","Ne"};
+						int option = JOptionPane.showOptionDialog(parent, poruka, "Brisanje studenta", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 						if(option == JOptionPane.YES_OPTION) {
 							String indeks = Frame1.getInstance().getSelectedStudentByIndeks();
 							StudentController.getInstance().izbrisiStudentaByIndex(indeks);
@@ -158,8 +159,9 @@ public class Toolbar extends JToolBar {
 					if(selProf == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg zelite obrisati", "Upozorenje", 0, null);
 					}else {
-						String poruka = "Da li ste sigurni da zelite da obrišete profesora?";
-						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje profesora", JOptionPane.YES_NO_OPTION);
+						String poruka = "Da li ste sigurni da želite da obrišete profesora?";
+						Object[] opcije = {"Da","Ne"};
+						int option = JOptionPane.showOptionDialog(parent, poruka, "Brisanje profesora", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 						if(option == JOptionPane.YES_OPTION) {
 							String licnaKarta = Frame1.getInstance().getSelectedProfesorByLicnaKarta();
 							ProfesorController.getInstance().izbrisiProfesoraByLicnaKarta(licnaKarta);
@@ -171,7 +173,7 @@ public class Toolbar extends JToolBar {
 					if(iPred==-1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Predmet koji zelite obrisati", "Upozorenje", 0, null);
 					}else {
-						String poruka = "Da li ste sigurni da zelite da obrišete predmet?";
+						String poruka = "Da li ste sigurni da želite da obrišete predmet?";
 						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 						if(option == JOptionPane.YES_OPTION) {
 							String sifraPredmeta = Frame1.getInstance().getSelectedPredmetBySifraPredmeta();

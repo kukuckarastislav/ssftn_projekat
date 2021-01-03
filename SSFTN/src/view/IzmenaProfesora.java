@@ -388,7 +388,8 @@ public class IzmenaProfesora extends JDialog {
 					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da uklonite sa Profesora", "Ukloni Predmet", 0, null);
 				}else {
 					String poruka = "Da li ste sigurni da želite da uklonite predmet profesoru?";
-					int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Ukloni predmet", JOptionPane.YES_NO_OPTION);
+					Object[] opcije = {"Potvrdi","Odustani"};
+					int option = JOptionPane.showOptionDialog(parent, poruka, "Ukloni predmet", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 					if(option == JOptionPane.YES_OPTION) {
 						Predmet predmet = aktuelniProfesor.getPredmetiNaKojimaJeProfesor().get(selProf);
 						aktuelniProfesor.ukloniPredmetProfesoru(predmet);

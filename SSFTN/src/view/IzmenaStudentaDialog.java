@@ -57,8 +57,8 @@ public class IzmenaStudentaDialog extends JDialog {
 		PanIzmenaStudentaNePolozeni panNePolozeni = new PanIzmenaStudentaNePolozeni(parent,student);
 		
 		tabPanel.addTab("Informacije", panInfo);
-		tabPanel.addTab("Polozeni", panPolozeni);
-		tabPanel.addTab("Nepolozeni", panNePolozeni);
+		tabPanel.addTab("Položeni", panPolozeni);
+		tabPanel.addTab("Nepoloženi", panNePolozeni);
 		
 		// ovaj deo koda bi mogao da popravi problem da smanjuje i povecava dialog
 		// u zavisnosti od taba kojeg gledamo ??? dal je ovo dobra ideja?

@@ -37,7 +37,7 @@ public class DodavanjePredmetaProfesoru  extends JDialog {
 	
 
 	public DodavanjePredmetaProfesoru(Frame parent,Profesor p) {
-		super(parent, "Odaberi Profesora", true);
+		super(parent, "Odaberi Predmet", true);
 		
 		predmetiZaDodavanje=BazaPredmeti.getInstance().formPredmetiZaDodavanje(p);
 		

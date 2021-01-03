@@ -68,7 +68,7 @@ private static BazaPredmeti instance = null;
 		initPredmets();
 		
 		alKolone = new ArrayList<String>();
-		alKolone.add("Sifra predmeta");
+		alKolone.add("Šifra predmeta");
 		alKolone.add("Naziv predmeta");
 		alKolone.add("Broj ESPB bodova");
 		alKolone.add("Godina u kojoj se predmet izvodi");

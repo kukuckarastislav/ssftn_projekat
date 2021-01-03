@@ -246,7 +246,7 @@ public class PanIzmenaStudentaInformacije extends JPanel {
 		});
 
 		// NACIN FINANSIRANJA
-		JLabel lblStatus = new JLabel("Nacin finansiranja*");
+		JLabel lblStatus = new JLabel("Način finansiranja*");
 		lblStatus.setPreferredSize(dimKomp);
 		String[] statusiFinansiranja = {"Budzet","Samofinansiranje"};
 		CBStatus = new JComboBox<>(statusiFinansiranja);

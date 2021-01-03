@@ -135,7 +135,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
 		profesor = null;
 		
-		lblSifra = new JLabel("Sifra*");
+		lblSifra = new JLabel("Šifra*");
 		lblSifra.setToolTipText("Sifra mora biti jedinstvena");
 		lblSifra.setPreferredSize(dimLbl);
 		txtSifra = new JTextField();
@@ -257,7 +257,8 @@ public class IzmenaPredmetaDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String poruka = "Da li želite da uklonite predmetnog profesora?";
-				int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Ukloni profesora", JOptionPane.YES_NO_OPTION);
+				Object[] opcije = {"Potvrdi","Odustani"};
+				int option = JOptionPane.showOptionDialog(parent, poruka, "Ukloni Profesora", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 				if(option == JOptionPane.YES_OPTION) {
 					profesor = null; 
 					setOmoguciDodavanjeProfesora(true);
