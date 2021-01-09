@@ -171,7 +171,8 @@ public class MenuBar extends JMenuBar {
 						JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite obrisati", "Upozorenje", 0, null);
 					}else {
 						String poruka = "Da li ste sigurni da želite da obrišete predmet?";
-						int option = JOptionPane.showConfirmDialog((JFrame)parent, poruka, "Brisanje predmeta", JOptionPane.YES_NO_OPTION);
+						Object[] opcije = {"Da","Ne"};
+						int option = JOptionPane.showOptionDialog(parent, poruka, "Brisanje predmeta", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);					
 						if(option == JOptionPane.YES_OPTION) {
 							String sifraPredmeta = Frame1.getInstance().getSelectedPredmetBySifraPredmeta();
 							PredmetController.getInstance().izbrisiPredmet(sifraPredmeta);
