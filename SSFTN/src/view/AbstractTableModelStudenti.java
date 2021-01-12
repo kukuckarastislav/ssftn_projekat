@@ -42,7 +42,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 			return BazaStudenti.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
 		
-		
+		/*
 		public Class<?> getColumnClass(int columnIndex) {
 		    if (BazaStudenti.getInstance().getStudenti().isEmpty()) {
 		        return Object.class;
@@ -51,7 +51,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 		    //return getValueAt(0, columnIndex).getClass(); 	// OVO je kao kod milice
 		    
 		    // Zasto baca error kod ovog dela 
-		    /*
+		    
 		    switch (columnIndex) {
 			case 0:
 				return String.class; 			// indeks
@@ -60,16 +60,27 @@ public class AbstractTableModelStudenti extends AbstractTableModel{
 			case 2:
 				return String.class; 			// prezime
 			case 3:
-				return Integer.class;		 	// trenutna godina studija
+				return String.class;		 	// trenutna godina studija
 			case 4:
 				return String.class; 			// status
 			case 5:
-				return Double.class; 			// prosecna ocena
+				return String.class; 			// prosecna ocena
 			default:
 				return String.class;
 			}
-			*/
+			
 		    return String.class;
+		}
+		*/
+		
+		public Class getColumnClass(int column) {
+			if(column == 5) {
+				return Double.class;
+			}else if(column == 3) {
+				return Integer.class;
+			}else {
+				return String.class;
+			}
 		}
 		
 	

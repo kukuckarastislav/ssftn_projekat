@@ -68,6 +68,7 @@ public class BazaStudenti {
 		return null;
 	}
 	
+	/*
 	public String getVrednostU(int x, int y) {
 		Student student = null;
 		if(searchMode) {
@@ -90,6 +91,34 @@ public class BazaStudenti {
 			return student.getStatus().toString();
 		case 5:
 			return Double.toString(student.getProsecnaOcena());
+		default:
+			return null;
+		}
+	}
+	*/
+	
+	public Object getVrednostU(int x, int y) {
+		Student student = null;
+		if(searchMode) {
+			student = alTrazeniStudenti.get(x);
+		}else {
+			student = alStudenti.get(x);
+		}
+		if(student == null) return null;
+		
+		switch (y) {
+		case 0:
+			return student.getIndeks();
+		case 1:
+			return student.getIme();
+		case 2:
+			return student.getPrezime();
+		case 3:
+			return student.getTrenGodStudija();
+		case 4:
+			return student.getStatus().toString();
+		case 5:
+			return student.getProsecnaOcena();
 		default:
 			return null;
 		}
