@@ -43,17 +43,14 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 			return BazaPredmeti.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
 		
-		/*
-		//REF: https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
-		@Override
-		public Class<?> getColumnClass(int columnIndex) {
-		    if (this.predmetiList.isEmpty()) {
-		        return Object.class;
-		    }
-		    return getValueAt(0, columnIndex).getClass();
+
+		public Class getColumnClass(int column) {
+			if(column == 2 || column == 3) {
+				return Integer.class;
+			}else {
+				return String.class;
+			}
 		}
-		
-	*/
 	
 }
 

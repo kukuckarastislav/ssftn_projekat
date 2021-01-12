@@ -68,7 +68,8 @@ public class BazaPredmeti implements Serializable{
 		return alKolone.get(index);
 	}
 	
-	public String getVrednostU(int x, int y) {
+
+	public Object getVrednostU(int x, int y) {
 		
 		if(SearchMode == false) {
 		Predmet predmet = alPredmeti.get(x);
@@ -78,9 +79,9 @@ public class BazaPredmeti implements Serializable{
 		case 1:
 			return predmet.getNazivPredmeta();
 		case 2:
-			return Integer.toString(predmet.getBrojESPBbodova());
+			return predmet.getBrojESPBbodova();
 		case 3:
-			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+			return predmet.getGodinaStudijaUKojojSePredmetIzvodi();
 		case 4:
 			return predmet.getSemestar().toString();
 			
@@ -95,9 +96,9 @@ public class BazaPredmeti implements Serializable{
 		case 1:
 			return predmet.getNazivPredmeta();
 		case 2:
-			return Integer.toString(predmet.getBrojESPBbodova());
+			return predmet.getBrojESPBbodova();
 		case 3:
-			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+			return predmet.getGodinaStudijaUKojojSePredmetIzvodi();
 		case 4:
 			return predmet.getSemestar().toString();
 				
@@ -107,7 +108,6 @@ public class BazaPredmeti implements Serializable{
 					}
 		}
 	}
-	
 
 	
 	public void dodajPredmet(Predmet predmet) {
