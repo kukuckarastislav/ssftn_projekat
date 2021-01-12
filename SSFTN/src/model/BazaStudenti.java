@@ -29,7 +29,6 @@ public class BazaStudenti {
 	private void initStudents() {
 		
 		// napraviti deserijalizaciju
-		alStudenti = Deserijalizacija.studentDeserijalizacija();
 		
 		/*
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -74,7 +73,7 @@ public class BazaStudenti {
 		searchMode = false;
 		alTrazeniStudenti = new ArrayList<Student>();
 		alStudenti = new ArrayList<Student>();
-		initStudents(); 		// neka metoda koja ce da ucita u bazu studente pri paljenju app
+		//initStudents(); 		// neka metoda koja ce da ucita u bazu studente pri paljenju app
 		
 		
 		

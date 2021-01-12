@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,9 +10,10 @@ import model.Predmet;
 import util.Deserijalizacija;
 //import model.Semestar;
 
-public class BazaPredmeti {
-	
-private static BazaPredmeti instance = null;
+public class BazaPredmeti implements Serializable{
+
+	private static final long serialVersionUID = 3997779363529257330L;
+	private static BazaPredmeti instance = null;
 	
 	public static BazaPredmeti getInstance() {
 		if(instance == null) {
@@ -29,7 +31,7 @@ private static BazaPredmeti instance = null;
 
 
 	private void initPredmets() {
-		alPredmeti = Deserijalizacija.predmetDeserijalizacija();
+		
 		/*
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		dateFormat.setLenient(false);
@@ -66,9 +68,8 @@ private static BazaPredmeti instance = null;
 	private BazaPredmeti() {
 		
 		
-		// initPredmets() 		// neka metoda koja ce da ucita u bazu Predmete pri paljenju app
 		alPredmeti = new ArrayList<Predmet>();
-		initPredmets();
+		//initPredmets();
 		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Šifra predmeta");

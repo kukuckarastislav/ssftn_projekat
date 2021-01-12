@@ -30,7 +30,7 @@ private static BazaProfesori instance = null;
 		
 		
 		alProfesori = new ArrayList<Profesor>();
-		initProfesors(); 	
+		//initProfesors(); 	
 		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Ime");
@@ -43,7 +43,7 @@ private static BazaProfesori instance = null;
 	
 	public void initProfesors() {
 		// napraviti deserijalizaciju
-		alProfesori = Deserijalizacija.profesorDeserijalizacija();
+		
 	}
 	
 	public void init() {

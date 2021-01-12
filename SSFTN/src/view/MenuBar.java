@@ -19,6 +19,10 @@ import javax.swing.KeyStroke;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import model.BazaPodataka;
+import model.BazaPredmeti;
+import model.BazaProfesori;
+import model.BazaStudenti;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
@@ -77,13 +81,16 @@ public class MenuBar extends JMenuBar {
 		miClose.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				BazaPodataka baza = new BazaPodataka(
+										BazaStudenti.getInstance().getStudenti(),
+										BazaProfesori.getInstance().getProfesori(),
+										BazaPredmeti.getInstance().getPredmeti());
+				// super :)
 				try {
-					Serijalizacija.writeToFile();
+					Serijalizacija.writeToFile(baza);
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
