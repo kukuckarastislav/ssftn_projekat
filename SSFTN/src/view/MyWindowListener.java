@@ -26,10 +26,11 @@ public class MyWindowListener implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		JFrame frame = (JFrame) arg0.getComponent();
-		int code = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene u aplikaciji ?",
-				"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION);
-		if (code != JOptionPane.YES_OPTION) {
-			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		String poruka = "Da li želite da sačuvate izmene u aplikaciji ?";
+		Object[] opcije = {"Da","Ne"};
+		int option = JOptionPane.showOptionDialog(null, poruka, "Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);					
+		if (option == JOptionPane.YES_OPTION) {
 			BazaPodataka baza = new BazaPodataka(
 			BazaStudenti.getInstance().getStudenti(),
 			BazaProfesori.getInstance().getProfesori(),
@@ -43,7 +44,7 @@ public class MyWindowListener implements WindowListener {
 				e.printStackTrace();
 				}
 			
-			
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		} else {
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}
