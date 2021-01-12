@@ -1,5 +1,6 @@
 package util;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,33 +27,31 @@ public class Serijalizacija{
 	public static void writeToFile() throws FileNotFoundException, IOException {
 		
 
-		FileWriter fws = new FileWriter("BazaStudenti.txt");
-		FileWriter fwp = new FileWriter("BazaProfesori.txt");
-		FileWriter fwpp = new FileWriter("BazaPredmeti.txt");
-		
-		BufferedWriter bws = new BufferedWriter(fws);
-		BufferedWriter bwp = new BufferedWriter(fwp);
-		BufferedWriter bwpp = new BufferedWriter(fwpp);
-
-		for(Student s: BazaStudenti.getInstance().getStudenti()) {			
-			 bws.write(s.toString());         						
+		File fstudenti = new File("podaci"+File.separator+"BazaStudenti.txt");
+		ObjectOutputStream oosSt = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fstudenti)));
+		try {
+			oosSt.writeObject(BazaStudenti.getInstance().getStudenti());
+		} finally {
+			oosSt.close(); //Zatvara i tok nizeg nivoa.
 		}
-		bws.close();
-		fws.close();
 		
-		for(Profesor p: BazaProfesori.getInstance().getProfesori()) {			
-			 bwp.write(p.toString());	         						
+		File fprof = new File("podaci"+File.separator+"BazaProfesori.txt");
+		ObjectOutputStream oosProf = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fprof)));
+		try {
+			oosProf.writeObject(BazaProfesori.getInstance().getProfesori());
+		} finally {
+			oosProf.close(); //Zatvara i tok nizeg nivoa.
 		}
-		bwp.close();
-		fwp.close();
 		
-		for(Predmet p: BazaPredmeti.getInstance().getPredmeti()) {			
-			bwpp.write(p.toString());       
-			  						
+		File fpredmeti = new File("podaci"+File.separator+"BazaPredmeti.txt");
+		ObjectOutputStream oosPred = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fpredmeti)));
+		try {
+			oosPred.writeObject(BazaPredmeti.getInstance().getPredmeti());
+		} finally {
+			oosPred.close(); //Zatvara i tok nizeg nivoa.
 		}
-		bwpp.close();
-		fwpp.close();
-
+		
+		
 
 		}
 	
