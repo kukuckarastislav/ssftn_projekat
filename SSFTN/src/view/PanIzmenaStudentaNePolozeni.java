@@ -121,6 +121,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 					UpisOcene uo=new UpisOcene(parent,student,predmet);
 					uo.setVisible(true);
 					azurirajPrikazTabeleNePolozenihPredmetaZaStudenta();
+					Frame1.getInstance().azurirajPrikazTabeleStudenata("azuriranje", 5);
 				}
 				
 			}

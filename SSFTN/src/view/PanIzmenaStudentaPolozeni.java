@@ -101,6 +101,7 @@ public class PanIzmenaStudentaPolozeni extends JPanel {
 							student.dodajNePolozenIspit(ocena.getPredmet());
 						}
 						azurirajPrikazTabelePolozeni();
+						Frame1.getInstance().azurirajPrikazTabeleStudenata("azuriranje",5);
 						
 					}
 				}
