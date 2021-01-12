@@ -1,27 +1,16 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.Box;
-import javax.swing.BoxLayout;
-
-
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
@@ -97,7 +86,7 @@ public class Toolbar extends JToolBar {
 					}
 				}
 				else if(tab == 1) {
-					// Milica #izmena_profesora
+					
 					int selProf = Frame1.getInstance().getSelectedProfesor();
 					if(selProf == -1) {
 						JOptionPane.showMessageDialog(null, "Selektujte Profesora kojeg želite izmeniti", "Upozorenje", 0, null);
@@ -120,11 +109,7 @@ public class Toolbar extends JToolBar {
 					}
 				}
 			}
-		});
-		
-		
-		
-		
+		});	
 
 		addSeparator();
 		

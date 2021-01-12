@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import view.Frame1;
 
 public class BazaPodataka implements Serializable{
 	

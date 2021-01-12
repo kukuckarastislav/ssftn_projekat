@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -15,7 +14,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,6 +28,9 @@ import util.ValidacijaTextFieldFocusListener;
 
 public class IzmenaPredmetaDialog extends JDialog{
 
+
+	private static final long serialVersionUID = 1414553383899489915L;
+	
 	private final Frame parent;
 	private Predmet predmet;
 	

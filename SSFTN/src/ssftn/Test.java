@@ -1,12 +1,5 @@
 package ssftn;
 
-import java.util.ArrayList;
-
-import model.Ocena;
-import model.Predmet;
-import model.Profesor;
-import model.Semestar;
-import model.Student;
 
 public class Test {
 

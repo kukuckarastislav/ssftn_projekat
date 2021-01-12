@@ -18,12 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.ProfesorController;
 import model.Predmet;
-import model.Profesor;
 import model.Student;
-import model.Titula;
-import model.Zvanje;
 import util.ValidacijaTextFieldFocusListener;
 import util.ValidacijaUnosa;
 import model.Ocena;

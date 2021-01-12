@@ -1,13 +1,7 @@
 package model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Date;
-
-import util.Deserijalizacija;
-
 
 public class BazaStudenti {
 
@@ -24,50 +18,7 @@ public class BazaStudenti {
 	private ArrayList<String> alKolone;
 	
 	private ArrayList<Student> alTrazeniStudenti;
-	private boolean searchMode;
-	
-	private void initStudents() {
-		
-		// napraviti deserijalizaciju
-		
-		/*
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-		dateFormat.setLenient(false);
-		Date datumRodjenja = null;
-		try {
-			datumRodjenja = dateFormat.parse("7.1.2000");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		
-		Student st1 = new Student("Kukucka", "Rastislav", datumRodjenja, "Novi Sad", "5846868", 
-								  "ras@gmail.com", "ra-129-2018", 2018, 3, Status.B);
-		
-		try {
-			datumRodjenja = dateFormat.parse("29.7.1999");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		Student st2 = new Student("Vucinic", "Milica", datumRodjenja, "Novi Sad", "24233", 
-				        		  "milica@uns", "ra-139-2018", 2018, 3, Status.B);
-		
-		
-		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
-		Predmet pr3 = new Predmet("AN1", "Analiza 1", Semestar.ZIMSKI, 1, 9);
-		
-		Ocena ocena1 = new Ocena(st1, pr2, 10, datumRodjenja);
-		Ocena ocena2 = new Ocena(st1, pr3, 9, datumRodjenja);
-		
-		st1.dodajPolozenIspit(ocena1);
-		st1.dodajPolozenIspit(ocena2);
-		
-		
-		alStudenti.add(st1);
-		alStudenti.add(st2);
-		*/
-	}
-	
+	private boolean searchMode;	
 	
 	private BazaStudenti() {
 		searchMode = false;
@@ -245,16 +196,6 @@ public class BazaStudenti {
 		}
 		
 	}
-
-
-
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

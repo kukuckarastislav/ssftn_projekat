@@ -3,11 +3,9 @@ package view;
 //OVO JE FRAME1 ZA PROJEKAT, U SLUCAJU ZABUNE
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,9 +14,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumnModel;
-
-import model.Profesor;
-
 
 public class Frame1 extends JFrame{
 	
@@ -54,6 +49,9 @@ public class Frame1 extends JFrame{
 	setTitle("Studentska sluzba");   //po defaultu je poravnato uz lijevu ivicu 
 	setLocationRelativeTo(null);
 	setVisible(true);
+	
+	addWindowListener(new MyWindowListener());
+	
 	// MenuBar
 	MenuBar menuBar = new MenuBar(this);
 	setJMenuBar(menuBar);
@@ -193,8 +191,7 @@ public class Frame1 extends JFrame{
 		String sifraPredmeta = (String) tabelaPredmeta.getValueAt(getSelectedPredmet(), 0);
 		System.out.println(sifraPredmeta);
 		return sifraPredmeta;
-	}
-	
-	
+	}	
 		
 }
+

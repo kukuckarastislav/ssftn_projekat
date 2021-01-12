@@ -9,9 +9,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.Box;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,14 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
-
-import controller.PredmetController;
 import model.BazaPredmeti;
-import model.BazaProfesori;
-import model.BazaStudenti;
-import model.Profesor;
 import model.Student;
-import view.DodavanjePredmetaStudentuDialog.AbstractTablePredmetiZaStudenta;
 import model.Predmet;
 
 public class PanIzmenaStudentaNePolozeni extends JPanel{
@@ -34,7 +26,6 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Student student;
 	private ArrayList<Predmet> nepolozeniPredmeti;
 	
 	private TabelaNepolozeni tabelaNepolozenih;
@@ -44,9 +35,12 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 	private DiaButton btnObrisi;
 	private DiaButton btnPolaganje;
 	private PanIzmenaStudentaNePolozeni panIzmenaStudenataNePolozenih;
+
+	private Student student;
 	
-	public PanIzmenaStudentaNePolozeni(Frame parent,Student student) {
-		this.student=student;
+	public PanIzmenaStudentaNePolozeni(Frame parent,Student s) {
+		
+		this.student=s;
 		setLayout(new BorderLayout());
 		panIzmenaStudenataNePolozenih = this;
 		
@@ -133,11 +127,8 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		
 	
 	}
-	
 
-
-
-// PONOVO TABELA SA PREDMETIMA
+	// PONOVO TABELA SA PREDMETIMA
 	private class TabelaNepolozeni extends JTable{
 		private static final long serialVersionUID = -3805554009583860187L;
 	
@@ -206,7 +197,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		}
 	}
 	
-	// 
+	
 	public int getSelectedPredmet() {
 		return tabelaNepolozenih.getSelectedRow();
 	}

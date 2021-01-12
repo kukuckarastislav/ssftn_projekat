@@ -1,0 +1,84 @@
+package view;
+
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
+import model.BazaPodataka;
+import model.BazaPredmeti;
+import model.BazaProfesori;
+import model.BazaStudenti;
+import util.Serijalizacija;
+
+public class MyWindowListener implements WindowListener {
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		JFrame frame = (JFrame) arg0.getComponent();
+		int code = JOptionPane.showConfirmDialog(frame, "Da li želite da sačuvate izmene u aplikaciji ?",
+				"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION);
+		if (code != JOptionPane.YES_OPTION) {
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			BazaPodataka baza = new BazaPodataka(
+			BazaStudenti.getInstance().getStudenti(),
+			BazaProfesori.getInstance().getProfesori(),
+			BazaPredmeti.getInstance().getPredmeti());
+				
+				try {
+				Serijalizacija.writeToFile(baza);
+				} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				} catch (IOException e) {
+				e.printStackTrace();
+				}
+			
+			
+		} else {
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		}
+
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

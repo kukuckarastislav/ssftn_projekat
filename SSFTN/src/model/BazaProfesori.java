@@ -1,11 +1,8 @@
 package model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import util.Deserijalizacija;
 
 public class BazaProfesori {
 	
@@ -27,11 +24,8 @@ private static BazaProfesori instance = null;
 
 
 	private BazaProfesori() {
-		
-		
+			
 		alProfesori = new ArrayList<Profesor>();
-		//initProfesors(); 	
-		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Ime");
 		alKolone.add("Prezime");
@@ -40,51 +34,7 @@ private static BazaProfesori instance = null;
 		alKolone.add("LicnaKarta");
 
 	}
-	
-	public void initProfesors() {
-		// napraviti deserijalizaciju
 		
-	}
-	
-	public void init() {
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-		dateFormat.setLenient(false);
-		Date datumRodjenja = null;
-		try {
-			datumRodjenja = dateFormat.parse("7.1.2000");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		Predmet pr4 = new Predmet("ARH", "Arhitektura Racunara", Semestar.LETNJI, 1, 9);
-		Predmet pr5 = new Predmet("MISS", "Modelovanje i simulacija sistema", Semestar.ZIMSKI, 2, 8);
-		ArrayList<Predmet> predmeti=new ArrayList<>();
-		predmeti.add(pr4);
-		predmeti.add(pr5);
-		
-		
-		
-		Profesor p1=new Profesor("Petrovic", "Veljko",datumRodjenja, "Novi sad", "66666",
-				"helou@gmail","Radnicka 30", "123456789", Titula.dr, Zvanje.redovni_profesor);
-		//p1.setPredmetiNaKojimaJeProfesor(predmeti);
-		Profesor p2=new Profesor("Erdeljan", "Alex",datumRodjenja, "Novi sad", "55555",
-				"helddou@gmail","Radnicka 333", "123456787", Titula.dr, Zvanje.redovni_profesor);		
-		Profesor p3=new Profesor("Vrbaski", "Dunja",datumRodjenja, "Novi sad", "55455",
-				"dunjciu@gmail","Radnicka 3334", "723456787", Titula.BSc, Zvanje.profesor_emeritus);
-		
-		alProfesori.add(p1);
-		alProfesori.add(p2);
-		alProfesori.add(p3);
-		
-		
-		
-	}
-	
-	
-	
-	
-	
 	public ArrayList<Profesor> getProfesori(){
 		return alProfesori;
 	}
@@ -284,9 +234,6 @@ private static BazaProfesori instance = null;
 		}
 		
 	}
-
-
-
 
 }
 

@@ -9,9 +9,7 @@ import model.Profesor;
 
 public class AbstractTableModelProfesori extends AbstractTableModel{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7349770694737017202L;
 
 	
@@ -47,14 +45,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 			
 			return BazaProfesori.getInstance().getVrednostU(rowIndex, columnIndex);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		
 		//REF: https://www.codejava.net/java-se/swing/6-techniques-for-sorting-jtable-you-should-know
 		

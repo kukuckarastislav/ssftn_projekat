@@ -26,4 +26,20 @@ Nakon toga možete dodati entitet na četiri načina:
 Nakon čega se pojavljuje dialog kojeg treba ispravno popuniti odgovarajućim podacima za studenta.
 Nakon toga kliknuti dugme "Potvrdi"
 
+Izmena i brisanje entiteta je takođe moguće na 4 navedena načina.Na toolbaru se jasno vide
+dugmad za navedene opcije, u meniju su opcije omogućene ako izaberemo pomoćnog meni Edit, a 
+odgovarajući mnemonici su Ctrl+E za izmenu i Ctrl+D za brisanje.
+Ove dvije radnje je moguce otkazati ako se korisnik u međuvremenu predomisli, naime u slučaju
+brisanja pojavi se pomoćni dialog, a u slučaju izmene postoji dugme odustani koji polja 
+entiteta vrati na prvobitno stanje.
+
+Pretragu je moguće raditi na sledeći način:
+Prilikom pretrage studenata, u polje za pretragu unose se upiti koji se mogu sastojati od 
+jedne, dve ili tri reči. Prva reč je obavezna i odnosi se na deo prezimena studenta. Druga,
+odnosno treća reč su opcione i odnose se na deo imena, odnosno broja indeksa studenta.
+Nije omoćena pretraga ako se unese nekim drugim redosledom ili ako se nesto izostavi.
+U slučaju profesora prva reč je prezime, a druga ime, a u slučaju predmeta pretraga je 
+omogućena samo po nazivu predmeta.
+
+
 

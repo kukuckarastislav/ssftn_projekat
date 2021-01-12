@@ -118,6 +118,9 @@ public class AboutDialog extends JDialog {
 	
 	// dodatna klasa
 	private class StudentPanel extends JPanel{
+		
+		private static final long serialVersionUID = 2608967519922237774L;
+
 		/* fimg putanja do slike
 		 * biografija - string opis biografije
 		 * orjentacija - 1 slika levo, biografija desno

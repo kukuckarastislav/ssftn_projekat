@@ -9,7 +9,6 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -19,8 +18,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
-
-import controller.PredmetController;
 import model.BazaPredmeti;
 import model.Predmet;
 import model.Profesor;

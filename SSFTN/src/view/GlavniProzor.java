@@ -1,8 +1,5 @@
 package view;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
@@ -11,7 +8,7 @@ import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.BazaStudenti;
 import util.Deserijalizacija;
-import util.Serijalizacija;
+
 
 public class GlavniProzor {
 

@@ -19,11 +19,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
-
-import controller.ProfesorController;
 import model.BazaPredmeti;
-import model.BazaProfesori;
-import model.BazaStudenti;
 import model.Predmet;
 import model.Student;
 

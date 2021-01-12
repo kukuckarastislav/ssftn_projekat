@@ -1,14 +1,10 @@
 package model;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import model.Predmet;
-import util.Deserijalizacija;
-//import model.Semestar;
+
+
 
 public class BazaPredmeti implements Serializable{
 
@@ -28,58 +24,18 @@ public class BazaPredmeti implements Serializable{
 	private ArrayList<Predmet> trazeniPredmeti;
 	private boolean SearchMode;
 	
-
-
-	private void initPredmets() {
-		
-		/*
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-		dateFormat.setLenient(false);
-		Date datumRodjenja = null;
-		try {
-			datumRodjenja = dateFormat.parse("7.1.2000");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		Profesor p1=new Profesor("Petrovic", "Veljko",datumRodjenja, "Novi sad", "66666",
-				"helou@gmail","Radnicka 30", "123456789", Titula.dr, Zvanje.redovni_profesor);
-		
-		
-		
-		Predmet pr1 = new Predmet("E13", "Programski Jezici i Strukture Podataka", Semestar.ZIMSKI, 1, 9);
-		
-		pr1.setPredmetniProfesor(p1);
-		
-		Predmet pr2 = new Predmet("E15", "OISISI", Semestar.ZIMSKI, 3, 6);
-		Predmet pr3 = new Predmet("AN1", "Analiza 1", Semestar.ZIMSKI, 1, 9);
-		Predmet pr4 = new Predmet("ARH", "Arhitektura Racunara", Semestar.LETNJI, 1, 9);
-		Predmet pr5 = new Predmet("MISS", "Modelovanje i simulacija sistema", Semestar.ZIMSKI, 2, 8);
-		
-		alPredmeti.add(pr1);
-		alPredmeti.add(pr2);
-		alPredmeti.add(pr3);
-		alPredmeti.add(pr4);
-		alPredmeti.add(pr5);
-		*/
-	}
-	
 	
 	private BazaPredmeti() {
 		
 		
 		alPredmeti = new ArrayList<Predmet>();
-		//initPredmets();
 		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Šifra predmeta");
 		alKolone.add("Naziv predmeta");
 		alKolone.add("Broj ESPB bodova");
 		alKolone.add("Godina u kojoj se predmet izvodi");
-		alKolone.add("Semestar u kome se predmet izvodi");
-		
-
-				
+		alKolone.add("Semestar u kome se predmet izvodi");				
 
 	}
 	

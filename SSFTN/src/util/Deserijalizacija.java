@@ -6,12 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-
 import model.BazaPodataka;
-import model.Predmet;
-import model.Profesor;
-import model.Student;
+
 
 public class Deserijalizacija {
 
