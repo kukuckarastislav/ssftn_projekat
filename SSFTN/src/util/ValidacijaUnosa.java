@@ -52,7 +52,7 @@ public class ValidacijaUnosa {
 			if( !Character.isDigit(sEl[2].charAt(i)) ) return false;
 		}
 		
-		if(Integer.parseInt(sEl[2])>2020) return false;
+		//if(Integer.parseInt(sEl[2])>2020) return false;
 		
 		int dan= Integer.parseInt(sEl[0]);
 		int mjesec= Integer.parseInt(sEl[1]);
@@ -60,7 +60,7 @@ public class ValidacijaUnosa {
 		
 		if(dan>31) return false;
 		if(mjesec>12) return false;
-		if(god>2020) return false;
+		//if(god>2020) return false;
 		
 		
 		
