@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
+import util.Deserijalizacija;
+
 
 public class BazaStudenti {
 
@@ -26,6 +28,10 @@ public class BazaStudenti {
 	
 	private void initStudents() {
 		
+		// napraviti deserijalizaciju
+		alStudenti = Deserijalizacija.studentDeserijalizacija();
+		
+		/*
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		dateFormat.setLenient(false);
 		Date datumRodjenja = null;
@@ -60,6 +66,7 @@ public class BazaStudenti {
 		
 		alStudenti.add(st1);
 		alStudenti.add(st2);
+		*/
 	}
 	
 	

@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.PredmetController;
+import controller.ProfesorController;
 import model.Predmet;
 import model.Profesor;
 import model.Semestar;
@@ -273,6 +274,9 @@ public class DodavanjePredmetaDialog extends JDialog{
 					}
 					
 					PredmetController.getInstance().dodajPredmet(predmet);
+					if(profesor != null) {
+						ProfesorController.getInstance().dodajPredmetProfesoru(profesor, predmet);
+					}
 					dispose();
 					
 				}else {

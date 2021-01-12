@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import controller.StudentController;
 import model.Predmet;
 import model.Profesor;
 import model.Student;
+import util.Serijalizacija;
 
 public class MenuBar extends JMenuBar {
 
@@ -68,6 +71,21 @@ public class MenuBar extends JMenuBar {
 				dodPredDia.setVisible(true);
 			}
 			
+			}
+		});
+		
+		miClose.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Serijalizacija.writeToFile();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

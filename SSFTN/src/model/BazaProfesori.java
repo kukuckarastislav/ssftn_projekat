@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import util.Deserijalizacija;
+
 public class BazaProfesori {
 	
 private static BazaProfesori instance = null;
@@ -27,9 +29,8 @@ private static BazaProfesori instance = null;
 	private BazaProfesori() {
 		
 		
-		// initProfesors() 	
 		alProfesori = new ArrayList<Profesor>();
-		
+		initProfesors(); 	
 		
 		alKolone = new ArrayList<String>();
 		alKolone.add("Ime");
@@ -38,6 +39,11 @@ private static BazaProfesori instance = null;
 		alKolone.add("Zvanje");
 		alKolone.add("LicnaKarta");
 
+	}
+	
+	public void initProfesors() {
+		// napraviti deserijalizaciju
+		alProfesori = Deserijalizacija.profesorDeserijalizacija();
 	}
 	
 	public void init() {

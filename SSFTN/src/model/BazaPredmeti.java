@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import model.Predmet;
+import util.Deserijalizacija;
 //import model.Semestar;
 
 public class BazaPredmeti {
@@ -28,7 +29,8 @@ private static BazaPredmeti instance = null;
 
 
 	private void initPredmets() {
-		
+		alPredmeti = Deserijalizacija.predmetDeserijalizacija();
+		/*
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		dateFormat.setLenient(false);
 		Date datumRodjenja = null;
@@ -57,6 +59,7 @@ private static BazaPredmeti instance = null;
 		alPredmeti.add(pr3);
 		alPredmeti.add(pr4);
 		alPredmeti.add(pr5);
+		*/
 	}
 	
 	
