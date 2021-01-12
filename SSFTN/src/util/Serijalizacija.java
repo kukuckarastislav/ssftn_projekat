@@ -11,6 +11,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import model.BazaPodataka;
 import model.BazaPredmeti;
 import model.BazaProfesori;
 import model.BazaStudenti;
@@ -24,41 +25,21 @@ public class Serijalizacija{
 	//nisam sigurna za ovo dal se radi preko Buffer Writer ili preko OutputStream, ali zasad ovo
 
 
-	public static void writeToFile() throws FileNotFoundException, IOException {
-		
-
-		File fstudenti = new File("podaci"+File.separator+"BazaStudenti.txt");
-		ObjectOutputStream oosSt = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fstudenti)));
+	public static void writeToFile(BazaPodataka bazaPodataka) throws FileNotFoundException, IOException {
+		File f = new File("podaci"+File.separator+"BazaPodataka.txt");
+		ObjectOutputStream oosSt = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
 		try {
-			oosSt.writeObject(BazaStudenti.getInstance().getStudenti());
+			oosSt.writeObject(bazaPodataka);
 		} finally {
 			oosSt.close(); //Zatvara i tok nizeg nivoa.
 		}
-		
-		File fprof = new File("podaci"+File.separator+"BazaProfesori.txt");
-		ObjectOutputStream oosProf = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fprof)));
-		try {
-			oosProf.writeObject(BazaProfesori.getInstance().getProfesori());
-		} finally {
-			oosProf.close(); //Zatvara i tok nizeg nivoa.
-		}
-		
-		File fpredmeti = new File("podaci"+File.separator+"BazaPredmeti.txt");
-		ObjectOutputStream oosPred = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fpredmeti)));
-		try {
-			oosPred.writeObject(BazaPredmeti.getInstance().getPredmeti());
-		} finally {
-			oosPred.close(); //Zatvara i tok nizeg nivoa.
-		}
-		
-		
-
-		}
-	
-	
-		
-		
+				
 	}
+	
+	
+		
+		
+}
 	
 	
 	
