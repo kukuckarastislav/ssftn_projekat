@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowListener;
+import java.util.Comparator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,6 +15,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
+
+import util.StudIndeksComparator;
 
 public class Frame1 extends JFrame{
 	
@@ -119,11 +123,18 @@ public class Frame1 extends JFrame{
 	tpane.addTab("Profesori", panelProfesori);
 	tpane.addTab("Predmeti", panelPredmeti);
 	
+	
+	
 	tabelaProfesora.getCellSelectionEnabled();
 	tabelaProfesora.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	
 	tabelaStudenata.setAutoCreateRowSorter(true);
-	//((StudentiJTable) tabelaStudenata).sorted();
+	/*
+	 *  NOVI DEO za sort indeksa
+	 */
+	TableRowSorter tableRowSorter = new TableRowSorter(tabelaStudenata.getModel());
+	tableRowSorter.setComparator(0, new StudIndeksComparator());
+	tabelaStudenata.setRowSorter(tableRowSorter);
 	
 	tabelaProfesora.setAutoCreateRowSorter(true);
 	((ProfesoriJTable) tabelaProfesora).sorted();
@@ -192,6 +203,8 @@ public class Frame1 extends JFrame{
 		System.out.println(sifraPredmeta);
 		return sifraPredmeta;
 	}	
+	
+	
 		
 }
 
