@@ -1,0 +1,58 @@
+package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class BazaPodataka implements Serializable{
+	
+
+	private static final long serialVersionUID = 6297821499922242209L;
+	
+
+	private ArrayList<Student> alStudenti;
+	private ArrayList<Profesor> alProfesori;
+	private ArrayList<Predmet> alPredmeti;
+	
+	
+	public BazaPodataka() {
+	
+
+	}
+	
+	public ArrayList<Student> getAlStudenti() {
+		return alStudenti;
+	}
+
+
+	public void setAlStudenti(ArrayList<Student> alStudenti) {
+		this.alStudenti = alStudenti;
+	}
+
+
+	public ArrayList<Profesor> getAlProfesori() {
+		return alProfesori;
+	}
+
+
+	public void setAlProfesori(ArrayList<Profesor> alProfesori) {
+		this.alProfesori = alProfesori;
+	}
+
+
+	public ArrayList<Predmet> getAlPredmeti() {
+		return alPredmeti;
+	}
+
+
+	public void setAlPredmeti(ArrayList<Predmet> alPredmeti) {
+		this.alPredmeti = alPredmeti;
+	}
+
+	public static void deserializuj() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+}

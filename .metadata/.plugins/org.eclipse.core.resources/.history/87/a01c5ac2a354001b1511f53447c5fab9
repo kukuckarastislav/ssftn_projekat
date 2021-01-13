@@ -1,0 +1,85 @@
+package model;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Ocena implements Serializable{
+
+	// POLJA
+	private Student student;
+	private Predmet predmet;
+	private int ocena;
+
+	private Date datumPolaganjaIspita;
+
+	// KONSTRUKTOR
+	// public Ocena() {}
+
+
+	public Ocena(Student student, Predmet predmet, int ocena, Date datumPolaganjaIspita) {
+
+		super();
+		this.student = student;
+		this.predmet = predmet;
+		this.ocena = ocena;
+		this.datumPolaganjaIspita = datumPolaganjaIspita;
+	}
+	
+	
+	
+	
+	// SETERI I GETERI
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	public Predmet getPredmet() {
+		return predmet;
+	}
+	public void setPredmet(Predmet predmet) {
+		this.predmet = predmet;
+	}
+	public int getOcena() {
+		return ocena;
+	}
+	public void setOcena(int ocena) {
+		this.ocena = ocena;
+	}
+
+	public Date getDatumPolaganjaIspita() {
+		return datumPolaganjaIspita;
+	}
+	public void setDatumPolaganjaIspita(Date datumPolaganjaIspita) {
+
+		this.datumPolaganjaIspita = datumPolaganjaIspita;
+	}
+	
+
+
+	// STRING
+	
+	@Override
+	public String toString() {
+		return info();
+	}
+	
+	public String info() {
+		String str = "Ocena: "+ocena+"\nstudent: "+student.getIme()+" "+student.getPrezime()+"\n"+
+					 "predmet: "+predmet.getNazivPredmeta()+"\ndatum polaganja: "+datumPolaganjaIspita;
+		return str;
+	}
+
+	public String getDatumPolaganjaIspitaString() {
+		// https://www.javatpoint.com/java-date-to-string
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		return dateFormat.format( datumPolaganjaIspita );
+	}
+	
+	
+	
+	
+}

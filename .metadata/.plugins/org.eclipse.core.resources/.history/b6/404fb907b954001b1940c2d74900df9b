@@ -1,0 +1,19 @@
+package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class BazaPodataka implements Serializable{
+	
+
+	private static final long serialVersionUID = 6297821499922242209L;
+	
+	private ArrayList<Student> alStudenti;
+	private ArrayList<Profesor> alProfesori;
+	private ArrayList<Predmet> alPredmeti;
+	
+	
+	public BazaPodataka() {
+	
+	}
+}

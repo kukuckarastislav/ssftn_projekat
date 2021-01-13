@@ -1,0 +1,26 @@
+package util;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import model.Predmet;
+import model.Profesor;
+import model.Student;
+
+public class Deserijalizacija {
+
+	public Deserijalizacija() {}
+	
+	
+	public static ArrayList<Student> studentDeserijalizacija() {
+		File f = new File("BazaStudenti"+File.separator+"txt");
+	}
+	
+	public static ArrayList<Profesor> profesorDeserijalizacija() {
+		File f = new File("BazaProfesori"+File.separator+"txt");
+	}
+	
+	public static ArrayList<Predmet> predmetDeserijalizacija() {
+		File f = new File("BazaPredmeti"+File.separator+"txt");
+	}
+}

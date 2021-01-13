@@ -1,0 +1,24 @@
+package util;
+
+import java.util.ArrayList;
+
+import model.Predmet;
+import model.Student;
+
+public class Deserijalizacija {
+
+	public Deserijalizacija() {}
+	
+	
+	public static ArrayList<Student> studentDeserijalizacija() {
+		
+	}
+	
+	public static ArrayList<Process> profesorDeserijalizacija() {
+		
+	}
+	
+	public static ArrayList<Predmet> predmetDeserijalizacija() {
+	
+	}
+}

@@ -1,0 +1,19 @@
+package util;
+
+public class Deserijalizacija {
+
+	public Deserijalizacija() {}
+	
+	
+	public static void studentDeserijalizacija() {
+		
+	}
+	
+	public static void profesorDeserijalizacija() {
+		
+	}
+	
+	public static void predmetDeserijalizacija() {
+	
+	}
+}

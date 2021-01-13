@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowListener;
-import java.util.Comparator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

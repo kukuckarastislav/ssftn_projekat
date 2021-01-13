@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;view.Frame1.getSelectedStudent()&apos; to &apos;getSelectedStudentIndexInTable&apos;&#x0D;&#x0A;- Original project: &apos;SSFTN&apos;&#x0D;&#x0A;- Original element: &apos;view.Frame1.getSelectedStudent()&apos;&#x0D;&#x0A;- Renamed element: &apos;view.Frame1.getSelectedStudentIndexInTable()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;getSelectedStudent&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;view{Frame1.java[Frame1~getSelectedStudent" name="getSelectedStudentIndexInTable" references="true" stamp="1609250564312" version="1.0"/>
+</session>

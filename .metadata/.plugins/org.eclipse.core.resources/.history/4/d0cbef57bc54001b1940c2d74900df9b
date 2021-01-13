@@ -1,0 +1,40 @@
+package view;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import controller.PredmetController;
+import controller.ProfesorController;
+import controller.StudentController;
+import model.BazaPodataka;
+import model.BazaPredmeti;
+import model.BazaProfesori;
+import model.BazaStudenti;
+import util.Deserijalizacija;
+import util.Serijalizacija;
+
+public class GlavniProzor {
+
+	public static void main(String[] args) {
+		
+		BazaPodataka bazaPodataka = Deserijalizacija.bazaDeserijalizacija();
+		
+		BazaStudenti.getInstance();
+		BazaProfesori.getInstance();
+		BazaPredmeti.getInstance();
+		
+		// deserijalizacija
+		BazaStudenti.getInstance().setStudenti(bazaPodataka.getAlStudenti());
+		BazaProfesori.getInstance().setProfesori(bazaPodataka.getAlProfesori());
+		BazaPredmeti.getInstance().setPredmeti(bazaPodataka.getAlPredmeti());
+		
+		StudentController.getInstance();
+		ProfesorController.getInstance();
+		PredmetController.getInstance();
+	
+		
+		Frame1.getInstance();
+		
+	}
+
+}
