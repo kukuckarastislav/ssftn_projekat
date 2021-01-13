@@ -67,7 +67,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 		JPanel panButtons = new JPanel(new FlowLayout(30,15,30));
 		panButtons.setPreferredSize(new Dimension(60,60));
 		btnDodaj=new DiaButton("Dodaj");	
-		btnObrisi=new DiaButton("Obri≈°i");	
+		btnObrisi=new DiaButton("Obriöi");	
 		btnPolaganje=new DiaButton("Polaganje");	
 		
 		panButtons.add(Box.createHorizontalStrut(0));
@@ -90,7 +90,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 				if(x == -1) {
 					JOptionPane.showMessageDialog(parent, "Selektujte Predmet", "Upozorenje", 0, null);
 				}else {
-					String poruka = "Da li ste sigurni da ≈æelite da uklonite predmet";
+					String poruka = "Da li ste sigurni da ûelite da uklonite predmet";
 					Object[] opcije = {"Da","Ne"};
 					int option = JOptionPane.showOptionDialog(parent, poruka, "Uklanjanje Predmeta", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 					if(option == JOptionPane.YES_OPTION) {

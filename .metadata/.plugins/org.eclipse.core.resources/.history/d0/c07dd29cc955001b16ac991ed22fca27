@@ -377,9 +377,9 @@ public class IzmenaProfesora extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int selProf = getSelectedPredmet();
 				if(selProf == -1) {
-					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji Å¾elite da uklonite sa Profesora", "Ukloni Predmet", 0, null);
+					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da uklonite sa Profesora", "Ukloni Predmet", 0, null);
 				}else {
-					String poruka = "Da li ste sigurni da Å¾elite da uklonite predmet profesoru?";
+					String poruka = "Da li ste sigurni da želite da uklonite predmet profesoru?";
 					Object[] opcije = {"Potvrdi","Odustani"};
 					int option = JOptionPane.showOptionDialog(parent, poruka, "Ukloni predmet", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 					if(option == JOptionPane.YES_OPTION) {
@@ -488,7 +488,7 @@ public class IzmenaProfesora extends JDialog {
 	public String getNaziviTrazenihKolona(int column){
 				
 		ArrayList<String> trazeneKolone=new ArrayList<String>();
-		trazeneKolone.add("Å ifra");
+		trazeneKolone.add("Sifra");
 		trazeneKolone.add("Naziv");
 		trazeneKolone.add("Godina");
 		trazeneKolone.add("Semestar");

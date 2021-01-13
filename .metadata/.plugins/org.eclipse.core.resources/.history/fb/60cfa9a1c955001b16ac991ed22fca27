@@ -488,7 +488,7 @@ public class IzmenaProfesora extends JDialog {
 	public String getNaziviTrazenihKolona(int column){
 				
 		ArrayList<String> trazeneKolone=new ArrayList<String>();
-		trazeneKolone.add("Šifra");
+		trazeneKolone.add("Sifra");
 		trazeneKolone.add("Naziv");
 		trazeneKolone.add("Godina");
 		trazeneKolone.add("Semestar");

@@ -110,7 +110,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 		lValid = new ArrayList<ValidacijaTextFieldFocusListener>();
 		profesor = null;
 		
-		lblSifra = new JLabel("Šifra*");
+		lblSifra = new JLabel("Å ifra");
 		lblSifra.setToolTipText("Sifra mora biti jedinstvena");
 		lblSifra.setPreferredSize(dimLbl);
 		txtSifra = new JTextField();
@@ -230,7 +230,7 @@ public class DodavanjePredmetaDialog extends JDialog{
 		btnUkloniProf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String poruka = "Da li želite da uklonite predmetnog profesora?";
+				String poruka = "Da li Å¾elite da uklonite predmetnog profesora?";
 				Object[] opcije = {"Potvrdi","Odustani"};
 				int option = JOptionPane.showOptionDialog(parent, poruka, "Ukloni Profesora", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 				if(option == JOptionPane.YES_OPTION) {

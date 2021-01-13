@@ -90,7 +90,7 @@ public class PanIzmenaStudentaNePolozeni extends JPanel{
 				if(x == -1) {
 					JOptionPane.showMessageDialog(parent, "Selektujte Predmet", "Upozorenje", 0, null);
 				}else {
-					String poruka = "Da li ste sigurni da želite da uklonite predmet";
+					String poruka = "Da li ste sigurni da �elite da uklonite predmet";
 					Object[] opcije = {"Da","Ne"};
 					int option = JOptionPane.showOptionDialog(parent, poruka, "Uklanjanje Predmeta", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 					if(option == JOptionPane.YES_OPTION) {

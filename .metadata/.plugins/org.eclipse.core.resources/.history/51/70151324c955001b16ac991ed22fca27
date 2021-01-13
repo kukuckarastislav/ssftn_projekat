@@ -13,7 +13,7 @@ public class BrisanjePredmeta implements MouseListener {
 	public void mouseClicked(MouseEvent arg0) {
 		
 		JFrame frame = (JFrame) arg0.getComponent();
-		int code = JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da ≈æelite da obri≈°ete predmet?",
+		int code = JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da ûelite da obriöete predmet?",
 				"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 		if (code != JOptionPane.YES_OPTION) {
 			

@@ -31,7 +31,7 @@ public class BazaPredmeti implements Serializable{
 		alPredmeti = new ArrayList<Predmet>();
 		
 		alKolone = new ArrayList<String>();
-		alKolone.add("Å ifra predmeta");
+		alKolone.add("Šifra predmeta");
 		alKolone.add("Naziv predmeta");
 		alKolone.add("Broj ESPB bodova");
 		alKolone.add("Godina u kojoj se predmet izvodi");

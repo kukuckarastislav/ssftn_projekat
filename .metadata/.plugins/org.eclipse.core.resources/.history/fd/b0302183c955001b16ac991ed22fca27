@@ -257,7 +257,7 @@ public class IzmenaPredmetaDialog extends JDialog{
 		btnUkloniProf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String poruka = "Da li želite da uklonite predmetnog profesora?";
+				String poruka = "Da li �elite da uklonite predmetnog profesora?";
 				Object[] opcije = {"Potvrdi","Odustani"};
 				int option = JOptionPane.showOptionDialog(parent, poruka, "Ukloni Profesora", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE, null, opcije, null);
 				if(option == JOptionPane.YES_OPTION) {

@@ -49,7 +49,7 @@ public class Frame1 extends JFrame{
 	
 	setSize(screenWidth * 3 / 4, screenHeight * 3/4);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setTitle("Studentska služba");   //po defaultu je poravnato uz lijevu ivicu 
+	setTitle("Studentska sluzba");   //po defaultu je poravnato uz lijevu ivicu 
 	setLocationRelativeTo(null);
 	setVisible(true);
 	

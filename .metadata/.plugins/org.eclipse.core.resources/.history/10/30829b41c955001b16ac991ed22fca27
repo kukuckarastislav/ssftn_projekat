@@ -72,7 +72,7 @@ public class DodavanjePredmetaProfesoru  extends JDialog {
 				int iPred = getSelectedPredmet();
 				if(iPred == -1) {
 					
-					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji Å¾elite da dodate profesoru", "Ukloni Predmet", 0, null);
+					JOptionPane.showMessageDialog(null, "Selektujte Predmet koji želite da dodate profesoru", "Ukloni Predmet", 0, null);
 				}else {
 				
 				for (Predmet ppp : predmetiZaDodavanje) {
