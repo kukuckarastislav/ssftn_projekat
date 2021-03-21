@@ -6,3 +6,5 @@ Projekat iz predmeta OISISI Studentska Služba Fakulteta Tehničkih Nauka
 
 Eclipse IDE for Java Developers Version: 2019-12 (4.14.0)
 JDK 11
+
+2020
